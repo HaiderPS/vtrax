@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -144,7 +144,7 @@ export function WorkGallery() {
               <motion.div
                 className="absolute inset-0"
                 whileHover={{ scale: 1.06 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
               >
                 <Image
                   src={item.src}

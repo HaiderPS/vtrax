@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Menu, Phone, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 import { lenisRef } from "@/components/SmoothScrollProvider";
@@ -153,7 +153,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.22, ease: cubicBezier(0.22, 1, 0.36, 1) }}
             className="border-t border-dark/10 bg-white px-4 py-4 shadow-panel lg:hidden"
           >
             <nav className="flex flex-col gap-3">

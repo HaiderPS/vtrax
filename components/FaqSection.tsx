@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 
 export function FaqSection() {
   const questions = [
@@ -62,7 +62,7 @@ export function FaqSection() {
                   <motion.span
                     className="inline-flex h-[26px] w-[26px] shrink-0 items-center justify-center"
                     animate={{ rotate: openIndex === idx ? 45 : 0 }}
-                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.25, ease: cubicBezier(0.22, 1, 0.36, 1) }}
                   >
                     <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect width="26" height="26" rx="13" fill="#111111"/>
@@ -78,7 +78,7 @@ export function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.3, ease: cubicBezier(0.22, 1, 0.36, 1) }}
                       className="overflow-hidden"
                     >
                       <div className="pb-3 pl-2 pr-2 font-open-sans text-[10.5px] font-normal text-dark/80 sm:text-[11.5px]">

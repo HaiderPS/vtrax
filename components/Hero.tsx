@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowRight, PhoneCall } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,7 @@ const itemVariant = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) },
   },
 };
 
@@ -119,7 +119,7 @@ export function Hero() {
           className="border-t border-white/10 py-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.75, ease: cubicBezier(0.22, 1, 0.36, 1) }}
         >
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
             {stats.map((stat) => (
