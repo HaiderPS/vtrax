@@ -23,9 +23,9 @@ function VtraxLogo() {
     <Image
       src="/images/vtrax_logo.svg"
       alt="VTRAX logo"
-      width={85}
-      height={67}
-      className="h-10 w-auto shrink-0"
+      width={110}
+      height={88}
+      className="h-16 w-auto shrink-0"
       priority
     />
   );
@@ -79,24 +79,24 @@ export function Navbar() {
           : "border-dark/10 bg-white shadow-[0_1px_0_rgba(17,17,17,0.06)]"
       )}
     >
-      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-[1400px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <button
           type="button"
           onClick={() => scrollToSection("home")}
-          className="flex items-center text-left"
+          className="flex items-center text-left ml-2 sm:ml-4 md:ml-6 lg:ml-8"
           aria-label="Scroll to home"
         >
           <VtraxLogo />
         </button>
 
-        <nav className="hidden h-full flex-1 items-center justify-center gap-7 lg:flex xl:gap-9">
+        <nav className="hidden h-full flex-1 items-center justify-center lg:flex">
           {links.map((link) => (
             <button
               key={link.id}
               type="button"
               onClick={() => scrollToSection(link.id)}
               className={cn(
-                "inline-flex h-[39px] w-[86px] items-center justify-center rounded-[1px] px-[14px] py-[10px] text-[10px] font-extrabold uppercase tracking-[0.22em] leading-none transition",
+                "inline-flex items-center justify-center rounded-[1px] px-4 py-2 text-[14px] font-extrabold uppercase tracking-[0.22em] leading-none transition",
                 activeSection === link.id
                   ? "text-primary"
                   : "text-dark/70 hover:text-dark"
@@ -110,7 +110,7 @@ export function Navbar() {
         <div className="hidden items-center lg:flex">
           <a
             href="tel:+61478563679"
-            className="inline-flex items-center gap-2 border-r border-dark/10 pr-5 align-middle font-oswald text-[16px] font-bold leading-[100%] tracking-[0.48px] text-dark"
+            className="inline-flex items-center gap-2 border-r border-dark/10 pr-5 align-middle font-oswald text-[18px] font-bold leading-[100%] tracking-[0.48px] text-dark"
           >
             <span className="text-primary">Call</span>
             <span>0478 563 679</span>
@@ -121,7 +121,7 @@ export function Navbar() {
               event.preventDefault();
               scrollToSection("contact");
             }}
-            className="ml-5 inline-flex h-[43px] w-[148px] items-center justify-center rounded-[1px] bg-primary pt-[15px] pr-[34px] pb-[15px] pl-[34px] text-[10px] font-black uppercase tracking-[0.16em] text-dark opacity-100 transition hover:brightness-95"
+            className="ml-5 inline-flex h-[48px] w-[140px] items-center justify-center rounded-[1px] bg-primary pt-[12px] pr-[24px] pb-[12px] pl-[24px] text-[12px] font-black uppercase tracking-[0.16em] text-dark opacity-100 transition hover:brightness-95"
           >
             Free Quote
           </a>
@@ -163,7 +163,7 @@ export function Navbar() {
                   type="button"
                   onClick={() => scrollToSection(link.id)}
                   className={cn(
-                    "rounded-sm border px-4 py-3 text-left text-[10px] font-extrabold uppercase tracking-[0.22em] transition",
+                    "rounded-sm border px-4 py-3 text-left text-[14px] font-extrabold uppercase tracking-[0.22em] transition",
                     activeSection === link.id
                       ? "border-primary text-dark"
                       : "border-dark/10 text-dark/70 hover:border-primary hover:text-dark"
@@ -179,7 +179,7 @@ export function Navbar() {
                   scrollToSection("contact");
                 }}
                 className={cn(
-                  "inline-flex h-11 items-center justify-center rounded-sm bg-primary px-4 text-[10px] font-black uppercase tracking-[0.16em] text-dark"
+                  "inline-flex h-12 items-center justify-center rounded-sm bg-primary px-4 text-[12px] font-black uppercase tracking-[0.16em] text-dark"
                 )}
               >
                 Free Quote

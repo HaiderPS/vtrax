@@ -8,6 +8,7 @@ import {
   Hammer,
   ShieldCheck,
   Truck,
+  Check,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -102,63 +103,84 @@ export function ReliabilitySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-dark py-16 text-white sm:py-20">
-      <div className="mx-auto grid w-full max-w-[980px] gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:items-start lg:px-8">
-        <div ref={leftRef} className="max-w-[500px]">
-          <p className="font-oswald text-[8px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
-            Why Clients Choose VTRAX
-          </p>
+    <section ref={sectionRef} className="bg-dark py-20 text-white sm:py-28">
+      <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
+          {/* LEFT COLUMN */}
+          <div ref={leftRef} className="max-w-[620px]">
+            {/* Eyebrow label */}
+            <p className="font-oswald text-[11px] font-bold uppercase leading-[100%] tracking-[3px] text-primary">
+              Why Clients Choose VTRAX
+            </p>
 
-          <h2 className="mt-2 font-display text-[56px] uppercase leading-[0.86] sm:text-[64px]">
-            Reliable.
-            <span className="block">Efficient.</span>
-            <span className="block text-primary">Professional.</span>
-          </h2>
+            {/* Main heading — Oswald 700, 54px */}
+            <h2 className="mt-3 font-oswald font-bold text-[54px] uppercase leading-[0.88]">
+              Reliable.
+              <span className="block">Efficient.</span>
+              <span className="block text-primary">Professional.</span>
+            </h2>
 
-          <p className="mt-4 max-w-[470px] font-open-sans text-[11px] font-normal leading-[1.7] text-white70">
-            Sourced directly from what clients tell us matters: local knowledge,
-            honest quotes, dependable communication, practical systems, and a
-            crew that shows up and delivers the right result.
-          </p>
+            {/* Subtext */}
+            <p className="mt-6 max-w-[520px] font-open-sans text-[15px] font-normal leading-[1.7] text-white70">
+              Sourced directly from what clients tell us matters: local knowledge,
+              honest quotes, dependable communication, practical systems, and a
+              crew that shows up and delivers the right result.
+            </p>
 
-          <div className="mt-6 space-y-4">
-            {commitments.map((item) => (
-              <article key={item.title} className="flex gap-3">
-                <span className="mt-1 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-primary">
-                  <span className="h-1.5 w-1.5 rounded-full bg-dark" />
-                </span>
-                <div>
-                  <h3 className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[1.2px] text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 font-open-sans text-[10px] font-normal leading-[1.55] text-white70">
-                    {item.text}
-                  </p>
+            {/* Commitments list */}
+            <div className="mt-8 space-y-5">
+              {commitments.map((item, index) => (
+                <div key={item.title}>
+                  <article className="flex gap-4">
+                    <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary">
+                      <Check className="h-3.5 w-3.5 text-dark" />
+                    </span>
+                    <div>
+                      <h3 className="font-oswald text-[13px] font-bold uppercase leading-[100%] tracking-[1.5px] text-white">
+                        {item.title}
+                      </h3>
+                      <p className="mt-1.5 font-open-sans text-[13px] font-normal leading-[1.6] text-white70">
+                        {item.text}
+                      </p>
+                    </div>
+                  </article>
+                  {index < commitments.length - 1 && (
+                    <div className="mt-5 h-px w-full bg-white/20"></div>
+                  )}
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div ref={rightRef} className="grid gap-px bg-white/10 sm:grid-cols-2">
-          {tools.map((tool) => {
-            const Icon = tool.icon;
-
-            return (
-              <article
-                key={tool.title}
-                className="bg-white10 px-4 py-4 transition hover:bg-white/15"
-              >
-                <Icon className="h-3.5 w-3.5 text-white" />
-                <h3 className="mt-2 font-oswald text-[10px] font-bold uppercase tracking-[1.2px] text-white">
-                  {tool.title}
-                </h3>
-                <p className="mt-1 font-open-sans text-[9px] font-normal leading-[1.5] text-white70">
-                  {tool.desc}
-                </p>
-              </article>
-            );
-          })}
+          {/* RIGHT COLUMN — tool cards */}
+          <div ref={rightRef} className="flex flex-col gap-[2px]">
+            {[tools.slice(0, 2), tools.slice(2, 4), tools.slice(4, 6)].map(
+              (row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="grid grid-cols-2 gap-[2px] bg-white/10"
+                >
+                  {row.map((tool) => {
+                    const Icon = tool.icon;
+                    return (
+                      <article
+                        key={tool.title}
+                        className="bg-white/[0.06] px-8 py-8 transition hover:bg-white/[0.11]"
+                      >
+                        <Icon className="h-6 w-6 text-white" />
+                        <h3 className="mt-4 font-oswald text-[15px] font-bold uppercase tracking-[1.5px] text-white">
+                          {tool.title}
+                        </h3>
+                        <p className="mt-2 font-open-sans text-[13px] font-normal leading-[1.55] text-white70">
+                          {tool.desc}
+                        </p>
+                      </article>
+                    );
+                  })}
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -120,26 +120,26 @@ export function WorkGallery() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-[#181818] py-16 text-white sm:py-20">
-      <div className="mx-auto w-full max-w-[980px] px-6 lg:px-8">
+    <section ref={sectionRef} className="bg-[#181818] py-20 text-white sm:py-24">
+      <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
         <div ref={headerRef} className="text-center">
           <p
-            className="font-oswald font-semibold text-[11px] leading-[100%] tracking-[2.42px] text-center align-middle uppercase text-[#F7AC1D]"
+            className="font-oswald font-semibold text-[14px] leading-[100%] tracking-[2.42px] text-center align-middle uppercase text-[#F7AC1D]"
           >
             How It Works
           </p>
           <h2
-            className="mt-2 font-oswald font-bold text-[54px] leading-[51.3px] text-center align-middle uppercase"
+            className="mt-3 font-oswald font-bold text-[68px] leading-[1.1] text-center align-middle uppercase"
           >
             Our Work <span className="text-primary">Gallery</span>
           </h2>
         </div>
 
-        <div ref={gridRef} className="mx-auto mt-8 grid max-w-[560px] grid-cols-12 auto-rows-[30px] gap-1.5 sm:mt-10 sm:auto-rows-[36px]">
+        <div ref={gridRef} className="mx-auto mt-10 grid max-w-[1300px] grid-cols-12 auto-rows-[45px] gap-2 sm:mt-12 sm:auto-rows-[55px]">
           {galleryItems.map((item, index) => (
             <article
               key={`${item.src}-${index}`}
-              className={`${item.className} relative overflow-hidden bg-white10`}
+              className={`${item.className} relative overflow-hidden bg-white10 rounded-sm`}
             >
               <motion.div
                 className="absolute inset-0"
@@ -151,7 +151,7 @@ export function WorkGallery() {
                   alt={item.alt}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 640px) 560px, 100vw"
+                  sizes="(min-width: 1024px) 1200px, (min-width: 640px) 560px, 100vw"
                 />
               </motion.div>
             </article>

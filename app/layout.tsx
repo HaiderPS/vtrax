@@ -45,8 +45,11 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${manrope.variable} ${bebasNeue.variable} ${oswald.variable} ${openSans.variable} antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-screen bg-dark text-white">{children}</body>
+      <body className="min-h-screen bg-dark text-white" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

@@ -51,7 +51,7 @@ export function Footer() {
 
   return (
     <footer ref={footerRef} className="bg-[#181818] text-white">
-      <div className="mx-auto max-w-[980px] px-6 pt-12 pb-6 lg:px-8">
+      <div className="mx-auto max-w-[1300px] px-6 pt-12 pb-6 lg:px-8">
         <div ref={gridRef} className="grid gap-8 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] items-start">
           {/* Col 1 — Logo + description */}
           <div>
@@ -128,7 +128,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-6 py-3 lg:px-8">
-        <div className="mx-auto flex max-w-[980px] flex-col items-center justify-between gap-2 sm:flex-row">
+        <div className="mx-auto flex max-w-[1300px] flex-col items-center justify-between gap-2 sm:flex-row">
           <p className="text-[10px] text-white/35">
             © 2026 VTRAX Projects. All rights reserved.
           </p>

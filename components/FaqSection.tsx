@@ -24,12 +24,12 @@ export function FaqSection() {
 
   return (
     <section id="faq" className="scroll-mt-24 bg-[#F5F5F3] py-16 text-dark sm:py-20">
-      <div className="mx-auto grid w-full max-w-[980px] gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:px-8">
+      <div className="mx-auto grid w-full max-w-[1300px] gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start lg:px-8">
         <div className="max-w-[320px]">
           <p className="font-oswald text-[8px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
             Common Questions
           </p>
-          <h2 className="mt-2 font-display text-[56px] uppercase leading-[1.1] sm:text-[62px]">
+          <h2 className="mt-2 font-display text-[52px] font-black uppercase leading-[1.1] sm:text-[58px]">
             Frequently
             <span className="block text-primary">Asked</span>
           </h2>
@@ -56,7 +56,7 @@ export function FaqSection() {
                   aria-expanded={openIndex === idx}
                   onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 >
-                  <span className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[1.2px] text-dark sm:text-[11px]">
+                  <span className="font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.2px] text-dark sm:text-[13px]">
                     {question}
                   </span>
                   <motion.span

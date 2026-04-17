@@ -66,23 +66,23 @@ const services = [
 
 const highlights = [
   {
-    title: "Reliable Setup",
-    detail: "Tracked machines and safe cut control",
+    title: "Kobelco SK17SR",
+    detail: "Mini Excavator — owned & operated",
     icon: ShieldCheck,
   },
   {
-    title: "Built to Code Standards",
-    detail: "Drainage, footing, and alignment discipline",
+    title: "Auger & Rock Breaker",
+    detail: "Attachments for all ground conditions",
     icon: ClipboardCheck,
   },
   {
     title: "Tipped Track",
-    detail: "Tight-access machinery for local sites",
+    detail: "On-site spoil removal & material delivery",
     icon: Truck,
   },
   {
-    title: "Latest Site Equipment",
-    detail: "Fast setup with quality finish outcomes",
+    title: "Laser Level Equipment",
+    detail: "Precise grading & compaction tools",
     icon: Hammer,
   },
 ];
@@ -120,71 +120,77 @@ export function Services() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="services" className="scroll-mt-24 bg-[#EFEFEF] py-14 text-dark sm:py-16">
-      <div className="mx-auto w-full max-w-[980px] px-6 lg:px-8">
-        <div ref={headerRef} className="max-w-[500px]">
-          <p className="font-oswald text-[8px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
+    <section ref={sectionRef} id="services" className="scroll-mt-24 bg-[#EFEFEF] py-20 text-dark sm:py-24">
+      <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
+        <div ref={headerRef} className="max-w-[600px] ml-24 sm:ml-32 lg:ml-40">
+          <p className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
             Services
           </p>
-          <h2 className="mt-2 font-display text-[54px] uppercase leading-[0.86] sm:text-[60px]">
+          <h2 className="mt-3 font-display text-[48px] font-black uppercase leading-[1.1] sm:text-[56px] whitespace-nowrap">
             Retaining Wall <span className="text-primary">Services</span>
           </h2>
-          <p className="mt-2 max-w-[460px] font-open-sans text-[10px] font-normal leading-[1.6] text-dark/70 sm:text-[11px]">
+          <p className="mt-3 max-w-[500px] font-open-sans text-[12px] font-normal leading-[1.6] text-dark/70 sm:text-[13px]">
             Reliable and structurally sound retaining wall solutions across the
             Illawarra. Every wall is built with proper footing preparation,
             drainage, and structural integrity.
           </p>
         </div>
 
-        <div ref={gridRef} className="mt-7 grid gap-x-0 gap-y-0 border border-dark/10 bg-white md:grid-cols-2 lg:grid-cols-3">
+        <div ref={gridRef} className="mt-8 grid gap-x-0 gap-y-0 border border-dark/10 bg-white md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <article
               key={service.title}
-              className="group border-b border-r border-dark/10 p-3 transition hover:bg-primary/5"
+              className="group flex flex-col border-b border-r border-dark/10"
             >
-              <div className="relative h-[142px] overflow-hidden bg-dark">
+              <div className="relative h-[280px] overflow-hidden bg-dark">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
                   className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 300px, (min-width: 768px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
                 />
               </div>
-              <div className="pt-2">
-                <p className="font-oswald text-[7px] font-bold uppercase leading-[100%] tracking-[1.6px] text-primary">
-                  {service.tag}
-                </p>
-                <h3 className="mt-1 max-w-[250px] font-oswald text-[19px] font-bold uppercase leading-[1.05] text-dark">
-                  {service.title}
-                </h3>
-                <p className="mt-2 font-open-sans text-[9px] font-normal leading-[1.55] text-dark/70 sm:text-[10px]">
+              <div className="flex flex-1 flex-col px-6 py-5 pb-7">
+                <div className="mt-1">
+                  <p className="font-oswald text-[9px] font-bold uppercase leading-[100%] tracking-[1.6px] text-primary">
+                    {service.tag}
+                  </p>
+                </div>
+                <div className="mt-3">
+                  <h3 className="font-oswald text-[20px] font-bold uppercase leading-[1.05] text-dark">
+                    {service.title}
+                  </h3>
+                </div>
+                <p className="mt-3 flex-1 font-open-sans text-[15px] font-normal leading-[1.55] text-dark/70">
                   {service.description}
                 </p>
-                <a
-                  href="#contact"
-                  className="mt-3 inline-flex items-center font-oswald text-[8px] font-bold uppercase leading-[100%] tracking-[1.6px] text-dark transition hover:text-primary"
-                >
-                  Get a Quote →
-                </a>
+                <div className="mt-6 mb-1">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.6px] text-dark transition hover:text-primary"
+                  >
+                    Get a Quote →
+                  </a>
+                </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="grid grid-cols-2 gap-px bg-dark/15 pt-3 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px bg-dark/15 pt-5 sm:grid-cols-4">
           {highlights.map((item) => {
             const Icon = item.icon;
 
             return (
-              <div key={item.title} className="bg-dark px-4 py-3 text-white">
+              <div key={item.title} className="bg-dark px-6 py-5 text-white">
                 <div className="flex items-center gap-2">
-                  <Icon className="h-3.5 w-3.5 text-primary" />
-                  <p className="font-oswald text-[9px] font-bold uppercase leading-[100%] tracking-[1.3px] text-white">
+                  <Icon className="h-5 w-5 text-white" />
+                  <p className="font-oswald text-[11px] font-bold uppercase leading-[100%] tracking-[1.3px] text-white">
                     {item.title}
                   </p>
                 </div>
-                <p className="mt-1 text-[8px] leading-[1.5] text-white70">
+                <p className="mt-1.5 font-open-sans text-[10px] leading-[1.5] text-white70">
                   {item.detail}
                 </p>
               </div>
