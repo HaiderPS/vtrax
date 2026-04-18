@@ -36,9 +36,9 @@ export function ServiceAreas() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="areas" className="scroll-mt-24 bg-white py-20 text-dark lg:py-32">
+    <section ref={sectionRef} id="areas" className="scroll-mt-24 bg-white py-8 text-dark lg:py-32">
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start lg:gap-16">
           
           {/* Left Side: Content & Grid */}
           <div className="animate-content">
@@ -48,22 +48,22 @@ export function ServiceAreas() {
             <h2 className="mt-2 font-display text-[28px] font-black uppercase leading-[1] tracking-[-0.01em] text-dark sm:text-[36px]">
               Illawarra & South Coast
             </h2>
-            <p className="mt-5 max-w-[540px] font-open-sans text-[14px] font-semibold leading-[1.6] text-dark">
+            <p className="mt-3 max-w-[540px] font-open-sans text-[14px] font-semibold leading-[1.6] text-dark sm:mt-5">
               VTRAX Projects operates across the Illawarra, South Coast, and South Sydney. Based in Lake Heights, we can be on-site quickly across all primary service areas.
             </p>
-            <p className="mt-3 max-w-[540px] font-open-sans text-[12px] font-normal leading-[1.6] text-dark/50 italic">
+            <p className="mt-1 max-w-[540px] font-open-sans text-[12px] font-normal leading-[1.6] text-dark/50 italic sm:mt-3">
               For projects outside the Illawarra — contact Jake to confirm. We are open to travelling for projects where it makes sense.
             </p>
 
             {/* Area Grid */}
-            <div className="mt-12 grid grid-cols-2 border border-black/5">
+            <div className="mt-6 grid grid-cols-2 border border-black/5 sm:mt-12">
               {areas.map((area, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center gap-3 border-b border-r border-black/5 px-6 py-5 last:border-b-0"
+                  className="flex items-center gap-3 border-b border-r border-black/5 px-3 py-3 sm:px-6 sm:py-5 last:border-b-0"
                 >
                   <MapPin className="h-3.5 w-3.5 text-primary fill-primary/10" />
-                  <span className="font-oswald text-[13px] font-bold uppercase tracking-[1.5px] text-dark">
+                  <span className="font-oswald text-[11px] font-bold uppercase tracking-[1.5px] text-dark sm:text-[13px]">
                     {area}
                   </span>
                 </div>
@@ -72,12 +72,12 @@ export function ServiceAreas() {
               {/* Black CTA Button in Grid Cell */}
               <a
                 href="#contact"
-                className="flex items-center gap-3 bg-[#111111] px-6 py-5 transition-colors hover:bg-primary group"
+                className="flex items-center gap-3 bg-[#111111] px-3 py-3 transition-colors hover:bg-primary group sm:px-6 sm:py-5"
               >
                 <div className="flex h-5 w-5 items-center justify-center rounded-full border border-white/20 group-hover:border-dark">
                   <span className="text-[16px] text-white font-bold leading-none group-hover:text-dark">+</span>
                 </div>
-                <span className="font-oswald text-[13px] font-bold uppercase tracking-[1.5px] text-white group-hover:text-dark">
+                <span className="font-oswald text-[11px] font-bold uppercase tracking-[1.5px] text-white group-hover:text-dark sm:text-[13px]">
                   More on Request
                 </span>
               </a>

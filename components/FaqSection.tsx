@@ -29,7 +29,7 @@ export function FaqSection() {
           <p className="font-oswald text-[8px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
             Common Questions
           </p>
-          <h2 className="mt-2 font-display text-[52px] font-black uppercase leading-[1.1] sm:text-[58px]">
+          <h2 className="mt-2 font-display text-[36px] font-black uppercase leading-[1.1] sm:text-[58px]">
             Frequently
             <span className="block text-primary">Asked</span>
           </h2>

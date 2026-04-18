@@ -42,7 +42,7 @@ export function AboutProjects() {
   return (
     <section ref={sectionRef} id="about" className="scroll-mt-24 bg-white py-12 text-dark">
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div ref={leftRef} className="max-w-[550px]">
             <p className="font-oswald text-[10px] font-bold uppercase tracking-[2.2px] text-primary mb-4">
               About VTRAX Projects
@@ -67,8 +67,8 @@ export function AboutProjects() {
               Request a Free Site Assessment
             </a>
           </div>
-          <div ref={rightRef} className="relative flex flex-col items-end">
-            <div className="relative w-full max-w-[480px] h-[620px]">
+          <div ref={rightRef} className="relative flex flex-col items-center lg:items-end">
+            <div className="relative w-full max-w-[480px] h-[480px] sm:h-[620px]">
               <div className="absolute inset-0 overflow-hidden rounded-sm shadow-lg">
                 <Image
                   src="/images/vtrax_about.png"
@@ -78,10 +78,10 @@ export function AboutProjects() {
                   sizes="(min-width: 1024px) 480px, 100vw"
                 />
               </div>
-              {/* Experience badge — bottom-left, slightly outside image */}
-              <div className="absolute -left-7 bottom-0 translate-y-7 flex h-[100px] w-[98px] flex-col justify-center bg-primary px-3 pb-2 pt-2 text-dark shadow-lg">
-                <span className="font-oswald text-[48px] font-bold leading-[1]">8</span>
-                <span className="font-oswald text-[8.5px] font-bold uppercase leading-[1.5] tracking-[1.6px]">
+              {/* Experience badge - repositioned for mobile */}
+              <div className="absolute -left-3 bottom-0 translate-y-4 flex h-[90px] w-[90px] flex-col justify-center bg-primary px-3 pb-2 pt-2 text-dark shadow-lg sm:-left-7 sm:translate-y-7 sm:h-[100px] sm:w-[98px]">
+                <span className="font-oswald text-[40px] font-bold leading-[1] sm:text-[48px]">8</span>
+                <span className="font-oswald text-[7px] font-bold uppercase leading-[1.5] tracking-[1.6px] sm:text-[8.5px]">
                   Years<br />Experience
                 </span>
               </div>

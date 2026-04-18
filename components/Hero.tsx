@@ -43,7 +43,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden scroll-mt-24 bg-dark pt-16"
+      className="relative isolate overflow-hidden scroll-mt-24 bg-dark pt-8 sm:pt-16"
     >
       <div className="absolute inset-0 bg-[url('/images/div.hero-bg.png')] bg-cover bg-center bg-no-repeat" />
       <div className="absolute inset-0 bg-dark/15" />
@@ -51,24 +51,24 @@ export function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(17,17,17,0.42)_0%,_rgba(17,17,17,0.05)_52%,_rgba(17,17,17,0.78)_100%)]" />
 
       <div className="relative mx-auto flex min-h-[calc(100svh-64px)] w-full max-w-[1400px] flex-col justify-between px-4 sm:px-6 lg:px-8">
-        <div className="pt-36 sm:pt-44 lg:pt-52 pb-32 sm:pb-44 lg:pb-56">
+        <div className="pt-16 sm:pt-44 lg:pt-52 pb-8 sm:pb-44 lg:pb-56">
           <motion.div
-            className="max-w-[740px] ml-2 sm:ml-4 md:ml-6 lg:ml-8"
+            className="max-w-[740px] ml-0 sm:ml-2 md:ml-6 lg:ml-8"
             variants={container}
             initial="hidden"
             animate="visible"
           >
             <motion.p
               variants={itemVariant}
-              className="mb-8 inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.26em] sm:text-[12px]"
+              className="mb-5 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.26em] sm:text-[12px]"
               style={{color: '#F7AC1D'}}
             >
-              <span className="h-px w-8" style={{backgroundColor: '#F7AC1D'}} />
+              <span className="h-px w-6 sm:w-8" style={{backgroundColor: '#F7AC1D'}} />
               Retaining Wall Specialists - Wollongong, NSW
             </motion.p>
             <motion.h1
               variants={itemVariant}
-              className="font-display text-[80px] font-black uppercase leading-[0.88] text-white sm:text-[108px] lg:text-[136px]"
+              className="font-display text-[48px] font-black uppercase leading-[0.88] text-white sm:text-[108px] lg:text-[136px]"
             >
               Retaining
               <span className="block">Walls</span>
@@ -76,7 +76,7 @@ export function Hero() {
             </motion.h1>
             <motion.div
               variants={itemVariant}
-              className="mt-6 max-w-[680px] font-open-sans font-light text-[16px] leading-[28px] text-white70 sm:mt-7"
+              className="mt-4 max-w-[680px] font-open-sans font-light text-[14px] leading-[24px] text-white70 sm:mt-7 sm:text-[16px] sm:leading-[28px]"
             >
               <p>Concrete sleeper, block, and timber retaining walls. Excavation, drainage,</p>
               <p>and landscaping. Servicing Wollongong, Shellharbour, Kiama, and the South</p>
@@ -85,7 +85,7 @@ export function Hero() {
 
             <motion.div
               variants={itemVariant}
-              className="mt-10 flex flex-col gap-5 sm:mt-12 sm:flex-row sm:items-center"
+              className="mt-8 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center"
             >
               <motion.a
                 href="#contact"
@@ -116,18 +116,18 @@ export function Hero() {
         </div>
 
         <motion.div
-          className="border-t border-white/10 py-6 w-screen relative left-1/2 right-1/2 -mx-[50vw]"
+          className="border-t border-white/10 py-4 sm:py-6 w-screen relative left-1/2 right-1/2 -mx-[50vw]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.75, ease: cubicBezier(0.22, 1, 0.36, 1) }}
         >
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-6 max-w-full mx-auto px-4 sm:px-6 lg:px-8">
             {stats.map((stat) => (
               <div key={stat.label}>
-                <p className="font-oswald text-[36px] font-bold leading-[0.9] sm:text-[44px]" style={{color: '#F7AC1D'}}>
+                <p className="font-oswald text-[28px] font-bold leading-[0.9] sm:text-[44px]" style={{color: '#F7AC1D'}}>
                   {stat.value}
                 </p>
-                <p className="mt-1 font-open-sans text-[11px] font-normal leading-[1.3] text-white70 sm:text-[12px]">
+                <p className="mt-1 font-open-sans text-[10px] font-normal leading-[1.2] text-white70 sm:text-[12px]">
                   {stat.label}
                 </p>
               </div>
@@ -144,7 +144,7 @@ export function Hero() {
               key={`${item}-${index}`}
               className="flex h-full shrink-0 items-center"
             >
-              <span className="inline-flex items-center px-6 align-middle font-oswald text-[14px] font-bold uppercase leading-[100%] tracking-[2.2px] text-dark">
+              <span className="inline-flex items-center px-4 sm:px-6 align-middle font-oswald text-[11px] font-bold uppercase leading-[100%] tracking-[2.2px] text-dark sm:text-[14px]">
                 {item}
               </span>
               <span className="h-[12px] w-px bg-dark/35" aria-hidden="true" />

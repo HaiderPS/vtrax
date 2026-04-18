@@ -75,7 +75,7 @@ export function BeforeAfter() {
     <section
       ref={sectionRef}
       id="projects"
-      className="scroll-mt-24 bg-[#FFFFFF] py-24 text-dark sm:py-28"
+      className="scroll-mt-24 bg-[#FFFFFF] py-20 text-dark sm:py-28"
     >
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
         {/* Header */}
@@ -83,7 +83,7 @@ export function BeforeAfter() {
           <p className="font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
             Projects Portfolio
           </p>
-          <h2 className="mt-3 font-display text-[52px] font-black uppercase leading-[0.86] sm:text-[62px]">
+          <h2 className="mt-3 font-display text-[40px] font-black uppercase leading-[1.1] sm:text-[52px] md:text-[62px]">
             Before & <span className="text-primary">After</span>
           </h2>
           <p className="mt-3 font-open-sans text-[14px] font-normal leading-[1.6] text-dark/70 sm:text-[15px]">
@@ -92,12 +92,12 @@ export function BeforeAfter() {
           </p>
         </div>
 
-        {/* Filter tabs */}
-        <div className="mt-8 flex flex-wrap items-center gap-4">
+        {/* Filter tabs - horizontal scroll on mobile, original layout on desktop */}
+        <div className="mt-8 flex flex-nowrap gap-3 overflow-x-auto pb-4 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {topFilters.map((item, index) => (
             <span
               key={item}
-              className={`font-oswald text-[14px] font-bold uppercase leading-[100%] tracking-[1.3px] px-6 py-3 ${
+              className={`whitespace-nowrap font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.3px] px-5 py-2.5 sm:text-[14px] sm:px-6 sm:py-3 ${
                 index === 0 ? "bg-dark text-white" : "bg-white text-dark border border-dark/10"
               }`}
             >
@@ -108,9 +108,9 @@ export function BeforeAfter() {
 
         {/* Main panel */}
         <div ref={panelRef} className="mt-10 border border-dark/10 bg-dark text-white">
-          {/* Before / After images */}
-          <div className="relative grid h-[400px] grid-cols-2 sm:h-[500px]">
-            <div className="relative overflow-hidden border-r border-white/10">
+          {/* Before / After images - original grid layout on desktop, stacked on mobile */}
+          <div className="relative grid h-[400px] grid-cols-1 sm:h-[500px] sm:grid-cols-2">
+            <div className="relative overflow-hidden border-b border-white/10 sm:border-b-0 sm:border-r">
               <Image
                 src="https://images.unsplash.com/photo-1564678477755-e8daef081875?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Before retaining wall site"
@@ -136,61 +136,62 @@ export function BeforeAfter() {
               </span>
             </div>
 
-            {/* Centre divider dot */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dark/30 bg-white p-3">
+            {/* Centre divider dot - hide on mobile */}
+            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-dark/30 bg-white p-3 sm:flex">
               <span className="block h-2.5 w-2.5 rounded-full bg-dark" />
             </div>
           </div>
 
-          {/* Info bar */}
+          {/* Info bar - original desktop layout preserved */}
           <div className="border-t border-white/10">
-            <div className="grid grid-cols-1 sm:grid-cols-[40%_60%]">
-              {/* Left: Job title block - 40% width */}
-              <div className="border-r border-white/10 px-8 py-8">
-                <p className="font-oswald text-[12px] font-bold uppercase tracking-[2px] text-primary">
+            {/* Mobile: stacked, Desktop: original grid layout */}
+            <div className="flex flex-col sm:grid sm:grid-cols-[40%_60%]">
+              {/* Left: Job title block - original styling */}
+              <div className="border-b border-white/10 px-6 py-6 sm:border-b-0 sm:border-r sm:px-8 sm:py-8">
+                <p className="font-oswald text-[11px] font-bold uppercase tracking-[2px] text-primary sm:text-[12px]">
                   Job 1
                 </p>
-                <h3 className="mt-3 font-oswald text-[20px] font-black uppercase leading-[1.2] tracking-[0.5px] text-white">
+                <h3 className="mt-3 font-oswald text-[18px] font-black uppercase leading-[1.2] tracking-[0.5px] text-white sm:text-[20px]">
                   Timber Sleeper Demolition &amp;<br />
                   Concrete Sleeper Replacement
                 </h3>
               </div>
 
-              {/* Right: spec tags - 60% width */}
-              <div className="min-w-0 flex flex-col gap-4 px-8 py-8 overflow-x-auto">
-                {/* Row 1: Location + Before — side by side */}
-                <div className="flex gap-4">
+              {/* Right: spec tags - vertical stack on mobile with proper text wrapping */}
+              <div className="flex flex-col gap-3 px-6 py-6 sm:flex-row sm:flex-wrap sm:gap-4 sm:px-8 sm:py-8">
+                {/* Mobile: vertical stack, Desktop: horizontal layout */}
+                <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                   {specTags.slice(0, 2).map((tag) => (
                     <div
                       key={tag.label}
-                      className="flex shrink-0 items-center border border-white/15 bg-white/5"
+                      className="flex w-full flex-col border border-white/15 bg-white/5 sm:w-auto sm:flex-row sm:items-center"
                     >
-                      <span className="shrink-0 border-r border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary">
+                      <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                         {tag.label}:
                       </span>
-                      <span className="px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white whitespace-nowrap">
+                      <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
                         {tag.value}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                {/* Row 2: After — alone */}
-                <div className="flex w-fit shrink-0 items-center border border-white/15 bg-white/5">
-                  <span className="shrink-0 border-r border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary">
+                {/* After */}
+                <div className="flex w-full flex-col border border-white/15 bg-white/5 sm:w-auto sm:flex-row sm:items-center">
+                  <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                     After:
                   </span>
-                  <span className="px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white whitespace-nowrap">
+                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
                     {specTags[2].value}
                   </span>
                 </div>
 
-                {/* Row 3: Scope — alone */}
-                <div className="flex w-fit shrink-0 items-center border border-white/15 bg-white/5">
-                  <span className="shrink-0 border-r border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary">
+                {/* Scope */}
+                <div className="flex w-full flex-col border border-white/15 bg-white/5 sm:w-auto sm:flex-row sm:items-center">
+                  <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                     Scope:
                   </span>
-                  <span className="px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white whitespace-nowrap">
+                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
                     {specTags[3].value}
                   </span>
                 </div>
@@ -199,32 +200,32 @@ export function BeforeAfter() {
           </div>
         </div>
 
-        {/* Thumbnail grid */}
+        {/* Thumbnail grid - original desktop layout preserved */}
         <div ref={thumbsRef} className="mt-6 flex flex-col gap-2">
-          {/* Row 1: 4 equal images */}
-          <div className="grid grid-cols-4 gap-2">
+          {/* Row 1: 4 equal images on desktop, 2 on mobile */}
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             {thumbs.slice(0, 4).map((src, index) => (
               <div
                 key={`${src}-${index}`}
-                className="relative h-[280px] overflow-hidden"
+                className="relative h-[180px] overflow-hidden sm:h-[280px]"
               >
                 <Image
                   src={src}
                   alt={`Project gallery thumbnail ${index + 1}`}
                   fill
                   className="object-cover"
-                  sizes="25vw"
+                  sizes="(max-width: 640px) 50vw, 25vw"
                 />
               </div>
             ))}
           </div>
 
-          {/* Row 2: 2 images — same size as top row cells */}
+          {/* Row 2: 2 images on desktop - original layout with fixed width */}
           <div className="flex gap-2">
             {thumbs.slice(4, 6).map((src, index) => (
               <div
                 key={`${src}-${index + 4}`}
-                className="relative h-[280px] overflow-hidden"
+                className="relative h-[180px] overflow-hidden sm:h-[280px]"
                 style={{ width: "calc(25% - 2px)" }}
               >
                 <Image
@@ -232,7 +233,7 @@ export function BeforeAfter() {
                   alt={`Project gallery thumbnail ${index + 5}`}
                   fill
                   className="object-cover"
-                  sizes="25vw"
+                  sizes="(max-width: 640px) 50vw, 25vw"
                 />
               </div>
             ))}

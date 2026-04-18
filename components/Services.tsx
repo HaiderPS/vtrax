@@ -122,11 +122,12 @@ export function Services() {
   return (
     <section ref={sectionRef} id="services" className="scroll-mt-24 bg-[#EFEFEF] py-20 text-dark sm:py-24">
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
-        <div ref={headerRef} className="max-w-[600px] ml-24 sm:ml-32 lg:ml-40">
+        {/* Header - Responsive margins */}
+        <div ref={headerRef} className="max-w-[600px] mx-0 sm:mx-0 md:ml-24 lg:ml-40">
           <p className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
             Services
           </p>
-          <h2 className="mt-3 font-display text-[48px] font-black uppercase leading-[1.1] sm:text-[56px] whitespace-nowrap">
+          <h2 className="mt-3 font-display text-[36px] font-black uppercase leading-[1.1] sm:text-[48px] md:text-[56px]">
             Retaining Wall <span className="text-primary">Services</span>
           </h2>
           <p className="mt-3 max-w-[500px] font-open-sans text-[12px] font-normal leading-[1.6] text-dark/70 sm:text-[13px]">
@@ -136,11 +137,12 @@ export function Services() {
           </p>
         </div>
 
-        <div ref={gridRef} className="mt-8 grid gap-x-0 gap-y-0 border border-dark/10 bg-white md:grid-cols-2 lg:grid-cols-3">
+        {/* Services Grid - Responsive columns */}
+        <div ref={gridRef} className="mt-8 grid grid-cols-1 gap-0 border border-dark/10 bg-white md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <article
               key={service.title}
-              className="group flex flex-col border-b border-r border-dark/10"
+              className="group flex flex-col border-b border-dark/10 last:border-b-0 md:border-r md:last:border-r-0"
             >
               <div className="relative h-[280px] overflow-hidden bg-dark">
                 <Image
@@ -158,11 +160,11 @@ export function Services() {
                   </p>
                 </div>
                 <div className="mt-3">
-                  <h3 className="font-oswald text-[20px] font-bold uppercase leading-[1.05] text-dark">
+                  <h3 className="font-oswald text-[18px] font-bold uppercase leading-[1.05] text-dark sm:text-[20px]">
                     {service.title}
                   </h3>
                 </div>
-                <p className="mt-3 flex-1 font-open-sans text-[15px] font-normal leading-[1.55] text-dark/70">
+                <p className="mt-3 flex-1 font-open-sans text-[14px] font-normal leading-[1.55] text-dark/70 sm:text-[15px]">
                   {service.description}
                 </p>
                 <div className="mt-6 mb-1">
@@ -178,7 +180,8 @@ export function Services() {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 gap-px bg-dark/15 pt-5 sm:grid-cols-4">
+        {/* Highlights - Responsive grid */}
+        <div className="grid grid-cols-1 gap-[2px] pt-5 sm:grid-cols-2 md:grid-cols-4">
           {highlights.map((item) => {
             const Icon = item.icon;
 

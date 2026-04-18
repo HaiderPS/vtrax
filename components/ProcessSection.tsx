@@ -46,7 +46,9 @@ export function ProcessSection() {
     const el = sectionRef.current;
     const header = headerRef.current;
     const stepsEl = stepsRef.current;
+
     if (!el || !header || !stepsEl) return;
+
     const ctx = gsap.context(() => {
       gsap.from(header, {
         opacity: 0,
@@ -54,8 +56,13 @@ export function ProcessSection() {
         duration: 0.6,
         ease: "power2.out",
         clearProps: "all",
-        scrollTrigger: { trigger: el, start: "top 80%", once: true },
+        scrollTrigger: {
+          trigger: el,
+          start: "top 80%",
+          once: true,
+        },
       });
+
       gsap.from(Array.from(stepsEl.children), {
         opacity: 0,
         y: 25,
@@ -63,56 +70,72 @@ export function ProcessSection() {
         stagger: 0.1,
         ease: "power2.out",
         clearProps: "all",
-        scrollTrigger: { trigger: stepsEl, start: "top 82%", once: true },
+        scrollTrigger: {
+          trigger: stepsEl,
+          start: "top 82%",
+          once: true,
+        },
       });
     }, el);
+
     return () => ctx.revert();
   }, []);
 
   return (
     <section ref={sectionRef} className="bg-white py-16 text-dark sm:py-24">
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
-        
-        {/* Header - Heading Size Fixed */}
+
+        {/* Header */}
         <div ref={headerRef} className="text-center">
-          <p className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
+          <p className="font-oswald text-[10px] font-bold uppercase tracking-[2px] text-primary">
             How It Works
           </p>
+
           <h2 className="mt-3 font-display text-[42px] font-black uppercase leading-[0.95] tracking-[-0.01em] sm:text-[52px]">
             Simple Process.
             <span className="block text-primary">Professional Results.</span>
           </h2>
         </div>
 
-        {/* Steps Grid */}
-        <div ref={stepsRef} className="relative mx-auto mt-16 grid max-w-[1300px] gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          
-          {/* Connecting Line */}
+        {/* Steps */}
+        <div
+          ref={stepsRef}
+          className="relative mx-auto mt-16 max-w-[1300px] flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-10 lg:grid-cols-4 lg:gap-6"
+        >
+
+          {/* Connecting Line (Desktop Only) */}
           <div className="absolute left-[10%] right-[10%] top-7 hidden h-[1px] bg-dark/10 lg:block" />
 
           {steps.map((step) => (
-            <article key={step.number} className="relative flex flex-col items-center text-center">
-              
+            <article
+              key={step.number}
+              className="relative flex flex-row items-start gap-4 rounded-lg border border-dark/8 bg-white p-5 pl-0 overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.06)] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[4px] before:bg-primary before:rounded-l-lg before:content-[''] sm:flex-col sm:items-center sm:text-center sm:pl-5 sm:before:hidden sm:p-6 lg:flex-col lg:items-center lg:text-center lg:border-0 lg:shadow-none lg:rounded-none lg:p-0 lg:bg-transparent lg:before:hidden"
+            >
+
               {/* Number Circle */}
-              <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-dark/10 bg-white font-oswald text-[18px] font-bold leading-[100%] text-primary shadow-sm">
+              <div className="relative z-10 shrink-0 flex h-14 w-14 items-center justify-center rounded-full border border-dark/10 bg-white font-oswald text-[18px] font-bold text-primary shadow-sm ml-5 sm:ml-0">
                 {step.number}
               </div>
 
-              {/* Title */}
-              <h3 className="mt-6 font-oswald text-[14px] font-bold uppercase leading-[100%] tracking-[1px] text-dark">
-                {step.title}
-              </h3>
+              {/* Content */}
+              <div className="flex flex-col items-start sm:items-center pr-4 sm:pr-0">
 
-              {/* Description */}
-              <p className="mt-3 font-open-sans text-[11.5px] font-normal leading-[1.6] text-dark/65 px-2">
-                {step.description}
-              </p>
+                {/* Title */}
+                <h3 className="font-oswald text-[14px] font-bold uppercase tracking-[1px] text-dark mt-0 sm:mt-6">
+                  {step.title}
+                </h3>
 
-              {/* Action Badge */}
-              <span className="mt-5 inline-flex items-center justify-center rounded-full bg-primary px-4 py-1.5 font-oswald text-[9.5px] font-bold uppercase leading-[100%] tracking-[0.8px] text-dark">
-                {step.action}
-              </span>
-              
+                {/* Description */}
+                <p className="mt-2 font-open-sans text-[11.5px] leading-[1.6] text-dark/65 text-left px-0 sm:text-center sm:px-2">
+                  {step.description}
+                </p>
+
+                {/* Badge */}
+                <span className="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-4 py-1.5 font-oswald text-[9.5px] font-bold uppercase tracking-[0.8px] text-dark">
+                  {step.action}
+                </span>
+
+              </div>
             </article>
           ))}
         </div>

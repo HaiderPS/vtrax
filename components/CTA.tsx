@@ -79,8 +79,8 @@ export function CTA() {
               Get in Touch
             </p>
 
-            {/* ✅ FIXED HEADING */}
-            <h2 className="mt-3 font-display text-[40px] font-black uppercase leading-[1.2] sm:text-[46px] text-black">
+            {/* Heading - smaller on mobile */}
+            <h2 className="mt-3 font-display text-[32px] font-black uppercase leading-[1.2] text-black sm:text-[40px] md:text-[46px]">
               <span className="whitespace-nowrap">
                 Request a <span className="text-primary">Free</span> Site
               </span>
@@ -141,26 +141,26 @@ export function CTA() {
           </div>
 
           {/* Right column */}
-          <div ref={rightRef} className="bg-white p-8 shadow-panel sm:p-10">
-            <p className="font-oswald text-[18px] font-bold uppercase text-dark">
+          <div ref={rightRef} className="bg-white p-5 shadow-panel sm:p-10">
+            <p className="font-oswald text-[20px] font-bold uppercase text-dark sm:text-[18px]">
               Free Quote Request
             </p>
 
-            <p className="mt-2 text-[11px] text-dark/55">
+            <p className="mt-2 text-[13px] text-dark/55 sm:text-[11px]">
               Jake will text you within 10 minutes during business hours.
             </p>
 
-            <span className="mt-4 inline-block bg-primary px-4 py-1.5 font-oswald text-[9px] font-bold uppercase text-dark">
+            <span className="mt-4 inline-block bg-primary px-4 py-1.5 font-oswald text-[10px] font-bold uppercase text-dark sm:text-[9px]">
               10-Minute Response Guarantee
             </span>
 
             <form className="mt-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input placeholder="First name" required className={inputCls} />
                 <input placeholder="Last name" className={inputCls} />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <input placeholder="Phone" required className={inputCls} />
                 <input placeholder="Email" className={inputCls} />
               </div>
@@ -196,11 +196,25 @@ export function CTA() {
       {/* Bottom Yellow Strip */}
       <div className="mt-20 bg-primary py-16 sm:py-20">
         <div className="mx-auto flex max-w-[1300px] flex-col gap-8 px-6 lg:flex-row lg:items-center lg:px-8">
-          <h3 className="font-display text-[42px] font-black uppercase leading-[0.9] text-dark sm:text-[52px]">
+          <h3 className="font-display text-[32px] font-black uppercase leading-[0.9] text-dark sm:text-[42px] md:text-[52px]">
             Want to discuss your<br />
             retaining wall project?<br />
             Give us a call.
           </h3>
+          <div className="flex flex-col gap-4 sm:flex-row lg:ml-auto">
+            <a
+              href="#contact"
+              className="bg-dark px-8 py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-white transition hover:bg-dark/85"
+            >
+              Request Site Assessment
+            </a>
+            <a
+              href="tel:0478563679"
+              className="border-2 border-dark px-8 py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-dark transition hover:bg-dark hover:text-white"
+            >
+              Call 0478 563 679
+            </a>
+          </div>
         </div>
       </div>
     </section>
