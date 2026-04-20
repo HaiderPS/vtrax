@@ -22,8 +22,8 @@ const specTags = [
 
 const thumbs = [
   "/images/before-after/1-new.jpg",
-  "/images/before-after/2-new.jpg",
-  "/images/before-after/3-new.png",
+  "/images/before-after/2-new.png",
+  "/images/before-after/3-new.jpg",
   "/images/before-after/4-new.jpg",
   "/images/before-after/5-new.jpg",
   "/images/before-after/6-new.jpg",
