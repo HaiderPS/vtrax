@@ -21,12 +21,12 @@ const specTags = [
 ];
 
 const thumbs = [
-  "https://images.unsplash.com/photo-1586333982571-ff3e0464ccff?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1605998533624-89d432d5003f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8",
-  "https://plus.unsplash.com/premium_photo-1733259613906-177d7b01bbdc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHx8",
-  "https://images.unsplash.com/photo-1721052112076-9be4a47ff318?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHx8",
-  "https://plus.unsplash.com/premium_photo-1664695710496-e3e271ffd3f9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE2fHx8ZW58MHx8fHx8",
-  "https://images.unsplash.com/photo-1745238703211-e0a1996f16ad?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDIzfHx8ZW58MHx8fHx8",
+  "/images/before-after/1-new.jpg",
+  "/images/before-after/2-new.jpg",
+  "/images/before-after/3-new.png",
+  "/images/before-after/4-new.jpg",
+  "/images/before-after/5-new.jpg",
+  "/images/before-after/6-new.jpg",
 ];
 
 export function BeforeAfter() {
@@ -108,35 +108,41 @@ export function BeforeAfter() {
 
         {/* Main panel */}
         <div ref={panelRef} className="mt-10 border border-dark/10 bg-dark text-white">
-          {/* Before / After images - original grid layout on desktop, stacked on mobile */}
-          <div className="relative grid h-[400px] grid-cols-1 sm:h-[500px] sm:grid-cols-2">
-            <div className="relative overflow-hidden border-b border-white/10 sm:border-b-0 sm:border-r">
-              <Image
-                src="https://images.unsplash.com/photo-1564678477755-e8daef081875?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Before retaining wall site"
-                fill
-                className="object-cover"
-                sizes="(min-width: 640px) 50vw, 100vw"
-              />
+          {/* Before / After images - Side by side on mobile and desktop */}
+          <div className="relative grid grid-cols-2">
+            {/* Before Image - Portrait on mobile, Landscape on desktop */}
+            <div className="relative overflow-hidden border-r border-white/10">
+              <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-[500px]">
+                <Image
+                  src="/images/before-after/before.png"
+                  alt="Before retaining wall site"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 50vw"
+                />
+              </div>
               <span className="absolute left-4 top-4 rounded-[1px] bg-dark/85 px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-white">
                 Before
               </span>
             </div>
 
+            {/* After Image - Portrait on mobile, Landscape on desktop */}
             <div className="relative overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1729873317549-4d32c07d0d29?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="After retaining wall site"
-                fill
-                className="object-cover"
-                sizes="(min-width: 640px) 50vw, 100vw"
-              />
+              <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-[500px]">
+                <Image
+                  src="/images/before-after/after.jpg"
+                  alt="After retaining wall site"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 50vw"
+                />
+              </div>
               <span className="absolute right-4 top-4 rounded-[1px] bg-primary px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-dark">
                 After
               </span>
             </div>
 
-            {/* Centre divider dot - hide on mobile */}
+            {/* Centre divider dot - hide on mobile, show on desktop */}
             <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-dark/30 bg-white p-3 sm:flex">
               <span className="block h-2.5 w-2.5 rounded-full bg-dark" />
             </div>
@@ -200,37 +206,18 @@ export function BeforeAfter() {
           </div>
         </div>
 
-        {/* Thumbnail grid - original desktop layout preserved */}
-        <div ref={thumbsRef} className="mt-6 flex flex-col gap-2">
-          {/* Row 1: 4 equal images on desktop, 2 on mobile */}
+        {/* Thumbnail grid - 2 columns on mobile, 4 columns on desktop */}
+        <div ref={thumbsRef} className="mt-6">
+          {/* Mobile: 2 columns with square images, Desktop: 4 columns layout */}
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {thumbs.slice(0, 4).map((src, index) => (
+            {thumbs.map((src, index) => (
               <div
                 key={`${src}-${index}`}
-                className="relative h-[180px] overflow-hidden sm:h-[280px]"
+                className="relative aspect-square w-full overflow-hidden sm:h-[280px] sm:aspect-auto"
               >
                 <Image
                   src={src}
                   alt={`Project gallery thumbnail ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* Row 2: 2 images on desktop - original layout with fixed width */}
-          <div className="flex gap-2">
-            {thumbs.slice(4, 6).map((src, index) => (
-              <div
-                key={`${src}-${index + 4}`}
-                className="relative h-[180px] overflow-hidden sm:h-[280px]"
-                style={{ width: "calc(25% - 2px)" }}
-              >
-                <Image
-                  src={src}
-                  alt={`Project gallery thumbnail ${index + 5}`}
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 50vw, 25vw"

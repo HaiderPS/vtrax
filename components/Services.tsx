@@ -15,48 +15,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1663090226912-511b20a3f8a3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y29uc3RydWN0aW9uJTIwaW1hZ2VzfGVufDB8fDB8fHww",
+    image: "/images/1-services.jpg",
     tag: "01 - Core Service",
     title: "Concrete Sleeper Retaining Walls",
     description:
       "High-strength precast concrete sleeper walls built for depth, line and durability. We excavate, prepare foundations, and manage drainage so every wall performs long term.",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1578052315041-06c7c248b325?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbnN0cnVjdGlvbiUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
+    image: "/images/2-services.jpg",
     tag: "02 - Core Service",
     title: "Block Retaining Walls",
     description:
       "Concrete block walls engineered for both structural performance and visual finish. Back drainage, tie systems, and reinforcement are integrated to minimise future repairs.",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1682148832806-9e116d5eca90?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEyfHx8ZW58MHx8fHx8",
+    image: "/images/3-services.jpg",
     tag: "03 - Core Service",
     title: "Timber Retaining Walls",
     description:
       "Treated hardwood and timber sleeper walls for residential boundary, retaining and tiered levels. Cost-effective and practical when designed with correct support and drainage.",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1682148770244-8b42b1f6cdb1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI4fHx8ZW58MHx8fHx8",
+    image: "/images/4-services.png",
     tag: "04 - Site Works",
     title: "Excavation & Footings",
     description:
       "VTRAX Projects prepares, excavates and shapes retaining sites with proper cut lines, levels, and compaction for long-term wall support.",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1682144429868-c3b4fe271292?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDMyfHx8ZW58MHx8fHx8",
+    image: "/images/5-services.jpg",
     tag: "05 - Landscaping",
     title: "Landscaping & Turf",
     description:
       "Site cleanups, contour levelling, ground finishing, and turf installation complete every retaining package so your outdoor areas are practical and presentation ready.",
   },
   {
-    image:
-      "https://plus.unsplash.com/premium_photo-1725408082757-cd1a39a947ad?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fGNvbnN0cnVjdGlvbiUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D",
+    image: "/images/6-services.jpg",
     tag: "06 - Projects & Installations",
     title: "Wall Repairs & Replacements",
     description:
