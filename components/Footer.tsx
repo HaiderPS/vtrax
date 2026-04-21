@@ -56,11 +56,12 @@ export function Footer() {
           {/* Col 1 — Logo + description */}
           <div>
             <Image
-              src="/images/vtrax_logo.svg"
+              src="/images/vtrax_logo.png"
               alt="VTRAX logo"
               width={72}
               height={57}
-              className="h-12 w-auto brightness-0 invert"
+              className="h-12 w-auto"
+              priority
             />
             <p className="mt-4 font-open-sans text-[13px] font-light not-italic leading-[23.4px] text-[#FFFFFFA6] max-w-[220px]">
               Locally owned retaining wall installations and landscaping company servicing the Illawarra, South Coast, and South Sydney. Professional equipment, quality workmanship, reliable results.

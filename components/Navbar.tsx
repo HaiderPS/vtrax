@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Menu, Phone, X } from "lucide-react";
+import { ChevronRight, Menu, Phone, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, cubicBezier } from "framer-motion";
 
@@ -98,7 +98,7 @@ export function Navbar() {
               className={cn(
                 "inline-flex items-center justify-center rounded-[1px] px-4 py-2 text-[14px] font-extrabold uppercase tracking-[0.22em] leading-none transition",
                 activeSection === link.id
-                  ? "text-primary"
+                  ? "text-[#F7AC1D]"
                   : "text-dark/70 hover:text-dark"
               )}
             >
@@ -112,7 +112,7 @@ export function Navbar() {
             href="tel:+61478563679"
             className="inline-flex items-center gap-2 border-r border-dark/10 pr-5 align-middle font-oswald text-[18px] font-bold leading-[100%] tracking-[0.48px] text-dark"
           >
-            <span className="text-primary">Call</span>
+            <span className="text-[#F7AC1D]">Call</span>
             <span>0478 563 679</span>
           </a>
           <a
@@ -121,70 +121,101 @@ export function Navbar() {
               event.preventDefault();
               scrollToSection("contact");
             }}
-            className="ml-5 inline-flex h-[48px] w-[140px] items-center justify-center rounded-[1px] bg-primary pt-[12px] pr-[24px] pb-[12px] pl-[24px] text-[12px] font-black uppercase tracking-[0.16em] text-dark opacity-100 transition hover:brightness-95"
+            className="ml-5 inline-flex h-[48px] w-[140px] items-center justify-center rounded-[1px] bg-[#F7AC1D] pt-[12px] pr-[24px] pb-[12px] pl-[24px] text-[12px] font-black uppercase tracking-[0.16em] text-dark opacity-100 transition hover:brightness-95"
           >
             Free Quote
           </a>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <a
-            href="tel:+61478563679"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-dark/10 bg-white text-dark"
-            aria-label="Call VTRAX"
-          >
-            <Phone className="h-4 w-4" />
-          </a>
-          <button
-            type="button"
-            onClick={() => setIsOpen((open) => !open)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-dark/10 bg-dark text-white"
-            aria-label={isOpen ? "Close navigation" : "Open navigation"}
-          >
-            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          className="inline-flex h-10 w-10 items-center justify-center lg:hidden"
+          aria-label="Open navigation"
+        >
+          <Menu className="h-6 w-6 text-dark" />
+        </button>
       </div>
 
       <AnimatePresence>
         {isOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.22, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-            className="border-t border-dark/10 bg-white px-4 py-4 shadow-panel lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: cubicBezier(0.22, 1, 0.36, 1) }}
+            className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-[#111111] lg:hidden"
           >
-            <nav className="flex flex-col gap-3">
-              {links.map((link) => (
+            {/* Drawer header */}
+            <div className="flex h-20 shrink-0 items-center justify-between px-5">
+              <button type="button" onClick={() => scrollToSection("home")} className="brightness-0 invert">
+                <VtraxLogo />
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white"
+                aria-label="Close navigation"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Nav links */}
+            <nav className="flex flex-col border-t border-white/10">
+              {[...links.map(l => ({ label: l.label === "Areas" ? "Service Areas" : l.label, id: l.id })),
+                { label: "Free Quote", id: "contact" }
+              ].map((link) => (
                 <button
                   key={link.id}
                   type="button"
                   onClick={() => scrollToSection(link.id)}
-                  className={cn(
-                    "rounded-sm border px-4 py-3 text-left text-[14px] font-extrabold uppercase tracking-[0.22em] transition",
-                    activeSection === link.id
-                      ? "border-primary text-dark"
-                      : "border-dark/10 text-dark/70 hover:border-primary hover:text-dark"
-                  )}
+                  className="flex items-center justify-between border-b border-white/10 px-5 py-5 text-left"
                 >
-                  {link.label}
+                  <span className={cn(
+                    "font-oswald text-[15px] font-bold uppercase tracking-[2px]",
+                    link.label === "Projects" ? "text-[#F7AC1D]" : "text-white"
+                  )}>
+                    {link.label}
+                  </span>
+                  <ChevronRight className="h-4 w-4 text-white/40" />
                 </button>
               ))}
-              <a
-                href="#contact"
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToSection("contact");
-                }}
-                className={cn(
-                  "inline-flex h-12 items-center justify-center rounded-sm bg-primary px-4 text-[12px] font-black uppercase tracking-[0.16em] text-dark"
-                )}
-              >
-                Free Quote
-              </a>
             </nav>
+
+            {/* CTA buttons */}
+            <div className="mt-6 flex flex-col gap-3 px-5">
+              <a
+                href="tel:+61478563679"
+                className="flex items-center justify-center gap-2 bg-primary py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-dark"
+              >
+                <Phone className="h-4 w-4" />
+                Call 0478 563 679
+              </a>
+              <button
+                type="button"
+                onClick={() => scrollToSection("contact")}
+                className="flex items-center justify-center border border-white/30 py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-white"
+              >
+                Request Free Quote
+              </button>
+            </div>
+
+            {/* Hours & Email */}
+            <div className="mt-8 flex flex-col gap-5 px-5">
+              <div>
+                <p className="font-oswald text-[11px] font-bold uppercase tracking-[2px] text-primary">Hours</p>
+                <p className="mt-1 font-open-sans text-[12px] text-white/60">Mon–Fri · 7 am – 5 pm</p>
+                <p className="font-open-sans text-[12px] text-white/60">Bookings: weekends &amp; after 4:30 pm</p>
+              </div>
+              <div>
+                <p className="font-oswald text-[11px] font-bold uppercase tracking-[2px] text-primary">Email</p>
+                <a href="mailto:vtraxprojects@gmail.com" className="mt-1 block font-open-sans text-[12px] text-white/60">
+                  vtraxprojects@gmail.com
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

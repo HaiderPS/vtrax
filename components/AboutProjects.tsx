@@ -68,22 +68,40 @@ export function AboutProjects() {
             </a>
           </div>
           <div ref={rightRef} className="relative flex flex-col items-center lg:items-end">
-            <div className="relative w-full max-w-[480px] h-[480px] sm:h-[620px]">
-              <div className="absolute inset-0 overflow-hidden rounded-sm shadow-lg">
-                <Image
-                  src="/images/vtrax_about.png"
-                  alt="VTRAX on-site excavation and retaining works"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(min-width: 1024px) 480px, 100vw"
-                />
+            <div className="relative w-full max-w-[480px] h-[480px] pb-12 sm:h-[620px] sm:pb-0">
+              <div className="absolute inset-0 bottom-12 overflow-hidden rounded-sm shadow-lg sm:bottom-0">
+                {/* Desktop image - hidden on mobile, visible on desktop */}
+                <div className="relative h-full w-full hidden sm:block overflow-hidden">
+                  <Image
+                    src="/images/vtrax_about.jpg"
+                    alt="VTRAX on-site excavation and retaining works"
+                    fill
+                    className="object-cover object-center transition duration-500 hover:scale-105"
+                    sizes="(min-width: 1024px) 480px, 100vw"
+                    priority
+                  />
+                </div>
+                {/* Mobile image - visible on mobile, hidden on desktop */}
+                <div className="relative h-full w-full sm:hidden overflow-hidden">
+                  <Image
+                    src="/images/vrtrax-mobile.jpg"
+                    alt="VTRAX on-site excavation and retaining works"
+                    fill
+                    className="object-cover object-center transition duration-500 hover:scale-105"
+                    sizes="(min-width: 640px) 480px, 100vw"
+                    priority
+                  />
+                </div>
               </div>
-              {/* Experience badge - repositioned for mobile */}
-              <div className="absolute -left-3 bottom-0 translate-y-4 flex h-[90px] w-[90px] flex-col justify-center bg-primary px-3 pb-2 pt-2 text-dark shadow-lg sm:-left-7 sm:translate-y-7 sm:h-[100px] sm:w-[98px]">
-                <span className="font-oswald text-[40px] font-bold leading-[1] sm:text-[48px]">8</span>
-                <span className="font-oswald text-[7px] font-bold uppercase leading-[1.5] tracking-[1.6px] sm:text-[8.5px]">
-                  Years<br />Experience
-                </span>
+              {/* Experience badge */}
+              <div className="absolute left-4 bottom-0 flex h-[90px] w-[130px] flex-col items-start justify-center bg-primary px-4 text-dark shadow-lg sm:-left-7 sm:bottom-[-28px] sm:h-[100px] sm:w-[140px]">
+                <div className="flex items-center gap-3">
+                  <span className="font-oswald text-[48px] font-bold leading-[1]">8</span>
+                  <div className="flex flex-col leading-[1.1]">
+                    <span className="font-oswald text-[11px] font-bold uppercase tracking-[1px]">Years</span>
+                    <span className="font-oswald text-[11px] font-bold uppercase tracking-[1px]">Experience</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

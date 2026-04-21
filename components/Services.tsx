@@ -30,13 +30,14 @@ const services = [
   },
   {
     image: "/images/3-services.jpg",
+    mobileImage: "/images/mobile-view.png",
     tag: "03 - Core Service",
     title: "Timber Retaining Walls",
     description:
       "Treated hardwood and timber sleeper walls for residential boundary, retaining and tiered levels. Cost-effective and practical when designed with correct support and drainage.",
   },
   {
-    image: "/images/4-services.png",
+    image: "/images/4-services.jpg",
     tag: "04 - Site Works",
     title: "Excavation & Footings",
     description:
@@ -119,7 +120,7 @@ export function Services() {
         {/* Header - Responsive margins */}
         <div ref={headerRef} className="max-w-[600px] mx-0 sm:mx-0 md:ml-24 lg:ml-40">
           <p className="font-oswald text-[10px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
-            Services
+            What We Build
           </p>
           <h2 className="mt-3 font-display text-[36px] font-black uppercase leading-[1.1] sm:text-[48px] md:text-[56px]">
             Retaining Wall <span className="text-primary">Services</span>
@@ -139,13 +140,28 @@ export function Services() {
               className="group flex flex-col border-b border-dark/10 last:border-b-0 md:border-r md:last:border-r-0"
             >
               <div className="relative h-[280px] overflow-hidden bg-dark">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
-                />
+                {/* Desktop Image - hidden on mobile */}
+                <div className="hidden md:block relative w-full h-full">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+                  />
+                </div>
+                
+                {/* Mobile Image - visible only on mobile, shows mobileImage if available, otherwise falls back to desktop image */}
+                <div className="block md:hidden relative w-full h-full">
+                  <Image
+                    src={service.mobileImage || service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    priority={service.mobileImage ? true : false}
+                  />
+                </div>
               </div>
               <div className="flex flex-1 flex-col px-6 py-5 pb-7">
                 <div className="mt-1">

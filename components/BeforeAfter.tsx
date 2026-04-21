@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -20,20 +20,90 @@ const specTags = [
   { label: "Scope", value: "Pool Surrounds, Residential Illawarra" },
 ];
 
+// Thumbnails with optional mobile images
 const thumbs = [
-  "/images/before-after/1-new.jpg",
-  "/images/before-after/2-new.png",
-  "/images/before-after/3-new.jpg",
-  "/images/before-after/4-new.jpg",
-  "/images/before-after/5-new.jpg",
-  "/images/before-after/6-new.jpg",
+  {
+    desktop: "/images/before-after/1-new.jpg",
+    mobile: "/images/mobi4.jpg"
+  },
+  {
+    desktop: "/images/before-after/2-new.jpg",
+    mobile: "/images/mobi8.png"
+  },
+  {
+    desktop: "/images/before-after/3-new.jpg",
+    mobile: "/images/before-after/3-new.jpg"
+  },
+  {
+    desktop: "/images/before-after/4-new.jpg",
+    mobile: "/images/mobi3.jpg"
+  },
+  {
+    desktop: "/images/before-after/5-new.jpg",
+    mobile: "/images/mobi2.jpg"
+  },
+  {
+    desktop: "/images/before-after/6-new.jpg",
+    mobile: "/images/mobi1.jpg"
+  },
 ];
+
+// Double-headed left-right arrow icon
+const SliderIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 5L2 12L8 19" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M16 5L22 12L16 19" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <line x1="2" y1="12" x2="22" y2="12" stroke="#111111" strokeWidth="2.5" strokeLinecap="round"/>
+  </svg>
+);
 
 export function BeforeAfter() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+
+  const [sliderPosition, setSliderPosition] = useState(50);
+
+  const getPercent = (clientX: number) => {
+    if (!containerRef.current) return 50;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    return (x / rect.width) * 100;
+  };
+
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return;
+      e.preventDefault();
+      setSliderPosition(getPercent(e.clientX));
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDraggingRef.current) return;
+      e.preventDefault();
+      setSliderPosition(getPercent(e.touches[0].clientX));
+    };
+    const onEnd = () => {
+      if (!isDraggingRef.current) return;
+      isDraggingRef.current = false;
+      document.body.style.cursor = "";
+      document.body.style.userSelect = "";
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onEnd);
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onEnd);
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onEnd);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onEnd);
+    };
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -81,7 +151,7 @@ export function BeforeAfter() {
         {/* Header */}
         <div ref={headerRef} className="max-w-[700px]">
           <p className="font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[2px] text-primary">
-            Projects Portfolio
+            Completed Projects
           </p>
           <h2 className="mt-3 font-display text-[40px] font-black uppercase leading-[1.1] sm:text-[52px] md:text-[62px]">
             Before & <span className="text-primary">After</span>
@@ -92,7 +162,7 @@ export function BeforeAfter() {
           </p>
         </div>
 
-        {/* Filter tabs - horizontal scroll on mobile, original layout on desktop */}
+        {/* Filter tabs */}
         <div className="mt-8 flex flex-nowrap gap-3 overflow-x-auto pb-4 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {topFilters.map((item, index) => (
             <span
@@ -108,51 +178,75 @@ export function BeforeAfter() {
 
         {/* Main panel */}
         <div ref={panelRef} className="mt-10 border border-dark/10 bg-dark text-white">
-          {/* Before / After images - Side by side on mobile and desktop */}
-          <div className="relative grid grid-cols-2">
-            {/* Before Image - Portrait on mobile, Landscape on desktop */}
-            <div className="relative overflow-hidden border-r border-white/10">
-              <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-[500px]">
-                <Image
-                  src="/images/before-after/before.png"
-                  alt="Before retaining wall site"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 50vw, 50vw"
-                />
-              </div>
-              <span className="absolute left-4 top-4 rounded-[1px] bg-dark/85 px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-white">
-                Before
-              </span>
-            </div>
-
-            {/* After Image - Portrait on mobile, Landscape on desktop */}
-            <div className="relative overflow-hidden">
-              <div className="relative aspect-[3/4] w-full sm:aspect-auto sm:h-[500px]">
+          {/* Before / After Slider - Extreme height increase */}
+          <div 
+            ref={containerRef}
+            className="relative w-full overflow-hidden select-none"
+          >
+            {/* Changed to pt-[90%] sm:pt-[70%] for extreme height */}
+            <div className="relative w-full pt-[90%] sm:pt-[70%]">
+              {/* After Image — full size, always underneath */}
+              <div className="absolute inset-0">
                 <Image
                   src="/images/before-after/after.jpg"
                   alt="After retaining wall site"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 50vw, 50vw"
+                  sizes="(min-width: 1300px) 1300px, 100vw"
+                  priority
+                  draggable={false}
                 />
+                {/* After Label - Always visible since after image is always underneath */}
+                <span className="absolute right-4 top-4 z-10 rounded-[1px] bg-primary px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-dark">
+                  After
+                </span>
               </div>
-              <span className="absolute right-4 top-4 rounded-[1px] bg-primary px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-dark">
-                After
-              </span>
-            </div>
 
-            {/* Centre divider dot - hide on mobile, show on desktop */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-dark/30 bg-white p-3 sm:flex">
-              <span className="block h-2.5 w-2.5 rounded-full bg-dark" />
+              {/* Before Image — full size, clipped to reveal only the left portion */}
+              <div
+                className="absolute inset-0"
+                style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
+              >
+                <Image
+                  src="/images/before-after/before.png"
+                  alt="Before retaining wall site"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1300px) 1300px, 100vw"
+                  priority
+                  draggable={false}
+                />
+                {/* Before Label - Only visible when before image is visible */}
+                <span className="absolute left-4 top-4 z-10 rounded-[1px] bg-dark/85 px-4 py-2 font-oswald text-[10px] font-bold uppercase tracking-[1px] text-white">
+                  Before
+                </span>
+              </div>
+
+              {/* Draggable Slider */}
+              <div
+                className="absolute top-0 bottom-0 z-30 w-1 cursor-ew-resize bg-white shadow-lg"
+                style={{ left: `${sliderPosition}%`, transform: "translateX(-50%)" }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  isDraggingRef.current = true;
+                  document.body.style.cursor = "ew-resize";
+                  document.body.style.userSelect = "none";
+                }}
+                onTouchStart={(e) => {
+                  e.preventDefault();
+                  isDraggingRef.current = true;
+                }}
+              >
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-white p-2 shadow-md transition-transform active:scale-110">
+                  <SliderIcon />
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Info bar - original desktop layout preserved */}
+          {/* Info bar */}
           <div className="border-t border-white/10">
-            {/* Mobile: stacked, Desktop: original grid layout */}
             <div className="flex flex-col sm:grid sm:grid-cols-[40%_60%]">
-              {/* Left: Job title block - original styling */}
               <div className="border-b border-white/10 px-6 py-6 sm:border-b-0 sm:border-r sm:px-8 sm:py-8">
                 <p className="font-oswald text-[11px] font-bold uppercase tracking-[2px] text-primary sm:text-[12px]">
                   Job 1
@@ -163,9 +257,7 @@ export function BeforeAfter() {
                 </h3>
               </div>
 
-              {/* Right: spec tags - vertical stack on mobile with proper text wrapping */}
               <div className="flex flex-col gap-3 px-6 py-6 sm:flex-row sm:flex-wrap sm:gap-4 sm:px-8 sm:py-8">
-                {/* Mobile: vertical stack, Desktop: horizontal layout */}
                 <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
                   {specTags.slice(0, 2).map((tag) => (
                     <div
@@ -175,29 +267,27 @@ export function BeforeAfter() {
                       <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                         {tag.label}:
                       </span>
-                      <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
+                      <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-[#FFFFFFB2] sm:whitespace-nowrap">
                         {tag.value}
                       </span>
                     </div>
                   ))}
                 </div>
 
-                {/* After */}
                 <div className="flex w-full flex-col border border-white/15 bg-white/5 sm:w-auto sm:flex-row sm:items-center">
                   <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                     After:
                   </span>
-                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
+                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-[#FFFFFFB2] sm:whitespace-nowrap">
                     {specTags[2].value}
                   </span>
                 </div>
 
-                {/* Scope */}
                 <div className="flex w-full flex-col border border-white/15 bg-white/5 sm:w-auto sm:flex-row sm:items-center">
                   <span className="border-b border-white/15 px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[1px] text-primary sm:border-b-0 sm:border-r">
                     Scope:
                   </span>
-                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-white sm:whitespace-nowrap">
+                  <span className="break-words px-4 py-2 font-oswald text-[11px] font-extrabold uppercase tracking-[0.5px] text-[#FFFFFFB2] sm:whitespace-nowrap">
                     {specTags[3].value}
                   </span>
                 </div>
@@ -206,22 +296,38 @@ export function BeforeAfter() {
           </div>
         </div>
 
-        {/* Thumbnail grid - 2 columns on mobile, 4 columns on desktop */}
+        {/* Thumbnail grid with responsive images - Extreme height increase */}
         <div ref={thumbsRef} className="mt-6">
-          {/* Mobile: 2 columns with square images, Desktop: 4 columns layout */}
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {thumbs.map((src, index) => (
+            {thumbs.map((thumb, index) => (
               <div
-                key={`${src}-${index}`}
-                className="relative aspect-square w-full overflow-hidden sm:h-[280px] sm:aspect-auto"
+                key={`${thumb.desktop}-${index}`}
+                className="relative aspect-square w-full overflow-hidden sm:h-[400px] sm:aspect-auto"
               >
-                <Image
-                  src={src}
-                  alt={`Project gallery thumbnail ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                />
+                {/* Desktop Image - hidden on mobile */}
+                <div className="hidden sm:block relative w-full h-full">
+                  <Image
+                    src={thumb.desktop}
+                    alt={`Project gallery thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, 25vw"
+                    draggable={false}
+                  />
+                </div>
+                
+                {/* Mobile Image - visible only on mobile */}
+                <div className="block sm:hidden relative w-full h-full">
+                  <Image
+                    src={thumb.mobile || thumb.desktop}
+                    alt={`Project gallery thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="50vw"
+                    draggable={false}
+                    priority={thumb.mobile ? true : false}
+                  />
+                </div>
               </div>
             ))}
           </div>

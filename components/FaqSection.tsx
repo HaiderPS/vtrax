@@ -52,7 +52,7 @@ export function FaqSection() {
               <div key={question}>
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between gap-3 py-3 text-left"
+                  className="flex w-full items-center justify-between gap-3 py-5 text-left"
                   aria-expanded={openIndex === idx}
                   onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 >

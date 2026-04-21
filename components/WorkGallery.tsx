@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useRef, useEffect } from "react";
-import { motion, cubicBezier } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -110,6 +109,18 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
+
+const mobileRow8Images = [
+  {
+    src: "/images/our-work/13-new.jpg", 
+    alt: "Final checks on completed retaining",
+  },
+  {
+    src: "/images/mobi99.jpg", 
+    alt: "Excavation and cleanup phase",
+  },
+];
+
 export function WorkGallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -142,85 +153,56 @@ export function WorkGallery() {
     return () => ctx.revert();
   }, []);
 
-  // Mobile layout: exactly as requested
   const renderMobileLayout = () => {
     return (
-      <>
-        {/* Row 1: 2 square images (Img 1, Img 2) */}
+      <div className="flex flex-col gap-2">
+        {/* Row 1: 2 images - Both with same height */}
         <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[0].src}
-                alt={galleryItems[0].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[1].src}
-                alt={galleryItems[1].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[0].src}
+              alt={galleryItems[0].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[1].src}
+              alt={galleryItems[1].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
         </div>
 
-        {/* Row 2: 2 portrait images (Img 3, Img 4) */}
+        {/* Row 2: 2 images - both portrait */}
         <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src={galleryItems[2].src}
-                alt={galleryItems[2].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src={galleryItems[3].src}
-                alt={galleryItems[3].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[2].src}
+              alt={galleryItems[2].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[3].src}
+              alt={galleryItems[3].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
         </div>
 
-        {/* Row 3: Landscape image (Img 9) - full width */}
-        <motion.div
-          className="relative overflow-hidden rounded-sm"
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-        >
-          <div className="relative aspect-[16/9] w-full">
+        {/* Row 3: 1 image - landscape (full width) */}
+        <div className="w-full">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm">
             <Image
               src={galleryItems[8].src}
               alt={galleryItems[8].alt}
@@ -229,83 +211,77 @@ export function WorkGallery() {
               sizes="100vw"
             />
           </div>
-        </motion.div>
-
-        {/* Row 4: 2 square images (Img 5, Img 6) */}
-        <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[4].src}
-                alt={galleryItems[4].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[5].src}
-                alt={galleryItems[5].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
         </div>
 
-        {/* Row 5: 2 portrait images (Img 7, Img 8) */}
+        {/* Row 4: 2 images - portrait & portrait (taller height) */}
         <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src={galleryItems[6].src}
-                alt={galleryItems[6].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-[3/4] w-full">
-              <Image
-                src={galleryItems[7].src}
-                alt={galleryItems[7].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
+          <div className="relative aspect-[2/3] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[4].src}
+              alt={galleryItems[4].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[2/3] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[5].src}
+              alt={galleryItems[5].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
         </div>
 
-        {/* Row 6: Landscape image (Img 10) - full width */}
-        <motion.div
-          className="relative overflow-hidden rounded-sm"
-          whileHover={{ scale: 1.03 }}
-          transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-        >
-          <div className="relative aspect-[16/9] w-full">
+        {/* Row 5: 2 images - portrait & portrait */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[6].src}
+              alt={galleryItems[6].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[7].src}
+              alt={galleryItems[7].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+        </div>
+
+        {/* Row 6: 2 images - both with same height */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[10].src}
+              alt={galleryItems[10].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={galleryItems[11].src}
+              alt={galleryItems[11].alt}
+              fill
+              className="object-cover"
+              sizes="50vw"
+            />
+          </div>
+        </div>
+
+        {/* Row 7: 1 image - landscape (full width) */}
+        <div className="w-full">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm">
             <Image
               src={galleryItems[9].src}
               alt={galleryItems[9].alt}
@@ -314,76 +290,32 @@ export function WorkGallery() {
               sizes="100vw"
             />
           </div>
-        </motion.div>
-
-        {/* Row 7: 2 square images (Img 11, Img 12) */}
-        <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[10].src}
-                alt={galleryItems[10].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[11].src}
-                alt={galleryItems[11].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
         </div>
 
-        {/* Row 8: 2 square images (Img 13, Img 14) */}
+        {/* Row 8: CUSTOM IMAGES - You can change these images freely */}
         <div className="grid grid-cols-2 gap-2">
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[12].src}
-                alt={galleryItems[12].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
-          <motion.div
-            className="relative overflow-hidden rounded-sm"
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-          >
-            <div className="relative aspect-square w-full">
-              <Image
-                src={galleryItems[13].src}
-                alt={galleryItems[13].alt}
-                fill
-                className="object-cover"
-                sizes="50vw"
-              />
-            </div>
-          </motion.div>
+          {/* First custom image */}
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={mobileRow8Images[0].src}
+              alt={mobileRow8Images[0].alt}
+              fill
+              className="object-cover object-top"
+              sizes="50vw"
+            />
+          </div>
+          {/* Second custom image */}
+          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
+            <Image
+              src={mobileRow8Images[1].src}
+              alt={mobileRow8Images[1].alt}
+              fill
+              className="object-cover object-top"
+              sizes="50vw"
+            />
+          </div>
         </div>
-      </>
+      </div>
     );
   };
 
@@ -400,41 +332,99 @@ export function WorkGallery() {
         </div>
 
         {/* Mobile Layout (visible only on mobile) */}
-        <div className="mt-8 flex flex-col gap-2 sm:hidden">
+        <div className="mt-8 sm:hidden">
           {renderMobileLayout()}
         </div>
 
-        {/* Desktop Layout (unchanged - visible only on desktop) */}
-        <div 
-          ref={gridRef} 
-          className="mx-auto mt-10 hidden max-w-[1300px] grid-cols-12 auto-rows-[45px] gap-2 sm:mt-12 sm:auto-rows-[55px] sm:grid"
+        {/* Desktop Layout (unchanged) */}
+        <div
+          ref={gridRef}
+          className="mx-auto mt-10 hidden max-w-[1300px] flex-col gap-2 sm:mt-12 sm:flex"
         >
-          {galleryItems.map((item, index) => (
-            <article
-              key={`${item.src}-${index}`}
-              className={`relative overflow-hidden rounded-sm ${
-                item.isLandscape 
-                  ? "col-span-6 row-span-2" 
-                  : item.isPortrait
-                  ? "col-span-3 row-span-3"
-                  : "col-span-3 row-span-2"
-              }`}
-            >
-              <motion.div
-                className="absolute inset-0"
-                whileHover={{ scale: 1.06 }}
-                transition={{ duration: 0.45, ease: cubicBezier(0.22, 1, 0.36, 1) }}
-              >
+          {/* Row 1: portrait | square | portrait | portrait - ALL SAME HEIGHT */}
+          <div className="grid h-[320px] grid-cols-12 gap-2">
+            <div className="relative col-span-3 overflow-hidden rounded-sm opacity-80">
+              <Image
+                src={galleryItems[0].src}
+                alt={galleryItems[0].alt}
+                fill
+                className="object-cover"
+                sizes="25vw"
+              />
+            </div>
+            <div className="relative col-span-5 overflow-hidden rounded-sm opacity-80">
+              <Image
+                src={galleryItems[1].src}
+                alt={galleryItems[1].alt}
+                fill
+                className="object-cover"
+                sizes="41vw"
+              />
+            </div>
+            <div className="relative col-span-2 overflow-hidden rounded-sm opacity-80">
+              <Image
+                src={galleryItems[2].src}
+                alt={galleryItems[2].alt}
+                fill
+                className="object-cover"
+                sizes="16vw"
+              />
+            </div>
+            <div className="relative col-span-2 overflow-hidden rounded-sm opacity-80">
+              <Image
+                src={galleryItems[3].src}
+                alt={galleryItems[3].alt}
+                fill
+                className="object-cover"
+                sizes="16vw"
+              />
+            </div>
+          </div>
+
+          {/* Row 2: 4 equal portrait images */}
+          <div className="grid h-[320px] grid-cols-4 gap-2">
+            {galleryItems.slice(4, 8).map((item, idx) => (
+              <div key={idx} className="relative overflow-hidden rounded-sm opacity-80">
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 1200px, (min-width: 640px) 560px, 100vw"
+                  sizes="25vw"
                 />
-              </motion.div>
-            </article>
-          ))}
+              </div>
+            ))}
+          </div>
+
+          {/* Row 3: 2 half-width landscape images — h400px */}
+          <div className="grid h-[400px] grid-cols-2 gap-2">
+            {galleryItems.slice(8, 10).map((item, idx) => (
+              <div key={idx} className="relative overflow-hidden rounded-sm opacity-80">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  className="object-cover"
+                  sizes="50vw"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Row 4: 4 equal portrait images */}
+          <div className="grid h-[320px] grid-cols-4 gap-2">
+            {galleryItems.slice(10, 14).map((item, idx) => (
+              <div key={idx} className="relative overflow-hidden rounded-sm opacity-80">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  className="object-cover"
+                  sizes="25vw"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

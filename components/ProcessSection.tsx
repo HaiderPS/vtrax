@@ -12,7 +12,7 @@ const steps = [
     title: "SUBMIT ENQUIRY",
     description:
       "Call Jake directly on 0478 563 679, email vtraxprojects@gmail.com, or fill in the quote form below.",
-    action: "⚡ 10-MIN TEXT REPLY",
+    action: " 10-MIN TEXT REPLY",
   },
   {
     number: "2",
@@ -113,7 +113,7 @@ export function ProcessSection() {
             >
 
               {/* Number Circle */}
-              <div className="relative z-10 shrink-0 flex h-14 w-14 items-center justify-center rounded-full border border-dark/10 bg-white font-oswald text-[18px] font-bold text-primary shadow-sm ml-5 sm:ml-0">
+              <div className="relative z-10 shrink-0 flex h-14 w-14 items-center justify-center rounded-full border-2 border-primary bg-transparent font-oswald text-[18px] font-bold text-primary shadow-sm ml-5 sm:ml-0">
                 {step.number}
               </div>
 

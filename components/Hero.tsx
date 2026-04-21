@@ -53,14 +53,14 @@ export function Hero() {
       <div className="relative mx-auto flex min-h-[calc(100svh-64px)] w-full max-w-[1400px] flex-col justify-between px-4 sm:px-6 lg:px-8">
         <div className="pt-16 sm:pt-44 lg:pt-52 pb-8 sm:pb-44 lg:pb-56">
           <motion.div
-            className="max-w-[740px] ml-0 sm:ml-2 md:ml-6 lg:ml-8"
+            className="max-w-[740px] mx-auto sm:mx-0 sm:ml-[5%] md:ml-[8%] lg:ml-[10%] w-full"
             variants={container}
             initial="hidden"
             animate="visible"
           >
             <motion.p
               variants={itemVariant}
-              className="mb-5 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.26em] sm:text-[12px]"
+              className="mb-5 inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.26em] sm:text-[12px] text-left w-full justify-start"
               style={{color: '#F7AC1D'}}
             >
               <span className="h-px w-6 sm:w-8" style={{backgroundColor: '#F7AC1D'}} />
@@ -68,7 +68,7 @@ export function Hero() {
             </motion.p>
             <motion.h1
               variants={itemVariant}
-              className="font-display text-[48px] font-black uppercase leading-[0.88] text-white sm:text-[108px] lg:text-[136px]"
+              className="font-display text-[48px] font-black uppercase leading-[0.88] text-white sm:text-[108px] lg:text-[136px] text-left"
             >
               Retaining
               <span className="block">Walls</span>
@@ -76,7 +76,7 @@ export function Hero() {
             </motion.h1>
             <motion.div
               variants={itemVariant}
-              className="mt-4 max-w-[680px] font-open-sans font-light text-[14px] leading-[24px] text-white70 sm:mt-7 sm:text-[16px] sm:leading-[28px]"
+              className="mt-4 max-w-[680px] font-open-sans font-light text-[14px] leading-[24px] text-white70 sm:mt-7 sm:text-[16px] sm:leading-[28px] text-left"
             >
               <p>Concrete sleeper, block, and timber retaining walls. Excavation, drainage,</p>
               <p>and landscaping. Servicing Wollongong, Shellharbour, Kiama, and the South</p>
@@ -85,13 +85,13 @@ export function Hero() {
 
             <motion.div
               variants={itemVariant}
-              className="mt-8 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center"
+              className="mt-8 flex flex-col gap-4 sm:mt-12 sm:flex-row sm:items-center justify-start"
             >
               <motion.a
                 href="#contact"
                 className={cn(
                   buttonClassName,
-                  "bg-primary px-[22px] text-dark hover:bg-primary/90"
+                  "bg-[#F7AC1D] px-[22px] text-dark hover:bg-[#F7AC1D]/90"
                 )}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -103,7 +103,7 @@ export function Hero() {
                 href="tel:+61478563679"
                 className={cn(
                   buttonClassName,
-                  "border border-white/20 bg-dark/55 px-[22px] text-white hover:border-primary/50"
+                  "border border-white/20 bg-dark/55 px-[22px] text-white hover:border-[#F7AC1D]/50"
                 )}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -137,7 +137,7 @@ export function Hero() {
 
       </div>
 
-      <div className="relative w-full h-[40px] overflow-hidden border-t border-dark/10 bg-primary">
+      <div className="relative w-full h-[40px] overflow-hidden border-t border-dark/10 bg-[#F7AC1D]">
         <div className="flex h-full w-max min-w-full animate-marquee items-center">
           {[...tickerItems, ...tickerItems].map((item, index) => (
             <div
