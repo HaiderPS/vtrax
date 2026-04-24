@@ -208,7 +208,7 @@ export function WorkGallery() {
               alt={galleryItems[8].alt}
               fill
               className="object-cover"
-              sizes="100vw"
+              sizes="(min-width: 1300px) 1300px, 100vw"
             />
           </div>
         </div>
@@ -287,7 +287,7 @@ export function WorkGallery() {
               alt={galleryItems[9].alt}
               fill
               className="object-cover"
-              sizes="100vw"
+              sizes="(min-width: 1300px) 1300px, 100vw"
             />
           </div>
         </div>

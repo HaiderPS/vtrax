@@ -1,17 +1,6 @@
-import type { Metadata } from "next";
-import { Bebas_Neue, Manrope, Open_Sans, Oswald } from "next/font/google";
+﻿import type { Metadata } from "next";
+import { Open_Sans, Oswald } from "next/font/google";
 import "@/styles/globals.css";
-
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -28,12 +17,7 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
   title: "VTRAX | Retaining Walls Built Right",
   description:
-    "Modern retaining wall construction, drainage, and site assessment services.",
-  icons: {
-    icon: "/images/vtrax_logo.svg",
-    shortcut: "/images/vtrax_logo.svg",
-    apple: "/images/vtrax_logo.svg",
-  },
+    "Modern retaining wall construction, drainage, and site assessment services."
 };
 
 export default function RootLayout({
@@ -44,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${bebasNeue.variable} ${oswald.variable} ${openSans.variable} antialiased`}
+      className={`${oswald.variable} ${openSans.variable} antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-screen bg-dark text-white" suppressHydrationWarning>
