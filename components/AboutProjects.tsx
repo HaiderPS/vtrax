@@ -84,7 +84,7 @@ export function AboutProjects() {
                 {/* Mobile image - visible on mobile, hidden on desktop */}
                 <div className="relative h-full w-full sm:hidden overflow-hidden">
                   <Image
-                    src="/images/vrtrax-mobile.jpg"
+                    src="/images/vtrax_about.jpg"
                     alt="VTRAX on-site excavation and retaining works"
                     fill
                     className="object-cover object-center transition duration-500 hover:scale-105"

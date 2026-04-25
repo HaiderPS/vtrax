@@ -29,8 +29,7 @@ const services = [
       "Concrete block walls engineered for both structural performance and visual finish. Back drainage, tie systems, and reinforcement are integrated to minimise future repairs.",
   },
   {
-    image: "/images/3-services.jpg",
-    mobileImage: "/images/mobile-view.png",
+    image: "/images/3-services5.jpg",
     tag: "03 - Core Service",
     title: "Timber Retaining Walls",
     description:
@@ -140,28 +139,13 @@ export function Services() {
               className="group flex flex-col border-b border-dark/10 last:border-b-0 md:border-r md:last:border-r-0"
             >
               <div className="relative h-[280px] overflow-hidden bg-dark">
-                {/* Desktop Image - hidden on mobile */}
-                <div className="hidden md:block relative w-full h-full">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
-                  />
-                </div>
-                
-                {/* Mobile Image - visible only on mobile, shows mobileImage if available, otherwise falls back to desktop image */}
-                <div className="block md:hidden relative w-full h-full">
-                  <Image
-                    src={service.mobileImage || service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                    sizes="(min-width: 768px) 50vw, 100vw"
-                    priority={service.mobileImage ? true : false}
-                  />
-                </div>
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+                />
               </div>
               <div className="flex flex-1 flex-col px-6 py-5 pb-7">
                 <div className="mt-1">

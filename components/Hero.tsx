@@ -10,7 +10,6 @@ const buttonClassName =
 
 const stats = [
   { value: "8+", label: "Years hands-on industry experience" },
-  { value: "10m+", label: "Tonnes of retaining capacity delivered" },
   { value: "$0", label: "Hidden assessment fees for first call" },
   { value: "60+", label: "Retaining walls completed across NSW" },
 ];
