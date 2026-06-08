@@ -70,7 +70,7 @@ const highlights = [
     icon: ClipboardCheck,
   },
   {
-    title: "Tipped Track",
+    title: "Tipped Truck",
     detail: "On-site spoil removal & material delivery",
     icon: Truck,
   },

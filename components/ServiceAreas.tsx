@@ -62,26 +62,27 @@ export function ServiceAreas() {
                   key={index} 
                   className="flex items-center gap-3 border-b border-r border-black/5 px-3 py-3 sm:px-6 sm:py-5 last:border-b-0"
                 >
-                  <MapPin className="h-3.5 w-3.5 text-primary fill-primary/10" />
+                  <MapPin className="h-3.5 w-3.5 shrink-0 text-primary fill-primary/10" />
                   <span className="font-oswald text-[11px] font-bold uppercase tracking-[1.5px] text-dark sm:text-[13px]">
                     {area}
                   </span>
                 </div>
               ))}
               
-              {/* Black CTA Button in Grid Cell - Text in one line & circle border removed */}
+              {/* Black CTA Button - Kept in original position (last cell) */}
               <a
                 href="#contact"
-                className="flex items-center gap-3 bg-[#111111] px-3 py-3 transition-colors hover:bg-primary group sm:px-6 sm:py-5"
+                className="flex items-center justify-center gap-1.5 bg-[#111111] px-1 py-3 transition-colors hover:bg-primary group sm:justify-start sm:gap-3 sm:px-6 sm:py-5"
               >
                 {/* Location Pin with centered dot */}
-                <div className="relative flex items-center justify-center">
+                <div className="relative flex shrink-0 items-center justify-center">
                   <svg 
-                    width="14" 
-                    height="16" 
+                    width="12" 
+                    height="14" 
                     viewBox="0 0 14 16" 
                     fill="none" 
                     xmlns="http://www.w3.org/2000/svg"
+                    className="sm:w-[14px] sm:h-[16px]"
                   >
                     <path 
                       d="M7 14.5C7 14.5 1 10.5 1 6C1 4.4087 1.63214 2.88258 2.75736 1.75736C3.88258 0.632141 5.4087 0 7 0C8.5913 0 10.1174 0.632141 11.2426 1.75736C12.3679 2.88258 13 4.4087 13 6C13 10.5 7 14.5 7 14.5Z" 
@@ -100,12 +101,12 @@ export function ServiceAreas() {
                   </svg>
                 </div>
 
-                {/* Plus Sign - Circle border removed */}
-                <div className="flex h-5 w-5 items-center justify-center">
-                  <span className="text-[18px] text-white font-bold leading-none group-hover:text-dark">+</span>
+                {/* Plus Sign */}
+                <div className="flex h-4 w-4 shrink-0 items-center justify-center sm:h-5 sm:w-5">
+                  <span className="text-[16px] text-white font-bold leading-none group-hover:text-dark sm:text-[18px]">+</span>
                 </div>
 
-                <span className="font-oswald text-[11px] font-bold uppercase tracking-[1.5px] text-white whitespace-nowrap group-hover:text-dark sm:text-[13px]">
+                <span className="font-oswald text-[10px] font-bold uppercase tracking-[1px] text-white whitespace-nowrap group-hover:text-dark sm:text-[13px] sm:tracking-[1.5px]">
                   More on Request
                 </span>
               </a>
@@ -115,7 +116,7 @@ export function ServiceAreas() {
           {/* Right Side: Image */}
           <div className="animate-content relative aspect-[4/5] w-full overflow-hidden rounded-sm shadow-lg lg:aspect-auto lg:-my-32 lg:min-h-[700px]">
             <Image
-              src="/images/vtrax_about.jpg"
+              src="/images/vtrax_aboutold.jpg"
               alt="VTRAX retaining wall site in the Illawarra region"
               fill
               className="object-cover object-center"

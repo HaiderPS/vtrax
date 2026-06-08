@@ -93,10 +93,10 @@ export function AboutProjects() {
                   />
                 </div>
               </div>
-              {/* Experience badge */}
-              <div className="absolute left-4 bottom-0 flex h-[90px] w-[130px] flex-col items-start justify-center bg-primary px-4 text-dark shadow-lg sm:-left-7 sm:bottom-[-28px] sm:h-[100px] sm:w-[140px]">
+              {/* Experience badge - reduced width on mobile */}
+              <div className="absolute left-4 bottom-0 flex h-[90px] w-[145px] flex-col items-start justify-center bg-primary px-4 text-dark shadow-lg sm:-left-7 sm:bottom-[-28px] sm:h-[100px] sm:w-[140px]">
                 <div className="flex items-center gap-3">
-                  <span className="font-oswald text-[48px] font-bold leading-[1]">8</span>
+                  <span className="font-oswald text-[48px] font-bold leading-[1]">8+</span>
                   <div className="flex flex-col leading-[1.1]">
                     <span className="font-oswald text-[11px] font-bold uppercase tracking-[1px]">Years</span>
                     <span className="font-oswald text-[11px] font-bold uppercase tracking-[1px]">Experience</span>

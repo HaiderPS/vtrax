@@ -1,11 +1,14 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, FormEvent } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Send } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 gsap.registerPlugin(ScrollTrigger);
+
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 const inputCls =
   "w-full border border-dark/15 bg-white px-4 py-3 text-[12px] text-dark outline-none transition placeholder:text-[#757575] focus:border-primary";
@@ -47,6 +50,50 @@ export function CTA() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current || status === "sending") return;
+
+    // Honeypot — bots fill hidden fields, humans don't.
+    const honeypot = (formRef.current.elements.namedItem("website") as HTMLInputElement | null)?.value;
+    if (honeypot) {
+      setStatus("success");
+      formRef.current.reset();
+      return;
+    }
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus("error");
+      setErrorMsg("Email service is not configured. Please call us instead.");
+      return;
+    }
+
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      await emailjs.sendForm(serviceId, templateId, formRef.current, {
+        publicKey,
+      });
+      setStatus("success");
+      formRef.current.reset();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call Jake on 0478 563 679."
+      );
+    }
+  };
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -169,32 +216,33 @@ export function CTA() {
               10-Minute Response Guarantee
             </span>
 
-            <form className="mt-6 space-y-4">
+            <form ref={formRef} onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label className={labelCls}>First Name <span className="text-dark/40">*</span></label>
-                  <input placeholder="First name" required className={inputCls} />
+                  <input name="first_name" placeholder="First name" required className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>Last Name</label>
-                  <input placeholder="Last name" className={inputCls} />
+                  <input name="last_name" placeholder="Last name" className={inputCls} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label className={labelCls}>Phone <span className="text-dark/40">*</span></label>
-                  <input placeholder="04XX XXX XXX" required className={inputCls} />
+                  <input name="phone" type="tel" placeholder="04XX XXX XXX" required className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>Email</label>
-                  <input placeholder="your@email.com" className={inputCls} />
+                  <input name="from_email" type="email" placeholder="your@email.com" className={inputCls} />
                 </div>
               </div>
 
               <div>
                 <label className={labelCls}>Suburb / Location <span className="text-dark/40">*</span></label>
                 <input
+                  name="suburb"
                   placeholder="e.g. Wollongong, Shellharbour, Kiama..."
                   required
                   className={inputCls}
@@ -203,10 +251,10 @@ export function CTA() {
 
               <div>
                 <label className={labelCls}>Service Required</label>
-                <select className={inputCls}>
-                  <option>Select a service...</option>
+                <select name="service" defaultValue="" className={inputCls}>
+                  <option value="">Select a service...</option>
                   {services.map((s) => (
-                    <option key={s}>{s}</option>
+                    <option key={s} value={s}>{s}</option>
                   ))}
                 </select>
               </div>
@@ -214,16 +262,56 @@ export function CTA() {
               <div>
                 <label className={labelCls}>Project Description</label>
                 <textarea
+                  name="message"
                   rows={4}
                   className={`${inputCls} resize-none`}
                   placeholder="Briefly describe your project — e.g. approximate wall length, height, slope, and any access considerations..."
                 />
               </div>
 
-              <button className="w-full bg-primary py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-dark hover:bg-primary/90 flex items-center justify-center gap-2">
-                <Send className="h-4 w-4" />
-                Submit — Get My Free Quote
+              {/* Honeypot — hidden from real users, bots fill it and get silently dropped. */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="absolute left-[-9999px] h-0 w-0 opacity-0"
+              />
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="w-full bg-primary py-4 font-oswald text-[13px] font-bold uppercase tracking-[2px] text-dark hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70 flex items-center justify-center gap-2"
+              >
+                {status === "sending" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4" />
+                    Submit — Get My Free Quote
+                  </>
+                )}
               </button>
+
+              {status === "success" && (
+                <div className="flex items-start gap-2 border border-green-600/30 bg-green-50 p-3 text-[12px] text-green-800">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>
+                    Thanks — your request has been sent. Jake will text you within 10 minutes during business hours.
+                  </span>
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="flex items-start gap-2 border border-red-600/30 bg-red-50 p-3 text-[12px] text-red-800">
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{errorMsg || "Something went wrong. Please call Jake on 0478 563 679."}</span>
+                </div>
+              )}
 
               <p className="text-center font-open-sans text-[10px] text-dark/50">
                 <span className="font-bold text-primary">10-min text response</span> during business hours (Mon–Fri, 7 am – 5 pm).{" "}

@@ -53,7 +53,7 @@ const tools = [
     icon: ClipboardCheck,
   },
   {
-    title: "Tipped Track",
+    title: "Tipped Truck",
     desc: "On-site spoil movement and delivery support.",
     icon: Truck,
   },

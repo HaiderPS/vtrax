@@ -12,6 +12,7 @@ const stats = [
   { value: "8+", label: "Years hands-on industry experience" },
   { value: "$0", label: "Hidden assessment fees for first call" },
   { value: "60+", label: "Retaining walls completed across NSW" },
+  { value: "497229c", label: "License/certificate number" },
 ];
 
 const tickerItems = [
