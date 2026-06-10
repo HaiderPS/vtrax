@@ -45,6 +45,7 @@ export function BeforeAfter() {
   const panelRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const reviewsRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
 
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -86,6 +87,18 @@ export function BeforeAfter() {
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onEnd);
     };
+  }, []);
+
+  useEffect(() => {
+    const target = reviewsRef.current;
+    if (!target) return;
+    if (target.querySelector("script[data-trustindex]")) return;
+    const script = document.createElement("script");
+    script.src = "https://cdn.trustindex.io/loader.js?3b46d1873dcd9227361672ad678";
+    script.async = true;
+    script.defer = true;
+    script.setAttribute("data-trustindex", "true");
+    target.appendChild(script);
   }, []);
 
   useEffect(() => {
@@ -301,6 +314,10 @@ export function BeforeAfter() {
             ))}
           </div>
         </div>
+
+        {/* Google reviews — TrustIndex widget */}
+        <div ref={reviewsRef} className="mt-10" />
+
       </div>
     </section>
   );
