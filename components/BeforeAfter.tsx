@@ -141,7 +141,7 @@ export function BeforeAfter() {
     <section
       ref={sectionRef}
       id="projects"
-      className="scroll-mt-24 bg-[#FFFFFF] py-20 text-dark sm:py-28"
+      className="scroll-mt-24 bg-[#FFFFFF] pt-20 pb-8 text-dark sm:pt-28 sm:pb-12"
     >
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
         {/* Header */}
@@ -316,7 +316,7 @@ export function BeforeAfter() {
         </div>
 
         {/* Google reviews — TrustIndex widget */}
-        <div ref={reviewsRef} className="mt-10" />
+        <div ref={reviewsRef} className="mt-20 sm:mt-24" />
 
       </div>
     </section>
