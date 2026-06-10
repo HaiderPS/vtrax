@@ -66,6 +66,7 @@ export function BeforeAfter() {
   const isDraggingRef = useRef(false);
 
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [activeFilter, setActiveFilter] = useState(0);
 
   const getPercent = (clientX: number) => {
     if (!containerRef.current) return 50;
@@ -165,14 +166,16 @@ export function BeforeAfter() {
         {/* Filter tabs */}
         <div className="mt-8 flex flex-nowrap gap-3 overflow-x-auto pb-4 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {topFilters.map((item, index) => (
-            <span
+            <button
               key={item}
-              className={`whitespace-nowrap font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.3px] px-5 py-2.5 sm:text-[14px] sm:px-6 sm:py-3 ${
-                index === 0 ? "bg-dark text-white" : "bg-white text-dark border border-dark/10"
+              type="button"
+              onClick={() => setActiveFilter(index)}
+              className={`whitespace-nowrap font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.3px] px-5 py-2.5 sm:text-[14px] sm:px-6 sm:py-3 transition-colors cursor-pointer ${
+                activeFilter === index ? "bg-dark text-white" : "bg-white text-dark border border-dark/10 hover:bg-dark/5"
               }`}
             >
               {item}
-            </span>
+            </button>
           ))}
         </div>
 
@@ -304,30 +307,14 @@ export function BeforeAfter() {
                 key={`${thumb.desktop}-${index}`}
                 className="relative aspect-square w-full overflow-hidden sm:h-[400px] sm:aspect-auto"
               >
-                {/* Desktop Image - hidden on mobile */}
-                <div className="hidden sm:block relative w-full h-full">
-                  <Image
-                    src={thumb.desktop}
-                    alt={`Project gallery thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                    draggable={false}
-                  />
-                </div>
-                
-                {/* Mobile Image - visible only on mobile */}
-                <div className="block sm:hidden relative w-full h-full">
-                  <Image
-                    src={thumb.mobile || thumb.desktop}
-                    alt={`Project gallery thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    sizes="50vw"
-                    draggable={false}
-                    priority={thumb.mobile ? true : false}
-                  />
-                </div>
+                <Image
+                  src={thumb.desktop}
+                  alt={`Project gallery thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  draggable={false}
+                />
               </div>
             ))}
           </div>
