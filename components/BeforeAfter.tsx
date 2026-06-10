@@ -22,30 +22,12 @@ const specTags = [
 
 // Thumbnails with optional mobile images
 const thumbs = [
-  {
-    desktop: "/images/before-after/1-new.jpg",
-    mobile: "/images/mobi4.jpg"
-  },
-  {
-    desktop: "/images/before-after/2-new.jpg",
-    mobile: "/images/mobi8.png"
-  },
-  {
-    desktop: "/images/before-after/3-new.jpg",
-    mobile: "/images/before-after/3-new.jpg"
-  },
-  {
-    desktop: "/images/before-after/4-new.jpg",
-    mobile: "/images/mobi3.jpg"
-  },
-  {
-    desktop: "/images/before-after/5-new.jpg",
-    mobile: "/images/mobi2.jpg"
-  },
-  {
-    desktop: "/images/before-after/6-new.jpg",
-    mobile: "/images/mobi1.jpg"
-  },
+  { desktop: "/images/before-after/1-v2.jpg" },
+  { desktop: "/images/before-after/2-v2.jpg" },
+  { desktop: "/images/before-after/3-v2.jpg" },
+  { desktop: "/images/before-after/4-v2.jpg" },
+  { desktop: "/images/before-after/5-v2.jpg" },
+  { desktop: "/images/before-after/6-v2.jpg" },
 ];
 
 // Double-headed left-right arrow icon
