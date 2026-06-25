@@ -22,30 +22,12 @@ const specTags = [
 
 // Thumbnails with optional mobile images
 const thumbs = [
-  {
-    desktop: "/images/before-after/1-new.jpg",
-    mobile: "/images/mobi4.jpg"
-  },
-  {
-    desktop: "/images/before-after/2-new.jpg",
-    mobile: "/images/mobi8.png"
-  },
-  {
-    desktop: "/images/before-after/3-new.jpg",
-    mobile: "/images/before-after/3-new.jpg"
-  },
-  {
-    desktop: "/images/before-after/4-new.jpg",
-    mobile: "/images/mobi3.jpg"
-  },
-  {
-    desktop: "/images/before-after/5-new.jpg",
-    mobile: "/images/mobi2.jpg"
-  },
-  {
-    desktop: "/images/before-after/6-new.jpg",
-    mobile: "/images/mobi1.jpg"
-  },
+  { desktop: "/images/before-after/1-v2.jpg" },
+  { desktop: "/images/before-after/2-v2.jpg" },
+  { desktop: "/images/before-after/3-v2.jpg" },
+  { desktop: "/images/before-after/4-v2.jpg" },
+  { desktop: "/images/before-after/5-v2.jpg" },
+  { desktop: "/images/before-after/6-v2.jpg" },
 ];
 
 // Double-headed left-right arrow icon
@@ -63,9 +45,11 @@ export function BeforeAfter() {
   const panelRef = useRef<HTMLDivElement>(null);
   const thumbsRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const reviewsRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
 
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [activeFilter, setActiveFilter] = useState(0);
 
   const getPercent = (clientX: number) => {
     if (!containerRef.current) return 50;
@@ -103,6 +87,18 @@ export function BeforeAfter() {
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onEnd);
     };
+  }, []);
+
+  useEffect(() => {
+    const target = reviewsRef.current;
+    if (!target) return;
+    if (target.querySelector("script[data-trustindex]")) return;
+    const script = document.createElement("script");
+    script.src = "https://cdn.trustindex.io/loader.js?3b46d1873dcd9227361672ad678";
+    script.async = true;
+    script.defer = true;
+    script.setAttribute("data-trustindex", "true");
+    target.appendChild(script);
   }, []);
 
   useEffect(() => {
@@ -145,7 +141,7 @@ export function BeforeAfter() {
     <section
       ref={sectionRef}
       id="projects"
-      className="scroll-mt-24 bg-[#FFFFFF] py-20 text-dark sm:py-28"
+      className="scroll-mt-24 bg-[#FFFFFF] pt-20 pb-8 text-dark sm:pt-28 sm:pb-12"
     >
       <div className="mx-auto w-full max-w-[1300px] px-6 lg:px-8">
         {/* Header */}
@@ -165,14 +161,16 @@ export function BeforeAfter() {
         {/* Filter tabs */}
         <div className="mt-8 flex flex-nowrap gap-3 overflow-x-auto pb-4 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {topFilters.map((item, index) => (
-            <span
+            <button
               key={item}
-              className={`whitespace-nowrap font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.3px] px-5 py-2.5 sm:text-[14px] sm:px-6 sm:py-3 ${
-                index === 0 ? "bg-dark text-white" : "bg-white text-dark border border-dark/10"
+              type="button"
+              onClick={() => setActiveFilter(index)}
+              className={`whitespace-nowrap font-oswald text-[12px] font-bold uppercase leading-[100%] tracking-[1.3px] px-5 py-2.5 sm:text-[14px] sm:px-6 sm:py-3 transition-colors cursor-pointer ${
+                activeFilter === index ? "bg-dark text-white" : "bg-white text-dark border border-dark/10 hover:bg-dark/5"
               }`}
             >
               {item}
-            </span>
+            </button>
           ))}
         </div>
 
@@ -304,34 +302,22 @@ export function BeforeAfter() {
                 key={`${thumb.desktop}-${index}`}
                 className="relative aspect-square w-full overflow-hidden sm:h-[400px] sm:aspect-auto"
               >
-                {/* Desktop Image - hidden on mobile */}
-                <div className="hidden sm:block relative w-full h-full">
-                  <Image
-                    src={thumb.desktop}
-                    alt={`Project gallery thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    sizes="(max-width: 640px) 50vw, 25vw"
-                    draggable={false}
-                  />
-                </div>
-                
-                {/* Mobile Image - visible only on mobile */}
-                <div className="block sm:hidden relative w-full h-full">
-                  <Image
-                    src={thumb.mobile || thumb.desktop}
-                    alt={`Project gallery thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    sizes="50vw"
-                    draggable={false}
-                    priority={thumb.mobile ? true : false}
-                  />
-                </div>
+                <Image
+                  src={thumb.desktop}
+                  alt={`Project gallery thumbnail ${index + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                  sizes="(max-width: 640px) 50vw, 25vw"
+                  draggable={false}
+                />
               </div>
             ))}
           </div>
         </div>
+
+        {/* Google reviews — TrustIndex widget */}
+        <div ref={reviewsRef} className="mt-20 sm:mt-24" />
+
       </div>
     </section>
   );
