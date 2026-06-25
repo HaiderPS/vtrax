@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Open_Sans, Oswald } from "next/font/google";
 import Script from "next/script";
 import "@/styles/globals.css";
@@ -15,10 +15,76 @@ const openSans = Open_Sans({
   weight: ["300", "400", "500", "600"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  "https://vtraxprojects.com.au";
+
 export const metadata: Metadata = {
-  title: "VTRAX | Retaining Walls Built Right",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "VTRAX | Retaining Walls Built Right",
+    template: "%s | VTRAX",
+  },
   description:
-    "Modern retaining wall construction, drainage, and site assessment services."
+    "Expert retaining wall construction in Wollongong & South Coast NSW. Concrete sleeper, block & timber walls. 8+ years experience, 60+ walls completed. Free quotes. Call 0478 563 679.",
+  keywords: [
+    "retaining wall Wollongong",
+    "retaining wall builder NSW",
+    "concrete sleeper retaining wall",
+    "block retaining wall",
+    "timber retaining wall",
+    "retaining wall Illawarra",
+    "retaining wall South Coast NSW",
+    "retaining wall construction",
+    "VTRAX retaining walls",
+    "retaining wall installer Wollongong",
+    "retaining wall quote NSW",
+    "drainage installation NSW",
+    "engineered retaining walls",
+    "retaining wall Shellharbour",
+    "retaining wall Kiama",
+  ],
+  authors: [{ name: "VTRAX" }],
+  creator: "VTRAX",
+  publisher: "VTRAX",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_AU",
+    url: SITE_URL,
+    siteName: "VTRAX",
+    title: "VTRAX | Retaining Walls Built Right",
+    description:
+      "Expert retaining wall construction in Wollongong & South Coast NSW. Concrete sleeper, block & timber walls. 8+ years experience, 60+ walls completed. Free quotes.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "VTRAX – Retaining Wall Specialists in Wollongong & South Coast NSW",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VTRAX | Retaining Walls Built Right",
+    description:
+      "Expert retaining wall construction in Wollongong & South Coast NSW. 8+ years, 60+ walls completed. Free quotes — 0478 563 679.",
+    images: ["/opengraph-image"],
+  },
 };
 
 export default function RootLayout({
