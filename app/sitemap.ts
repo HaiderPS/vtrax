@@ -7,12 +7,12 @@ const SITE_URL =
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
-  return [
-    {
-      url: `${SITE_URL}/`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+  const pages = ["/", "/services", "/projects", "/about", "/faq", "/areas"];
+
+  return pages.map((path, i) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: i === 0 ? 1 : 0.8,
+  }));
 }
