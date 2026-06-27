@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VTRAX Projects — Next.js
 
-## Getting Started
+A faithful production port of the VTRAX Projects marketing site (Illawarra
+retaining wall &amp; excavation specialists), rebuilt from the original HTML
+design as a modern Next.js application.
 
-First, run the development server:
+## Stack
+
+- **Next.js 15** (App Router, React Server Components)
+- **React 19**
+- **TypeScript** (strict)
+- **Tailwind CSS 3.4**
+- **next/font** — Oswald (display), Open Sans (body), Inter (labels), self-hosted
+- **next/image** — all photography optimised and served locally from `/public/images`
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build    # production build
+npm run start    # serve the production build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Node 18.18+ (or 20+) is recommended.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes
 
-## Learn More
+The original single-page design (which switched "screens" with client state) is
+split into real, SEO-friendly routes. Each exports its own `metadata`
+(title + description) ported from the original per-screen SEO map.
 
-To learn more about Next.js, take a look at the following resources:
+| Route        | Page      |
+|--------------|-----------|
+| `/`          | Home      |
+| `/about`     | About     |
+| `/services`  | Services  |
+| `/projects`  | Projects  |
+| `/faq`       | FAQ       |
+| `/contact`   | Contact   |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+  app/
+    layout.tsx          Root layout: fonts, <Header>, <Footer>, base metadata
+    globals.css         Tailwind layers, brand keyframes, reusable component classes
+    page.tsx            Home
+    about/page.tsx
+    services/page.tsx
+    projects/page.tsx
+    faq/page.tsx
+    contact/page.tsx
+  components/
+    Header.tsx          Sticky nav, active state via usePathname (client)
+    Footer.tsx
+    PageHero.tsx        Reusable dark hero header (+ HeroBg helper)
+    Badge.tsx           Section eyebrow pill
+    MarqueeTape.tsx     Infinite yellow stat marquee
+    MediaSlot.tsx       Photo with signature hover-zoom ("bloom")
+    ServiceAreas.tsx    Repeated service-area section with area deep-links
+    AskJake.tsx         Dark "Ask Jake" CTA band
+    CtaBand.tsx         Yellow CTA band (reusable, available for any page)
+    GoogleReviews.tsx   Google reviews carousel (client)
+    WhyCarousel.tsx     Home "Why VTRAX" carousel (client)
+    BeforeAfter.tsx     Projects before/after slider (client)
+    ProjectsGrid.tsx    Filterable project grid (client)
+    FaqAccordion.tsx    FAQ accordion (client)
+    ContactForm.tsx     Quote form with success state (client)
+    AreaApplier.tsx     Service-area text-swap behaviour (client)
+  data/
+    site.ts             Single source of truth: nav, services, projects, FAQs,
+                        reviews, areas, equipment, steps, contact details, SEO
+public/
+  images/               All photography + logos (local, self-hosted)
+```
 
-## Deploy on Vercel
+## Design system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Token        | Value     |
+|--------------|-----------|
+| Ink          | `#0E0F11` |
+| Yellow       | `#FFCB05` |
+| Yellow dark  | `#E6B600` (hover) |
+| Cream        | `#F2F2EE` |
+| Panel        | `#F5F5F2` |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Type: **Oswald** for uppercase display headings, **Open Sans** for body, **Inter**
+for the small tracked labels. Brand colours and font families are registered in
+`tailwind.config.ts`; repeated button/badge/marquee patterns live as component
+classes in `globals.css`.
+
+## Notable behaviour ported 1:1
+
+- **Service-area text swap** — arriving on the home page via `/?area=Wollongong`
+  (the area tiles and footer links do this) swaps every "Illawarra" mention in
+  the page copy, outside the header/footer, to the chosen area. Implemented in
+  `AreaApplier.tsx`. This is a faithful recreation of a DOM-level feature from
+  the source design; it mutates text nodes after paint and self-restores on
+  navigation.
+- **Hover-zoom imagery, infinite stat marquee, carousels, before/after slider,
+  filterable projects, FAQ accordion** — all preserved.
+- **Per-page SEO** via the App Router `metadata` API.
+
+## Things to wire up for production
+
+These were front-end-only in the original design and are intentionally left as
+clear integration points:
+
+- **Contact form** (`ContactForm.tsx`) currently shows a success state on submit
+  without sending anything. Connect it to your email service / CRM / API route.
+- **Google reviews** are static sample data in `data/site.ts`. Swap for the live
+  Google Places/Business Profile feed if you want them to auto-update. (Verify
+  each review is genuine before publishing.)
+- **Map** is a public Google Maps embed iframe; replace with an API-keyed embed
+  if you need styling control or analytics.
+- **Photography** was imported from the original design's image sources into
+  `/public/images`. Replace with final high-resolution assets as needed; the
+  filenames are descriptive.
+- Add `app/icon.png` / `favicon`, `robots.ts`, `sitemap.ts` and your analytics.
+
+## Original content notes
+
+ABN `15 907 578 201` and NSW Contractor Licence `497229C` (current to 4 Jun 2029)
+are reflected throughout, matching the corrected business record.

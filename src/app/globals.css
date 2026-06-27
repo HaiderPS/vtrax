@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   VTRAX Projects — global base styles
+   Ported 1:1 from the original design system.
+   Brand: ink #0E0F11 · yellow #FFCB05 · cream #F2F2EE
+   Type:  Oswald (display) · Open Sans (body) · Inter (labels)
+   ============================================================ */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: #0e0f11;
+    color: #0e0f11;
+    font-family: var(--font-open-sans), sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: #ffcb05;
+    color: #0e0f11;
+  }
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+  /* Form controls */
+  input,
+  select,
+  textarea {
+    transition: border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #ffcb05 !important;
+    box-shadow: 0 0 0 3px rgba(255, 203, 5, 0.18);
+  }
+  select {
+    cursor: pointer;
+  }
+  button,
+  a,
+  [role="button"] {
+    transition-property: transform, box-shadow, background-color, background,
+      color, border-color;
+  }
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: translateY(1px) scale(0.99);
+  }
+}
+
+@layer components {
+  /* Shared content shell */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-8;
+  }
+
+  /* Primary yellow CTA — padding/size set per-use with utilities */
+  .btn-primary {
+    @apply inline-flex cursor-pointer items-center gap-2.5 rounded-[3px] border-none bg-yellow font-open font-bold uppercase text-ink;
+    letter-spacing: 0.05em;
+    box-shadow: 0 6px 18px rgba(255, 203, 5, 0.28);
+    transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.26s cubic-bezier(0.22, 1, 0.36, 1),
+      background 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover {
+    background: #e6b600;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(255, 203, 5, 0.42);
+  }
+
+  /* Outline button on dark backgrounds */
+  .btn-outline-light {
+    @apply inline-flex cursor-pointer items-center gap-2.5 rounded-[3px] bg-transparent font-open font-bold uppercase text-white;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    transition: all 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-outline-light:hover {
+    border-color: #ffcb05;
+    color: #ffcb05;
+    background: rgba(255, 203, 5, 0.07);
+  }
+
+  /* Outline button on light backgrounds */
+  .btn-outline-dark {
+    @apply inline-flex cursor-pointer items-center gap-2.5 rounded-[3px] bg-transparent font-open font-bold uppercase text-ink;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(14, 15, 17, 0.35);
+    transition: all 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-outline-dark:hover {
+    border-color: #0e0f11;
+    background: rgba(14, 15, 17, 0.06);
+  }
+
+  /* Image hover-zoom wrapper */
+  .vt-bloom {
+    @apply relative h-full w-full overflow-hidden;
+  }
+  .vt-bloom > * {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.6s ease;
+    will-change: transform;
+  }
+  .vt-bloom:hover > * {
+    transform: scale(1.07);
+    filter: saturate(1.14) brightness(1.05) contrast(1.02);
+  }
+
+  /* Bento tiles clip their content */
+  .bento-tile {
+    @apply overflow-hidden;
+  }
+
+  /* Marquee tape */
+  .vt-tape {
+    @apply relative overflow-hidden;
+  }
+  .vt-tape-track {
+    @apply flex;
+    width: max-content;
+    animation: vtMarquee 32s linear infinite;
+  }
+  .vt-tape:hover .vt-tape-track {
+    animation-play-state: paused;
+  }
+}
+
+/* ---- Keyframes ---- */
+@keyframes vtFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes vtAcc {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes vtMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hide horizontal scrollbars on carousels */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: auto;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.animate-fade {
+  animation: vtFade 0.5s ease both;
+}

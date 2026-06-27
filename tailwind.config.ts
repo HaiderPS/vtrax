@@ -1,38 +1,26 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
-    "./styles/**/*.{js,ts,jsx,tsx,mdx,css}",
-  ],
+  content: ["./src/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        primary: "#F7AC1D",
-        dark: "#111111",
-        white: "#FFFFFF",
-        white70: "#FFFFFF73",
-        white10: "#FFFFFF0A",
+        ink: "#0E0F11",
+        "ink-2": "#16181c",
+        yellow: "#FFCB05",
+        "yellow-dark": "#E6B600",
+        "yellow-deep": "#C99700",
+        cream: "#F2F2EE",
+        panel: "#F5F5F2",
       },
       fontFamily: {
-        sans: ["var(--font-oswald)", "sans-serif"],
-        display: ["var(--font-oswald)", "sans-serif"],
         oswald: ["var(--font-oswald)", "sans-serif"],
-        "open-sans": ["var(--font-open-sans)", "sans-serif"],
+        open: ["var(--font-open-sans)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
-      boxShadow: {
-        panel: "0 24px 60px -24px rgb(0 0 0 / 0.45)",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-      },
-      animation: {
-        marquee: "marquee 28s linear infinite",
+      maxWidth: {
+        shell: "1180px",
+        "shell-wide": "1240px",
       },
     },
   },
