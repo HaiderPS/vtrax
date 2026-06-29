@@ -1,14 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NAV, FOOTER_AREAS, CONTACT, IMG } from "@/data/site";
+import ServiceLink from "./ServiceLink";
+import { NAV, FOOTER_AREAS, CONTACT, IMG, SERVICES, serviceSlug } from "@/data/site";
 
-const FOOTER_SERVICES = [
-  "Concrete sleeper walls",
-  "Timber & block walls",
-  "Excavation & footings",
-  "Drainage & landscaping",
-  "Repairs & upgrades",
-];
+// Footer service list mirrors the Services page (single source of truth).
+const FOOTER_SERVICES = SERVICES.map((s) => s.title);
 
 function ColHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -61,13 +57,13 @@ export default function Footer() {
           <ColHeading>Services</ColHeading>
           <div className="flex flex-col items-start gap-3">
             {FOOTER_SERVICES.map((s) => (
-              <Link
+              <ServiceLink
                 key={s}
-                href="/services"
+                slug={serviceSlug(s)}
                 className="text-left font-open text-[14px] font-medium leading-[1.4] text-[#C7CCD2] transition-colors hover:text-yellow"
               >
                 {s}
-              </Link>
+              </ServiceLink>
             ))}
           </div>
         </div>

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import MarqueeTape from "@/components/MarqueeTape";
 import MediaSlot from "@/components/MediaSlot";
 import GoogleReviews from "@/components/GoogleReviews";
 import ServiceAreas from "@/components/ServiceAreas";
+import ServiceRows from "@/components/ServiceRows";
 import AskJake from "@/components/AskJake";
 import Badge from "@/components/Badge";
-import { SEO, SERVICES, CAPABILITIES, STEPS, IMG } from "@/data/site";
+import { SEO, CAPABILITIES, STEPS, IMG } from "@/data/site";
 
 export const metadata: Metadata = {
   title: SEO.services.title,
@@ -68,41 +68,8 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Alternating service rows */}
-          {SERVICES.map((s, i) => {
-            const imageRight = i % 2 === 1;
-            return (
-              <article
-                key={s.title}
-                className="grid grid-cols-1 items-start gap-11 md:grid-cols-2"
-              >
-                <div
-                  className={`relative h-[360px] ${
-                    imageRight ? "md:order-2" : ""
-                  }`}
-                >
-                  <MediaSlot src={s.img} alt={s.title} />
-                </div>
-                <div className={imageRight ? "md:order-1" : ""}>
-                  <div className="font-open text-[11px] font-bold uppercase leading-none tracking-[0.16em] text-yellow">
-                    {s.no}
-                  </div>
-                  <h2 className="m-0 mb-3.5 mt-3 font-oswald text-[clamp(26px,3.4vw,38px)] font-bold uppercase leading-[1.05] text-ink">
-                    {s.title}
-                  </h2>
-                  <p className="m-0 mb-[18px] font-open text-[16px] leading-[1.65] text-[#4a4f55]">
-                    {s.text}
-                  </p>
-                  <Link
-                    href="/contact"
-                    className="cursor-pointer border-b-2 border-yellow pb-1 font-open text-[12px] font-bold uppercase tracking-[0.08em] text-ink"
-                  >
-                    Get a quote →
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
+          {/* Alternating service rows (deep-linkable + highlight on select) */}
+          <ServiceRows />
         </div>
       </section>
 

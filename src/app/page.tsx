@@ -7,11 +7,14 @@ import MediaSlot from "@/components/MediaSlot";
 import WhyCarousel from "@/components/WhyCarousel";
 import GoogleReviews from "@/components/GoogleReviews";
 import ServiceAreas from "@/components/ServiceAreas";
+import ServiceLink from "@/components/ServiceLink";
 import FaqAccordion from "@/components/FaqAccordion";
 import AreaApplier from "@/components/AreaApplier";
 import { HeroBg } from "@/components/PageHero";
 import {
   OFFERS,
+  SERVICES,
+  serviceSlug,
   HOME_BEFORE_AFTER,
   HOME_GALLERY,
   CONTACT,
@@ -144,10 +147,10 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {OFFERS.map((o) => (
-              <Link
+            {OFFERS.map((o, i) => (
+              <ServiceLink
                 key={o.no}
-                href="/services"
+                slug={serviceSlug(SERVICES[i].title)}
                 className="group flex flex-col overflow-hidden border border-black/10 bg-white transition-all hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(14,15,17,0.12)]"
               >
                 <div className="bento-tile relative h-[190px]">
@@ -167,7 +170,7 @@ export default function HomePage() {
                     Learn more &rarr;
                   </span>
                 </div>
-              </Link>
+              </ServiceLink>
             ))}
           </div>
         </div>
@@ -223,20 +226,20 @@ export default function HomePage() {
             Real transformations across the Illawarra
           </h2>
           <p className="m-0 mb-11 max-w-[58ch] font-open text-[16px] leading-[1.65] text-[#4a4f55]">
-            Two recent VTRAX jobs, shown before and after.
+            Recent VTRAX jobs, shown before and after.
           </p>
-          <div className="grid grid-cols-1 gap-[26px] md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 md:grid-cols-3">
             {HOME_BEFORE_AFTER.map((b) => (
               <article key={b.title} className="border border-black/10 bg-white">
                 <div className="grid grid-cols-2 gap-px bg-black/10">
-                  <div className="relative h-[220px]">
-                    <MediaSlot src={b.before} alt={b.beforeLabel} sizes="50vw" />
+                  <div className="relative h-[190px]">
+                    <MediaSlot src={b.before} alt={b.beforeLabel} sizes="(max-width:768px) 50vw, 17vw" />
                     <span className="absolute left-3 top-3 bg-ink px-[9px] py-1.5 font-open text-[10px] font-bold uppercase leading-none tracking-[0.12em] text-white">
                       Before
                     </span>
                   </div>
-                  <div className="relative h-[220px]">
-                    <MediaSlot src={b.after} alt={b.afterLabel} sizes="50vw" />
+                  <div className="relative h-[190px]">
+                    <MediaSlot src={b.after} alt={b.afterLabel} sizes="(max-width:768px) 50vw, 17vw" />
                     <span className="absolute right-3 top-3 bg-yellow px-[9px] py-1.5 font-open text-[10px] font-bold uppercase leading-none tracking-[0.12em] text-ink">
                       After
                     </span>
@@ -252,6 +255,14 @@ export default function HomePage() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="mt-[clamp(40px,5vw,56px)] flex justify-center">
+            <Link
+              href="/projects"
+              className="btn-primary px-9 py-[19px] text-[14px]"
+            >
+              View All Projects &rarr;
+            </Link>
           </div>
         </div>
       </section>

@@ -1,16 +1,20 @@
+"use client";
+
+import { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Badge from "./Badge";
 import MediaSlot from "./MediaSlot";
-import { AREA_TILES, IMG } from "@/data/site";
+import { AREA_TILES, AREA_IMAGES, IMG } from "@/data/site";
 
-function PinIcon() {
+function PinIcon({ active = false }: { active?: boolean }) {
   return (
     <svg
       width="15"
       height="15"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#FFCB05"
+      stroke={active ? "#0E0F11" : "#FFCB05"}
       strokeWidth="2.2"
       className="flex-none"
     >
@@ -21,15 +25,33 @@ function PinIcon() {
 }
 
 /**
- * Service Areas — repeated near the foot of every page.
- * Area tiles deep-link to the home page with `?area=` so the
- * AreaApplier can swap "Illawarra" across the page copy.
+ * Map a `?area=` value onto the closest area tile. The footer uses slightly
+ * different labels (e.g. "Dapto & Albion Park", "Corrimal / Fairy"), so we
+ * fall back to a contains-match when there's no exact one.
  */
-export default function ServiceAreas({
-  photoSrc = IMG.hero,
+function matchTile(area: string | null): string {
+  if (!area) return AREA_TILES[0];
+  const a = area.toLowerCase();
+  const exact = AREA_TILES.find((t) => t.toLowerCase() === a);
+  if (exact) return exact;
+  const loose = AREA_TILES.find(
+    (t) => a.includes(t.toLowerCase()) || t.toLowerCase().includes(a)
+  );
+  return loose ?? AREA_TILES[0];
+}
+
+/** Presentational section — the selected area drives the photo + highlight. */
+function AreaSectionView({
+  active,
+  onSelect,
+  photoSrc,
 }: {
-  photoSrc?: string;
+  active: string;
+  onSelect: (a: string) => void;
+  photoSrc: string;
 }) {
+  const imgSrc = AREA_IMAGES[active] ?? photoSrc;
+
   return (
     <section className="bg-white py-[clamp(56px,7vw,100px)]">
       <div className="mx-auto grid max-w-shell grid-cols-1 items-stretch gap-12 px-8 md:grid-cols-2">
@@ -50,16 +72,25 @@ export default function ServiceAreas({
             open to travelling for projects where it makes sense.
           </p>
           <div className="mt-auto grid grid-cols-2 gap-px border border-black/10 bg-black/10">
-            {AREA_TILES.map((a) => (
-              <Link
-                key={a}
-                href={`/?area=${encodeURIComponent(a)}`}
-                className="flex items-center gap-[11px] bg-white px-[18px] py-[17px] text-left font-open text-[12.5px] font-bold uppercase leading-[1.2] tracking-[0.06em] text-ink transition-colors hover:bg-panel"
-              >
-                <PinIcon />
-                <span>{a}</span>
-              </Link>
-            ))}
+            {AREA_TILES.map((a) => {
+              const isActive = a === active;
+              return (
+                <button
+                  key={a}
+                  type="button"
+                  onClick={() => onSelect(a)}
+                  aria-pressed={isActive}
+                  className={`flex items-center gap-[11px] px-[18px] py-[17px] text-left font-open text-[12.5px] font-bold uppercase leading-[1.2] tracking-[0.06em] transition-colors ${
+                    isActive
+                      ? "bg-yellow text-ink"
+                      : "bg-white text-ink hover:bg-panel"
+                  }`}
+                >
+                  <PinIcon active={isActive} />
+                  <span>{a}</span>
+                </button>
+              );
+            })}
             <Link
               href="/contact"
               className="col-span-2 flex items-center gap-[11px] bg-ink px-[18px] py-[17px] text-left font-open text-[12.5px] font-bold uppercase leading-[1.2] tracking-[0.06em] text-white transition-colors hover:bg-black"
@@ -71,12 +102,56 @@ export default function ServiceAreas({
           </div>
         </div>
         <div className="relative min-h-[420px] overflow-hidden rounded-[2px]">
-          <MediaSlot
-            src={photoSrc}
-            alt="VTRAX retaining wall across the Illawarra"
-          />
+          <div key={imgSrc} className="absolute inset-0 animate-fade">
+            <MediaSlot
+              src={imgSrc}
+              alt={`VTRAX retaining wall projects in ${active}`}
+            />
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/** Reads the `?area=` param so the chosen location is pre-selected. */
+function ServiceAreasInner({ photoSrc }: { photoSrc: string }) {
+  const searchParams = useSearchParams();
+  const areaParam = searchParams.get("area");
+  const [active, setActive] = useState<string>(() => matchTile(areaParam));
+
+  // Keep the selected tile in sync when the URL area changes (e.g. footer
+  // area links navigating to /?area=Kiama on the same page).
+  useEffect(() => {
+    setActive(matchTile(areaParam));
+  }, [areaParam]);
+
+  return (
+    <AreaSectionView active={active} onSelect={setActive} photoSrc={photoSrc} />
+  );
+}
+
+/**
+ * Service Areas — repeated near the foot of every page.
+ * Clicking an area tile (or arriving via /?area=…) selects that area:
+ * the tile highlights in brand yellow and the photo swaps to its image.
+ */
+export default function ServiceAreas({
+  photoSrc = IMG.hero,
+}: {
+  photoSrc?: string;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <AreaSectionView
+          active={AREA_TILES[0]}
+          onSelect={() => {}}
+          photoSrc={photoSrc}
+        />
+      }
+    >
+      <ServiceAreasInner photoSrc={photoSrc} />
+    </Suspense>
   );
 }

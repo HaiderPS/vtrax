@@ -42,6 +42,29 @@ export const IMG = {
   aboutHseq: "/images/about-hseq.jpg",
   logoWhite: "/images/vtrax-logo-white.png",
   logoDark: "/images/vtrax-logo-dark.png",
+  // "Why VTRAX?" section card images (one per card)
+  whyLocalIllawarra: "/images/why-local-illawarra.jpg",
+  whyReliableEfficient: "/images/why-reliable-efficient.jpg",
+  whyProfessionalExcavation: "/images/why-professional-excavation.jpg",
+  whyQualityWorkmanship: "/images/why-quality-workmanship.jpg",
+  whyPubliclyInsured: "/images/why-publicly-insured.jpg",
+  whyOwnerOperated: "/images/why-owner-operated.jpg",
+  // Home "Our work gallery" tiles (8 images, /public/our-work-images)
+  ourWork1: "/our-work-images/our-work-1.jpg",
+  ourWork2: "/our-work-images/our-work-2.jpg",
+  ourWork3: "/our-work-images/our-work-3.jpg",
+  ourWork4: "/our-work-images/our-work-4.jpg",
+  ourWork5: "/our-work-images/our-work-5.jpg",
+  ourWork6: "/our-work-images/our-work-6.jpg",
+  ourWork7: "/our-work-images/our-work-7.jpg",
+  ourWork8: "/our-work-images/our-work-8.jpg",
+  // Home "What We Offer" cards (6 images, /public/what-we-offer)
+  offerConcreteSleeper: "/what-we-offer/offer-concrete-sleeper-walls.jpg",
+  offerBlockWall: "/what-we-offer/offer-block-retaining-walls.jpg",
+  offerTimberWall: "/what-we-offer/offer-timber-retaining-walls.jpg",
+  offerExcavation: "/what-we-offer/offer-excavation-footings.jpg",
+  offerLandscaping: "/what-we-offer/offer-landscaping-turf.jpg",
+  offerWallRepairs: "/what-we-offer/offer-wall-repairs-replacements.jpg",
 } as const;
 
 export type NavKey =
@@ -72,37 +95,37 @@ export const WHY = [
   {
     no: "01",
     title: "Local Illawarra business",
-    img: IMG.localBusiness,
+    img: IMG.whyLocalIllawarra,
     text: "Based in Lake Heights and working across the region every day, we understand local terrain, soil and access across the Illawarra and South Coast.",
   },
   {
     no: "02",
     title: "Reliable & efficient service",
-    img: IMG.reliableService,
+    img: IMG.whyReliableEfficient,
     text: "From small repairs to full retaining systems, we scope projects clearly and deliver cleanly on practical timelines.",
   },
   {
     no: "03",
     title: "Professional excavation equipment",
-    img: IMG.excavationEquipment,
+    img: IMG.whyProfessionalExcavation,
     text: "From mini excavators to laser-level set-up, we use specialised equipment designed for accurate retaining work.",
   },
   {
     no: "04",
     title: "Quality workmanship",
-    img: IMG.qualityWorkmanship,
+    img: IMG.whyQualityWorkmanship,
     text: "Every wall is built with correct footing preparation, drainage behind the wall and structural support for long-term performance.",
   },
   {
     no: "05",
     title: "Publicly insured & compliant",
-    img: IMG.insuredCompliant,
+    img: IMG.whyPubliclyInsured,
     text: "All projects follow current safety and installation requirements, with compliant materials and methods.",
   },
   {
     no: "06",
     title: "Owner-operated, direct contact",
-    img: IMG.ownerOperated,
+    img: IMG.whyOwnerOperated,
     text: "You deal directly with Jake from quote to clean-up, never a call centre or a subcontractor.",
   },
 ];
@@ -111,37 +134,37 @@ export const OFFERS = [
   {
     no: "01",
     title: "Concrete Sleeper Walls",
-    img: IMG.concreteSleeperWall,
+    img: IMG.offerConcreteSleeper,
     text: "High-strength precast concrete sleeper walls built for depth, line and long-term durability.",
   },
   {
     no: "02",
     title: "Block Retaining Walls",
-    img: IMG.blockRetainingWall,
+    img: IMG.offerBlockWall,
     text: "Concrete block walls engineered for structural performance and a clean, finished face.",
   },
   {
     no: "03",
     title: "Timber Retaining Walls",
-    img: IMG.timberRetainingWall,
+    img: IMG.offerTimberWall,
     text: "Treated timber sleeper walls for boundary, retaining and tiered garden levels.",
   },
   {
     no: "04",
     title: "Excavation & Footings",
-    img: IMG.excavationFootings,
+    img: IMG.offerExcavation,
     text: "Site cuts, footings and levels prepared with proper compaction and structural support.",
   },
   {
     no: "05",
     title: "Landscaping & Turf",
-    img: IMG.landscapingTurf,
+    img: IMG.offerLandscaping,
     text: "Site cleanups, contour levelling, ground finishing and turf to complete the package.",
   },
   {
     no: "06",
     title: "Wall Repairs & Replacements",
-    img: IMG.wallRepairs,
+    img: IMG.offerWallRepairs,
     text: "Assessment and full replacement of failing or ageing retaining walls.",
   },
 ];
@@ -194,6 +217,14 @@ export const SERVICES = [
     text: "Assessment and full replacement of failing or ageing retaining walls, including drainage solutions, tie-ins and structural correction where required.",
   },
 ];
+
+// Stable anchor id for a service, used to deep-link + scroll to a specific
+// service row on /services (e.g. /services#timber-retaining-walls).
+export const serviceSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 export const STEPS = [
   {
@@ -409,32 +440,40 @@ export const GALLERY = [
 
 // Home gallery (8 tiles, slightly different ordering)
 export const HOME_GALLERY = [
-  { img: IMG.hero, label: "VTRAX project", span: "col-span-2 row-span-2" },
-  { img: IMG.reliableService, label: "VTRAX project", span: "" },
-  { img: IMG.excavationEquipment, label: "VTRAX project", span: "" },
-  { img: IMG.concreteSleeperWall, label: "VTRAX project", span: "col-span-2" },
-  { img: IMG.qualityWorkmanship, label: "VTRAX project", span: "row-span-2" },
-  { img: IMG.localBusiness, label: "VTRAX project", span: "" },
-  { img: IMG.galleryTipper, label: "VTRAX project", span: "col-span-2" },
-  { img: IMG.insuredCompliant, label: "VTRAX project", span: "" },
+  { img: IMG.ourWork1, label: "VTRAX project", span: "col-span-2 row-span-2" },
+  { img: IMG.ourWork2, label: "VTRAX project", span: "" },
+  { img: IMG.ourWork3, label: "VTRAX project", span: "" },
+  { img: IMG.ourWork4, label: "VTRAX project", span: "col-span-2" },
+  { img: IMG.ourWork5, label: "VTRAX project", span: "row-span-2" },
+  { img: IMG.ourWork6, label: "VTRAX project", span: "" },
+  { img: IMG.ourWork7, label: "VTRAX project", span: "col-span-2" },
+  { img: IMG.ourWork8, label: "VTRAX project", span: "" },
 ];
 
 export const HOME_BEFORE_AFTER = [
   {
-    title: "Timber to concrete sleeper",
-    text: "An unsafe timber wall removed and rebuilt as a structurally sound concrete sleeper wall around the pool surrounds.",
-    before: IMG.timberRetainingWall,
-    beforeLabel: "Before: old failing timber sleeper wall",
+    title: "Sleeper wall, steps & turf",
+    text: "A sloped block cut and retained with multi-tier concrete sleeper walls, concrete steps and fresh turf.",
+    before: IMG.excavationFootings,
+    beforeLabel: "Before: sloped, unretained block",
     after: IMG.concreteSleeperWall,
-    afterLabel: "After: new concrete sleeper wall on steel posts",
+    afterLabel: "After: multi-tier sleeper wall, concrete steps and fresh turf",
   },
   {
-    title: "Concrete removal & yard level",
-    text: "Old concrete removed, the ground re-levelled and the yard prepared for a clean, usable finish.",
+    title: "Block wall, pool surrounds",
+    text: "An old pool surround stripped out and rebuilt with a rendered concrete block retaining wall.",
+    before: IMG.poolSurroundBefore,
+    beforeLabel: "Before: old pool surround",
+    after: IMG.qualityWorkmanship,
+    afterLabel: "After: rendered concrete block retaining wall",
+  },
+  {
+    title: "Concrete removal & yard leveling",
+    text: "Old cracked concrete removed, the ground re-levelled and the yard finished with fresh turf.",
     before: IMG.concreteRemovalBefore,
-    beforeLabel: "Before: old concrete and uneven ground",
+    beforeLabel: "Before: old cracked concrete",
     after: IMG.landscapingTurf,
-    afterLabel: "After: cleared, re-levelled and prepared yard",
+    afterLabel: "After: re-levelled yard finished with fresh turf",
   },
 ];
 
@@ -492,6 +531,24 @@ export const AREA_TILES = [
   "South Coast",
   "South Sydney",
 ];
+
+// Per-area photo shown on the right of the Service Areas section when a tile
+// is clicked. Keys must match AREA_TILES exactly.
+// NOTE: these are TEMPORARY placeholders using existing images so the
+// click-to-switch behaviour works now. Replace each value with the real
+// per-area photo later (e.g. add files to /public/images/areas/ and point
+// the key at "/images/areas/wollongong.jpg").
+export const AREA_IMAGES: Record<string, string> = {
+  Wollongong: IMG.hero,
+  Shellharbour: IMG.concreteSleeperWall,
+  Kiama: IMG.blockRetainingWall,
+  Dapto: IMG.excavationFootings,
+  "Albion Park": IMG.timberRetainingWall,
+  Corrimal: IMG.landscapingTurf,
+  "Woonona / Bulli": IMG.qualityWorkmanship,
+  "South Coast": IMG.reliableService,
+  "South Sydney": IMG.excavationEquipment,
+};
 
 export const FOOTER_AREAS = [
   "Wollongong",
