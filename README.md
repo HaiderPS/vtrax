@@ -127,3 +127,23 @@ clear integration points:
 
 ABN `15 907 578 201` and NSW Contractor Licence `497229C` (current to 4 Jun 2029)
 are reflected throughout, matching the corrected business record.
+
+## Latest design sync
+
+Brought fully in line with the current design:
+
+- **No top utility bar** — the header is the logo + nav + Free Quote only.
+- **Licence in the marquee** — `497229C · NSW contractor licence` scrolls in the
+  yellow tape alongside the headline stats.
+- **Home before/after** is a single large transformation (Job 1) with a
+  centred **View all projects** button, instead of the old two-card grid.
+- **Galleries** (home + projects) are a clean **3×3 square grid**.
+- **Prominent hero / separator / CTA imagery** — background photos are sharp
+  (no blur) behind lighter scrims.
+- **Services** — the stacked capability chips are gone; each service section has
+  a pill "Service NN" eyebrow and a stable anchor id.
+- **Footer → Services deep-links** — the six service names jump to their exact
+  section (`/services#…`).
+- **Current photography** — all job/hero/gallery images from the latest design
+  live in `/public/images/{proj,site,gallery}`. Every image is now local; there
+  are **no remote (Google-hosted) image dependencies**.

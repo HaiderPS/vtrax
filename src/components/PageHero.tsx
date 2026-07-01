@@ -1,14 +1,30 @@
 import Image from "next/image";
 import Badge from "./Badge";
 
-/** Blurred, darkened background photo used behind dark heroes/separators. */
-export function HeroBg({ src, opacity }: { src: string; opacity?: number }) {
+/** Background photo used behind dark heroes/separators.
+ *  `prominent` renders it sharp (no blur) so the image reads clearly;
+ *  otherwise it is softly blurred behind a heavier scrim. */
+export function HeroBg({
+  src,
+  opacity,
+  prominent = false,
+}: {
+  src: string;
+  opacity?: number;
+  prominent?: boolean;
+}) {
   return (
     <div
       className="absolute inset-0 overflow-hidden"
       style={opacity !== undefined ? { opacity } : undefined}
     >
-      <div className="absolute -inset-3 scale-[1.08] blur-[3px]">
+      <div
+        className={
+          prominent
+            ? "absolute inset-0 scale-[1.04]"
+            : "absolute -inset-3 scale-[1.08] blur-[3px]"
+        }
+      >
         <Image src={src} alt="" fill sizes="100vw" className="object-cover" />
       </div>
     </div>

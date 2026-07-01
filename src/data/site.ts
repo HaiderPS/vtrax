@@ -20,26 +20,61 @@ export const CONTACT = {
 } as const;
 
 export const IMG = {
-  hero: "/images/hero-retaining-wall.jpg",
-  localBusiness: "/images/local-business.jpg",
-  reliableService: "/images/reliable-service.jpg",
-  excavationEquipment: "/images/excavation-equipment.jpg",
-  qualityWorkmanship: "/images/quality-workmanship.jpg",
-  insuredCompliant: "/images/insured-compliant.jpg",
-  ownerOperated: "/images/owner-operated.jpg",
-  concreteSleeperWall: "/images/concrete-sleeper-wall.jpg",
-  blockRetainingWall: "/images/block-retaining-wall.jpg",
-  timberRetainingWall: "/images/timber-retaining-wall.jpg",
-  excavationFootings: "/images/excavation-footings.jpg",
-  landscapingTurf: "/images/landscaping-turf.jpg",
-  wallRepairs: "/images/wall-repairs.jpg",
-  concreteRemovalBefore: "/images/concrete-removal-before.jpg",
-  poolSurroundBefore: "/images/pool-surround-before.jpg",
-  galleryTipper: "/images/gallery-tipper.jpg",
-  galleryOperator: "/images/gallery-operator.jpg",
-  galleryTimberFixing: "/images/gallery-timber-fixing.jpg",
-  galleryLoadout: "/images/gallery-loadout.jpg",
-  aboutHseq: "/images/about-hseq.jpg",
+  // ---- page heroes ----
+  homeHero: "/images/site/home-whatweoffer-6.jpg",
+  aboutHero: "/images/site/home-whatweoffer-6.jpg",
+  projectsHero: "/images/site/project-hero.jpg",
+  faqHero: "/images/proj/team-1.jpg",
+  contactHero: "/images/proj/team-1.jpg",
+  hero: "/images/proj/f1-1.jpg",
+  excavationSeparator: "/images/proj/f4-3.jpg",
+  ctaBg: "/images/proj/f1-1.jpg",
+  serviceArea: "/images/site/service-area-every.jpg",
+  capabilityScale: "/images/site/capability-scale.png",
+
+  // ---- why cards ----
+  localBusiness: "/images/proj/f2-2.jpg",
+  reliableService: "/images/site/why-vtrax.jpg",
+  excavationEquipment: "/images/proj/f3-3.jpg",
+  qualityWorkmanship: "/images/proj/f1-3.jpg",
+  insuredCompliant: "/images/proj/f6-2.jpg",
+  ownerOperated: "/images/proj/f7-2.jpg",
+
+  // ---- offers + services ----
+  concreteSleeperWall: "/images/proj/f1-1.jpg",
+  blockRetainingWall: "/images/proj/f2-1.jpg",
+  timberRetainingWall: "/images/site/timber-retain.jpg",
+  excavationFootings: "/images/site/excavation-we-offer.jpg",
+  landscapingTurf: "/images/proj/f4-1.jpg",
+  wallRepairs: "/images/site/wall-service.jpg",
+  offerRepairs: "/images/site/home-whatweoffer-6.jpg",
+  svcExcavation: "/images/proj/f4-3.jpg",
+
+  // ---- before / after ----
+  concreteRemovalBefore: "/images/site/before-3.png",
+  poolSurroundBefore: "/images/site/before-2.png",
+  before1: "/images/site/before-1.png",
+  after1: "/images/site/after-1.png",
+  before2: "/images/site/before-2.png",
+  after2: "/images/site/after-2.png",
+  before3: "/images/site/before-3.png",
+  after3: "/images/site/after-3.png",
+
+  // ---- gallery (3x3) ----
+  g1: "/images/gallery/g1.jpg",
+  g2: "/images/gallery/g2.jpg",
+  g3: "/images/gallery/g3.jpg",
+  g4: "/images/gallery/g4.jpg",
+  g5: "/images/gallery/g5.jpg",
+  g6: "/images/gallery/g6.jpg",
+  g7: "/images/gallery/g7.jpg",
+  g8: "/images/gallery/g8.jpg",
+  g9: "/images/gallery/g9.jpg",
+
+  // ---- remote (Google-hosted) — About HSEQ tile ----
+  aboutHseq:
+    "https://lh3.googleusercontent.com/d/1pKF5BabZpG7ifbw8jk7bv5v-wg6B4TPz=w1600",
+
   logoWhite: "/images/vtrax-logo-white.png",
   logoDark: "/images/vtrax-logo-dark.png",
 } as const;
@@ -61,11 +96,15 @@ export const NAV: { key: NavKey; label: string; href: string }[] = [
   { key: "contact", label: "Contact", href: "/contact" },
 ];
 
+// Yellow marquee tape stats — the licence segment is appended so it
+// scrolls under every page hero alongside the headline stats.
 export const MARQUEE_STATS = [
   { n: "8+", t: "Years hands-on experience" },
   { n: "60+", t: "Retaining walls completed" },
   { n: "$0", t: "Hidden assessment fees" },
   { n: "Local", t: "Owner-operated & based" },
+  { n: "Insured", t: "Publicly insured & compliant" },
+  { n: "497229C", t: "NSW contractor licence" },
 ];
 
 export const WHY = [
@@ -141,7 +180,7 @@ export const OFFERS = [
   {
     no: "06",
     title: "Wall Repairs & Replacements",
-    img: IMG.wallRepairs,
+    img: IMG.offerRepairs,
     text: "Assessment and full replacement of failing or ageing retaining walls.",
   },
 ];
@@ -156,43 +195,60 @@ export const CAPABILITIES = [
   { label: "Engineered Wall Builds", highlight: true },
 ];
 
+// Anchor ids let the footer deep-link to each service section.
 export const SERVICES = [
   {
     no: "Service 01 · Core Service",
+    anchor: "concrete-sleeper-retaining-walls",
     title: "Concrete Sleeper Retaining Walls",
     img: IMG.concreteSleeperWall,
     text: "High-strength precast concrete sleeper walls built for depth, line and durability. We excavate, prepare foundations and manage drainage so every wall performs long term.",
   },
   {
     no: "Service 02 · Core Service",
+    anchor: "block-retaining-walls",
     title: "Block Retaining Walls",
     img: IMG.blockRetainingWall,
     text: "Concrete block walls engineered for both structural performance and visual finish. Back drainage, tie systems and reinforcement are integrated to minimise future repairs.",
   },
   {
     no: "Service 03 · Core Service",
+    anchor: "timber-retaining-walls",
     title: "Timber Retaining Walls",
     img: IMG.timberRetainingWall,
     text: "Treated hardwood and timber sleeper walls for residential boundary, retaining and tiered levels. Cost-effective and practical when designed with correct support and drainage.",
   },
   {
     no: "Service 04 · Site Works",
+    anchor: "excavation-footings",
     title: "Excavation & Footings",
-    img: IMG.excavationFootings,
+    img: IMG.svcExcavation,
     text: "VTRAX Projects prepares, excavates and shapes retaining sites with proper cut lines, levels and compaction for long-term wall support.",
   },
   {
     no: "Service 05 · Landscaping",
+    anchor: "landscaping-turf",
     title: "Landscaping & Turf",
     img: IMG.landscapingTurf,
     text: "Site cleanups, contour levelling, ground finishing and turf installation complete every retaining package so your outdoor areas are practical and presentation ready.",
   },
   {
     no: "Service 06 · Projects & Installations",
+    anchor: "wall-repairs-replacements",
     title: "Wall Repairs & Replacements",
     img: IMG.wallRepairs,
     text: "Assessment and full replacement of failing or ageing retaining walls, including drainage solutions, tie-ins and structural correction where required.",
   },
+];
+
+// Footer service links → the matching section on the Services page.
+export const FOOTER_SERVICES = [
+  { label: "Concrete Sleeper Retaining Walls", anchor: "concrete-sleeper-retaining-walls" },
+  { label: "Block Retaining Walls", anchor: "block-retaining-walls" },
+  { label: "Timber Retaining Walls", anchor: "timber-retaining-walls" },
+  { label: "Excavation & Footings", anchor: "excavation-footings" },
+  { label: "Landscaping & Turf", anchor: "landscaping-turf" },
+  { label: "Wall Repairs & Replacements", anchor: "wall-repairs-replacements" },
 ];
 
 export const STEPS = [
@@ -221,7 +277,7 @@ export const STEPS = [
     no: "04",
     title: "Professional build",
     img: IMG.qualityWorkmanship,
-    desc: "Jake and crew arrive on time with all equipment. The site is cleaned on completion and you are walked through the finished result.",
+    desc: "Jake and crew arrive on time, fully equipped, and walk you through the finished result.",
     badge: "Quality finish",
   },
 ];
@@ -274,53 +330,41 @@ export const PROJECT_FILTERS: { key: ProjectCat; label: string }[] = [
 export const PROJECTS = [
   {
     cat: "sleeper",
-    tag: "Timber to Concrete Sleeper",
-    title: "Timber sleeper demolition & concrete sleeper replacement",
-    location: "Pool-side retaining wall, Illawarra",
-    sector: "Pool surrounds, residential",
+    tag: "Sleeper Wall, Steps & Turf",
+    title: "Multi-tier sleeper wall, concrete steps & turf",
+    location: "Sloped residential block, Illawarra",
+    sector: "Multi-tier retaining & landscaping, residential",
     scope:
-      "Removed an old, failing timber sleeper wall and rebuilt it as a new concrete sleeper wall on steel posts.",
+      "A sloped block cut and retained with multi-tier concrete sleeper walls, concrete steps and fresh turf.",
     outcome:
-      "A safe, structurally sound concrete sleeper wall in place of the unsafe timber original.",
-    img: IMG.concreteSleeperWall,
-    media:
-      "Job 1: new concrete sleeper wall with steel posts, pool surrounds",
+      "Usable, level garden terraces with concrete steps and new turf, finished clean and built to last.",
+    img: IMG.after1,
+    media: "Job 1: finished sleeper walls, steps and turf",
   },
   {
     cat: "block",
     tag: "Block Wall",
     title: "Block wall, pool surrounds",
-    location: "Residential, Illawarra",
+    location: "Pool surrounds, residential Illawarra",
     sector: "Pool surrounds, residential",
     scope:
-      "Concrete block retaining wall with back drainage, tie systems and reinforcement around a pool area.",
+      "An old pool surround stripped out and rebuilt with a rendered concrete block retaining wall.",
     outcome:
       "A durable, clean-finished block wall built for both structural performance and appearance.",
-    img: IMG.qualityWorkmanship,
+    img: IMG.blockRetainingWall,
     media: "Job 2: concrete block retaining wall around pool surrounds",
   },
   {
     cat: "excavation",
     tag: "Excavation",
-    title: "Concrete removal & yard level",
-    location: "Residential, Illawarra",
-    sector: "Site works, residential",
-    scope: "Removal of old concrete, ground re-levelling and yard preparation.",
-    outcome: "A cleared, re-levelled yard prepared for its new finish.",
-    img: IMG.concreteRemovalBefore,
-    media: "Job 3: concrete removal and yard levelling",
-  },
-  {
-    cat: "sleeper",
-    tag: "Concrete Sleeper",
-    title: "Multi-tier sleeper wall, sloped block",
-    location: "Residential, Wollongong",
-    sector: "Sloped block, residential",
+    title: "Concrete removal & yard leveling",
+    location: "Barrack Heights, NSW",
+    sector: "Concrete removal & site leveling, residential",
     scope:
-      "Two-tier galvanised-post concrete sleeper wall cut into a steep backyard, with ag-drainage and granular backfill.",
-    outcome: "Two usable, level garden terraces reclaimed from an unusable slope.",
-    img: IMG.hero,
-    media: "Multi-tier concrete sleeper wall on a slope",
+      "Old cracked concrete removed, the ground re-levelled and the yard finished with fresh turf.",
+    outcome: "A cleared, re-levelled and fully turfed yard.",
+    img: IMG.landscapingTurf,
+    media: "Job 3: concrete removal and yard leveling",
   },
   {
     cat: "sleeper",
@@ -355,87 +399,57 @@ export const PROJECTS = [
     scope:
       "Excavation of footings and a level building platform, with spoil removed off-site.",
     outcome: "A compacted, level platform ready for construction.",
-    img: IMG.excavationFootings,
+    img: IMG.svcExcavation,
     media: "Excavator cutting footings on a residential block",
-  },
-  {
-    cat: "excavation",
-    tag: "Excavation",
-    title: "Drainage & yard regrade",
-    location: "Residential, Corrimal",
-    sector: "Site works, residential",
-    scope: "Ag-drainage installation and a full yard regrade to fix pooling water.",
-    outcome: "A dry, properly draining and usable yard.",
-    img: IMG.landscapingTurf,
-    media: "Yard regrade and drainage works",
   },
 ];
 
+// Projects page interactive before/after — the three headline jobs.
 export const BEFORE_AFTER = [
   {
-    title: "Timber to concrete sleeper, pool surrounds",
-    before: IMG.timberRetainingWall,
-    after: IMG.concreteSleeperWall,
-    beforeLabel: "Before: old timber sleeper wall, failing and unsafe",
-    afterLabel: "After: new concrete sleeper wall with steel posts",
+    title: "Multi-tier sleeper wall, steps & turf",
+    before: IMG.before1,
+    after: IMG.after1,
+    beforeLabel: "Before: cut and dug-out sloped site",
+    afterLabel: "After: finished sleeper walls, steps and turf",
   },
   {
     title: "Block wall, pool surrounds",
-    before: IMG.poolSurroundBefore,
-    after: IMG.qualityWorkmanship,
-    beforeLabel: "Before: original pool surround",
-    afterLabel: "After: new concrete block retaining wall",
+    before: IMG.before2,
+    after: IMG.after2,
+    beforeLabel: "Before: old pool surround stripped out and excavated",
+    afterLabel: "After: finished pool surround with new retaining wall",
   },
   {
-    title: "Concrete removal and yard level",
-    before: IMG.concreteRemovalBefore,
-    after: IMG.landscapingTurf,
+    title: "Concrete removal & yard leveling",
+    before: IMG.before3,
+    after: IMG.after3,
     beforeLabel: "Before: old concrete and uneven yard",
-    afterLabel: "After: cleared and re-levelled yard",
+    afterLabel: "After: cleared, re-levelled and fully turfed yard",
   },
 ];
 
+// Home before/after — a single large transformation (Job 1).
+export const HOME_BIG_BA = {
+  title: "Multi-tier sleeper wall, steps & turf",
+  text: "A sloped block cut and retained with multi-tier concrete sleeper walls, concrete steps and fresh turf, finished clean and built to last.",
+  before: IMG.before1,
+  after: IMG.after1,
+  beforeLabel: "Before: cut and dug-out sloped site",
+  afterLabel: "After: finished sleeper walls, steps and turf",
+};
+
+// 3x3 square gallery, shared by Home and Projects.
 export const GALLERY = [
-  { img: IMG.hero, label: "Excavator shaping a retaining batter on a sloped block", span: "col-span-2 row-span-2" },
-  { img: IMG.galleryOperator, label: "Operator running the Kobelco mini excavator", span: "" },
-  { img: IMG.insuredCompliant, label: "VTRAX team on site in branded workwear", span: "" },
-  { img: IMG.reliableService, label: "Crew and tipper truck at a residential job", span: "col-span-2" },
-  { img: IMG.excavationEquipment, label: "Precise excavation around the wall line", span: "" },
-  { img: IMG.galleryTipper, label: "Setting out before the wall goes up", span: "row-span-2" },
-  { img: IMG.localBusiness, label: "Plant on the trailer, branded and ready", span: "col-span-2" },
-  { img: IMG.galleryTimberFixing, label: "Fixing off timber sleepers by hand", span: "" },
-  { img: IMG.galleryLoadout, label: "Loading out at the end of the day", span: "col-span-2" },
-];
-
-// Home gallery (8 tiles, slightly different ordering)
-export const HOME_GALLERY = [
-  { img: IMG.hero, label: "VTRAX project", span: "col-span-2 row-span-2" },
-  { img: IMG.reliableService, label: "VTRAX project", span: "" },
-  { img: IMG.excavationEquipment, label: "VTRAX project", span: "" },
-  { img: IMG.concreteSleeperWall, label: "VTRAX project", span: "col-span-2" },
-  { img: IMG.qualityWorkmanship, label: "VTRAX project", span: "row-span-2" },
-  { img: IMG.localBusiness, label: "VTRAX project", span: "" },
-  { img: IMG.galleryTipper, label: "VTRAX project", span: "col-span-2" },
-  { img: IMG.insuredCompliant, label: "VTRAX project", span: "" },
-];
-
-export const HOME_BEFORE_AFTER = [
-  {
-    title: "Timber to concrete sleeper",
-    text: "An unsafe timber wall removed and rebuilt as a structurally sound concrete sleeper wall around the pool surrounds.",
-    before: IMG.timberRetainingWall,
-    beforeLabel: "Before: old failing timber sleeper wall",
-    after: IMG.concreteSleeperWall,
-    afterLabel: "After: new concrete sleeper wall on steel posts",
-  },
-  {
-    title: "Concrete removal & yard level",
-    text: "Old concrete removed, the ground re-levelled and the yard prepared for a clean, usable finish.",
-    before: IMG.concreteRemovalBefore,
-    beforeLabel: "Before: old concrete and uneven ground",
-    after: IMG.landscapingTurf,
-    afterLabel: "After: cleared, re-levelled and prepared yard",
-  },
+  { img: IMG.g1, label: "Excavator shaping a retaining batter on a sloped block" },
+  { img: IMG.g2, label: "Crew and tipper truck at a residential job" },
+  { img: IMG.g3, label: "Precise excavation around the wall line" },
+  { img: IMG.g4, label: "Finished concrete sleeper retaining wall" },
+  { img: IMG.g5, label: "Quality workmanship on the wall face" },
+  { img: IMG.g6, label: "Plant on the trailer, branded and ready" },
+  { img: IMG.g7, label: "Setting out before the wall goes up" },
+  { img: IMG.g8, label: "VTRAX team on site, insured and compliant" },
+  { img: IMG.g9, label: "Operator running the Kobelco SK17SR mini excavator" },
 ];
 
 export const REVIEWS = [

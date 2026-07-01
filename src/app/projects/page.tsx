@@ -20,7 +20,7 @@ export default function ProjectsPage() {
     <div className="animate-fade bg-white">
       <PageHero
         badge="Projects & Sectors"
-        bgSrc={IMG.hero}
+        bgSrc={IMG.projectsHero}
         title={
           <>
             <span className="text-yellow">Our work</span> across the Illawarra
@@ -75,13 +75,13 @@ export default function ProjectsPage() {
           <h2 className="m-0 mb-9 font-oswald text-[clamp(28px,4vw,46px)] font-bold uppercase leading-[1.03] text-ink">
             Our work gallery
           </h2>
-          <div className="grid auto-rows-[178px] grid-flow-dense grid-cols-2 gap-3.5 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3.5 md:grid-cols-3">
             {GALLERY.map((g, i) => (
               <div
                 key={i}
-                className={`bento-tile relative min-h-0 ${g.span}`}
+                className="bento-tile relative aspect-square min-h-0 overflow-hidden rounded-[2px]"
               >
-                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 25vw" />
+                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 33vw" />
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export default function ProjectsPage() {
       </section>
 
       <GoogleReviews />
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
       <AskJake />
     </div>
   );

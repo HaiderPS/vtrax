@@ -23,7 +23,7 @@ export default function ContactPage() {
     <div className="animate-fade bg-white">
       <PageHero
         badge="Get in touch"
-        bgSrc={IMG.reliableService}
+        bgSrc={IMG.contactHero}
         title={
           <>
             <span className="text-yellow">Free quote</span> &amp; site visit
@@ -113,7 +113,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
     </div>
   );
 }

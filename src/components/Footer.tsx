@@ -1,14 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { NAV, FOOTER_AREAS, CONTACT, IMG } from "@/data/site";
-
-const FOOTER_SERVICES = [
-  "Concrete sleeper walls",
-  "Timber & block walls",
-  "Excavation & footings",
-  "Drainage & landscaping",
-  "Repairs & upgrades",
-];
+import { NAV, FOOTER_AREAS, FOOTER_SERVICES, CONTACT, IMG } from "@/data/site";
 
 function ColHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -62,11 +54,11 @@ export default function Footer() {
           <div className="flex flex-col items-start gap-3">
             {FOOTER_SERVICES.map((s) => (
               <Link
-                key={s}
-                href="/services"
+                key={s.anchor}
+                href={`/services#${s.anchor}`}
                 className="text-left font-open text-[14px] font-medium leading-[1.4] text-[#C7CCD2] transition-colors hover:text-yellow"
               >
-                {s}
+                {s.label}
               </Link>
             ))}
           </div>

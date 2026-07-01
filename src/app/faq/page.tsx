@@ -17,7 +17,7 @@ export default function FaqPage() {
     <div className="animate-fade bg-white">
       <PageHero
         badge="Common Questions"
-        bgSrc={IMG.blockRetainingWall}
+        bgSrc={IMG.faqHero}
         title={
           <>
             <span className="text-yellow">Frequently</span> asked
@@ -34,7 +34,7 @@ export default function FaqPage() {
       </section>
 
       <GoogleReviews />
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
       <AskJake />
     </div>
   );

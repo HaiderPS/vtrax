@@ -65,7 +65,7 @@ export default function AboutPage() {
     <div className="animate-fade bg-white">
       <PageHero
         badge="About VTRAX Projects"
-        bgSrc={IMG.aboutHseq}
+        bgSrc={IMG.aboutHero}
         title={
           <>
             Locally owned. <span className="text-yellow">Illawarra</span> built.
@@ -161,8 +161,8 @@ export default function AboutPage() {
           </div>
           <div className="relative h-[420px]">
             <MediaSlot
-              src={IMG.localBusiness}
-              alt="VTRAX excavator and tipper on site, plant line-up"
+              src={IMG.capabilityScale}
+              alt="VTRAX operator securing the Kobelco SK17SR for transport"
             />
           </div>
         </div>
@@ -282,7 +282,7 @@ export default function AboutPage() {
       </section>
 
       <GoogleReviews />
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
       <AskJake />
     </div>
   );

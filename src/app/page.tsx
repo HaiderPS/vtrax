@@ -12,8 +12,8 @@ import AreaApplier from "@/components/AreaApplier";
 import { HeroBg } from "@/components/PageHero";
 import {
   OFFERS,
-  HOME_BEFORE_AFTER,
-  HOME_GALLERY,
+  HOME_BIG_BA,
+  GALLERY,
   CONTACT,
   IMG,
 } from "@/data/site";
@@ -27,12 +27,12 @@ export default function HomePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-ink">
-        <HeroBg src={IMG.hero} />
+        <HeroBg src={IMG.homeHero} prominent />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg,rgba(14,15,17,0.92) 0%,rgba(14,15,17,0.78) 45%,rgba(14,15,17,0.5) 100%)",
+              "linear-gradient(90deg,rgba(14,15,17,0.66) 0%,rgba(14,15,17,0.46) 45%,rgba(14,15,17,0.28) 100%)",
           }}
         />
         <div
@@ -175,12 +175,12 @@ export default function HomePage() {
 
       {/* ===== EXCAVATION SEPARATOR ===== */}
       <section className="relative overflow-hidden bg-ink">
-        <HeroBg src={IMG.excavationFootings} />
+        <HeroBg src={IMG.excavationSeparator} prominent />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg,rgba(14,15,17,0.8) 0%,rgba(14,15,17,0.74) 100%)",
+              "linear-gradient(180deg,rgba(14,15,17,0.55) 0%,rgba(14,15,17,0.46) 100%)",
           }}
         />
         <div className="relative mx-auto flex max-w-[920px] flex-col items-center px-8 py-[clamp(72px,9vw,120px)] text-center">
@@ -223,35 +223,39 @@ export default function HomePage() {
             Real transformations across the Illawarra
           </h2>
           <p className="m-0 mb-11 max-w-[58ch] font-open text-[16px] leading-[1.65] text-[#4a4f55]">
-            Two recent VTRAX jobs, shown before and after.
+            A recent VTRAX transformation, shown before and after.
           </p>
-          <div className="grid grid-cols-1 gap-[26px] md:grid-cols-2">
-            {HOME_BEFORE_AFTER.map((b) => (
-              <article key={b.title} className="border border-black/10 bg-white">
-                <div className="grid grid-cols-2 gap-px bg-black/10">
-                  <div className="relative h-[220px]">
-                    <MediaSlot src={b.before} alt={b.beforeLabel} sizes="50vw" />
-                    <span className="absolute left-3 top-3 bg-ink px-[9px] py-1.5 font-open text-[10px] font-bold uppercase leading-none tracking-[0.12em] text-white">
-                      Before
-                    </span>
-                  </div>
-                  <div className="relative h-[220px]">
-                    <MediaSlot src={b.after} alt={b.afterLabel} sizes="50vw" />
-                    <span className="absolute right-3 top-3 bg-yellow px-[9px] py-1.5 font-open text-[10px] font-bold uppercase leading-none tracking-[0.12em] text-ink">
-                      After
-                    </span>
-                  </div>
-                </div>
-                <div className="px-6 pb-[26px] pt-[22px]">
-                  <h3 className="m-0 mb-2 font-oswald text-[20px] font-bold uppercase leading-[1.2] text-ink">
-                    {b.title}
-                  </h3>
-                  <p className="m-0 font-open text-[14.5px] leading-[1.6] text-[#5a5f65]">
-                    {b.text}
-                  </p>
-                </div>
-              </article>
-            ))}
+          <article className="max-w-[980px] border border-black/10 bg-white">
+            <div className="grid grid-cols-2 gap-0.5 bg-black/[0.12]">
+              <div className="relative h-[clamp(300px,40vw,500px)]">
+                <MediaSlot src={HOME_BIG_BA.before} alt={HOME_BIG_BA.beforeLabel} sizes="50vw" />
+                <span className="absolute left-3.5 top-3.5 bg-ink px-[11px] py-[7px] font-open text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-white">
+                  Before
+                </span>
+              </div>
+              <div className="relative h-[clamp(300px,40vw,500px)]">
+                <MediaSlot src={HOME_BIG_BA.after} alt={HOME_BIG_BA.afterLabel} sizes="50vw" />
+                <span className="absolute right-3.5 top-3.5 bg-yellow px-[11px] py-[7px] font-open text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-ink">
+                  After
+                </span>
+              </div>
+            </div>
+            <div className="px-[30px] pb-8 pt-7">
+              <h3 className="m-0 mb-2.5 font-oswald text-[24px] font-bold uppercase leading-[1.15] text-ink">
+                {HOME_BIG_BA.title}
+              </h3>
+              <p className="m-0 max-w-[70ch] font-open text-[15.5px] leading-[1.65] text-[#5a5f65]">
+                {HOME_BIG_BA.text}
+              </p>
+            </div>
+          </article>
+          <div className="mt-[42px] flex justify-center">
+            <Link
+              href="/projects"
+              className="btn-primary px-[30px] py-[18px] text-[14px]"
+            >
+              View all projects &rarr;
+            </Link>
           </div>
         </div>
       </section>
@@ -278,13 +282,13 @@ export default function HomePage() {
           <h2 className="m-0 mb-10 text-center font-oswald text-[clamp(30px,4.5vw,50px)] font-bold uppercase leading-[1.02] tracking-[0.005em] text-ink">
             Our <span className="text-yellow">work gallery</span>
           </h2>
-          <div className="grid auto-rows-[184px] grid-flow-dense grid-cols-2 gap-3.5 md:grid-cols-4">
-            {HOME_GALLERY.map((g, i) => (
+          <div className="grid grid-cols-2 gap-3.5 md:grid-cols-3">
+            {GALLERY.map((g, i) => (
               <div
                 key={i}
-                className={`bento-tile relative min-h-0 rounded-[2px] ${g.span}`}
+                className="bento-tile relative aspect-square min-h-0 overflow-hidden rounded-[2px]"
               >
-                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 25vw" />
+                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 33vw" />
               </div>
             ))}
           </div>
@@ -292,15 +296,22 @@ export default function HomePage() {
       </section>
 
       <GoogleReviews />
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
 
       {/* ===== FINAL CTA ===== */}
-      <section className="relative overflow-hidden bg-cream">
-        <HeroBg src={IMG.qualityWorkmanship} opacity={0.13} />
+      <section className="relative overflow-hidden bg-ink">
+        <HeroBg src={IMG.ctaBg} prominent />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg,rgba(14,15,17,0.74) 0%,rgba(14,15,17,0.6) 100%)",
+          }}
+        />
         <div className="relative mx-auto max-w-[900px] px-8 py-[clamp(72px,9vw,120px)] text-center">
-          <h2 className="m-0 font-oswald text-[clamp(30px,4.6vw,54px)] font-bold uppercase leading-[1.08] tracking-[0.005em] text-ink">
+          <h2 className="m-0 font-oswald text-[clamp(30px,4.6vw,54px)] font-bold uppercase leading-[1.08] tracking-[0.005em] text-white">
             Want to discuss your Illawarra retaining wall project?{" "}
-            <span className="text-yellow-deep">Give us a call.</span>
+            <span className="text-yellow">Give us a call.</span>
           </h2>
           <div className="mt-[34px] flex flex-wrap justify-center gap-3.5">
             <Link href="/contact" className="btn-primary px-8 py-[19px] text-[14px]">
@@ -308,7 +319,7 @@ export default function HomePage() {
             </Link>
             <a
               href={CONTACT.phoneHref}
-              className="btn-outline-dark px-8 py-[19px] text-[14px]"
+              className="btn-outline-light px-8 py-[19px] text-[14px]"
             >
               Call {CONTACT.phone}
             </a>

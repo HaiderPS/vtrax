@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { NAV, CONTACT, IMG } from "@/data/site";
+import { NAV, IMG } from "@/data/site";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -15,26 +15,6 @@ export default function Header() {
 
   return (
     <div className="sticky top-0 z-[100]">
-      {/* Utility bar */}
-      <div className="border-b border-white/[0.08] bg-ink">
-        <div className="mx-auto flex h-[38px] max-w-shell items-center justify-between gap-4 px-8">
-          <span className="font-open text-[12px] font-semibold leading-none tracking-[0.04em] text-[#9aa1a8]">
-            {CONTACT.regionLine}
-          </span>
-          <div className="flex items-center gap-[22px]">
-            <span className="hidden font-open text-[12px] font-semibold leading-none text-[#9aa1a8] sm:inline">
-              {CONTACT.hours}
-            </span>
-            <a
-              href={CONTACT.phoneHref}
-              className="font-open text-[12px] font-bold leading-none tracking-[0.04em] text-yellow no-underline"
-            >
-              {CONTACT.phone}
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Main header */}
       <header className="border-b border-white/10 bg-ink">
         <div className="mx-auto flex h-[74px] max-w-shell items-center justify-between gap-6 px-8">

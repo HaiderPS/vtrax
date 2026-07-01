@@ -7,7 +7,7 @@ import GoogleReviews from "@/components/GoogleReviews";
 import ServiceAreas from "@/components/ServiceAreas";
 import AskJake from "@/components/AskJake";
 import Badge from "@/components/Badge";
-import { SEO, SERVICES, CAPABILITIES, STEPS, IMG } from "@/data/site";
+import { SEO, SERVICES, STEPS, IMG } from "@/data/site";
 
 export const metadata: Metadata = {
   title: SEO.services.title,
@@ -41,40 +41,14 @@ export default function ServicesPage() {
       {/* Capability list + service articles */}
       <section className="bg-white py-[clamp(56px,7vw,100px)]">
         <div className="mx-auto flex max-w-shell flex-col gap-16 px-8">
-          {/* Full capability list */}
-          <div>
-            <div className="mb-[18px]">
-              <Badge tone="dark">Full Capability List</Badge>
-            </div>
-            <p className="m-0 mb-6 max-w-[62ch] font-open text-[16px] leading-[1.65] text-[#4a4f55]">
-              Beyond the core builds detailed below, VTRAX also delivers
-              multi-tier wall systems, drainage installation and fully engineered
-              wall builds where the site calls for it.
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {CAPABILITIES.map((c) => (
-                <span
-                  key={c.label}
-                  className={`inline-flex items-center gap-[9px] border px-4 py-3 font-open text-[12.5px] font-bold uppercase leading-none tracking-[0.04em] text-ink ${
-                    c.highlight
-                      ? "border-yellow bg-[#FFF8DE]"
-                      : "border-black/[0.14] bg-white"
-                  }`}
-                >
-                  <span className="block h-[5px] w-[5px] rounded-full bg-yellow" />
-                  {c.label}
-                </span>
-              ))}
-            </div>
-          </div>
-
           {/* Alternating service rows */}
           {SERVICES.map((s, i) => {
             const imageRight = i % 2 === 1;
             return (
               <article
                 key={s.title}
-                className="grid grid-cols-1 items-start gap-11 md:grid-cols-2"
+                id={s.anchor}
+                className="grid scroll-mt-[120px] grid-cols-1 items-start gap-11 md:grid-cols-2"
               >
                 <div
                   className={`relative h-[360px] ${
@@ -84,10 +58,10 @@ export default function ServicesPage() {
                   <MediaSlot src={s.img} alt={s.title} />
                 </div>
                 <div className={imageRight ? "md:order-1" : ""}>
-                  <div className="font-open text-[11px] font-bold uppercase leading-none tracking-[0.16em] text-yellow">
-                    {s.no}
+                  <div className="mb-4">
+                    <Badge tone="dark">{s.no}</Badge>
                   </div>
-                  <h2 className="m-0 mb-3.5 mt-3 font-oswald text-[clamp(26px,3.4vw,38px)] font-bold uppercase leading-[1.05] text-ink">
+                  <h2 className="m-0 mb-3.5 font-oswald text-[clamp(26px,3.4vw,38px)] font-bold uppercase leading-[1.05] text-ink">
                     {s.title}
                   </h2>
                   <p className="m-0 mb-[18px] font-open text-[16px] leading-[1.65] text-[#4a4f55]">
@@ -164,7 +138,7 @@ export default function ServicesPage() {
       </section>
 
       <GoogleReviews />
-      <ServiceAreas photoSrc={IMG.hero} />
+      <ServiceAreas photoSrc={IMG.serviceArea} />
       <AskJake />
     </div>
   );
