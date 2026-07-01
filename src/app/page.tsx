@@ -260,19 +260,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== FAQ PREVIEW ===== */}
-      <section className="bg-white py-[clamp(64px,8vw,110px)]">
-        <div className="mx-auto max-w-[880px] px-8">
-          <div className="mb-[22px] text-center">
-            <Badge tone="dark">FAQs</Badge>
-          </div>
-          <h2 className="m-0 mb-9 text-center font-oswald text-[clamp(30px,4.5vw,50px)] font-bold uppercase leading-[1.02] tracking-[0.005em] text-ink">
-            Frequently asked questions
-          </h2>
-          <FaqAccordion />
-        </div>
-      </section>
-
       {/* ===== GALLERY ===== */}
       <section className="bg-white py-[clamp(56px,7vw,100px)]">
         <div className="mx-auto max-w-shell-wide px-6">
@@ -324,6 +311,19 @@ export default function HomePage() {
               Call {CONTACT.phone}
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ PREVIEW ===== */}
+      <section className="bg-white py-[clamp(64px,8vw,110px)]">
+        <div className="mx-auto max-w-[880px] px-8">
+          <div className="mb-[22px] text-center">
+            <Badge tone="dark">FAQs</Badge>
+          </div>
+          <h2 className="m-0 mb-9 text-center font-oswald text-[clamp(30px,4.5vw,50px)] font-bold uppercase leading-[1.02] tracking-[0.005em] text-ink">
+            Frequently asked questions
+          </h2>
+          <FaqAccordion />
         </div>
       </section>
     </div>
