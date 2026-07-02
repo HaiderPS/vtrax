@@ -28,7 +28,7 @@ export default function FaqPage() {
       <MarqueeTape />
 
       <section className="bg-white py-[clamp(56px,7vw,96px)]">
-        <div className="mx-auto max-w-[880px] px-8">
+        <div className="mx-auto max-w-[880px] px-5 sm:px-8">
           <FaqAccordion />
         </div>
       </section>

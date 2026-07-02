@@ -21,7 +21,7 @@ export default function Badge({
     >
       <span className="block h-[5px] w-[5px] rounded-full bg-yellow" />
       <span
-        className={`whitespace-nowrap font-inter text-[11px] font-semibold uppercase leading-none tracking-[0.16em] ${text}`}
+        className={`font-inter text-[11px] font-semibold uppercase leading-[1.3] tracking-[0.16em] ${text}`}
       >
         {children}
       </span>

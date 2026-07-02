@@ -2,9 +2,15 @@
 
 import { useRef } from "react";
 import MediaSlot from "./MediaSlot";
-import { WHY } from "@/data/site";
 
-export default function WhyCarousel() {
+type GalleryItem = { img: string; label: string };
+
+/**
+ * GalleryCarousel — the "Our Work Gallery" tiles.
+ * On phones (< sm) it is a one-image-at-a-time snap carousel with arrows;
+ * from sm up it reflows into the original 2-col / 3-col grid.
+ */
+export default function GalleryCarousel({ items }: { items: GalleryItem[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -13,11 +19,9 @@ export default function WhyCarousel() {
     if (!el) return;
     if (animRef.current) clearInterval(animRef.current);
     el.style.scrollSnapType = "none";
-    // Advance by exactly one card (card width + track gap): on mobile the
-    // card is full-width, so this moves a single box per tap; on desktop it
-    // moves one card of the multi-card row.
+    // Advance by exactly one full-width slide (slide width + gap).
     const first = el.firstElementChild as HTMLElement | null;
-    const step = (first ? first.getBoundingClientRect().width : 340) + 18;
+    const step = (first ? first.getBoundingClientRect().width : el.clientWidth) + 14;
     const start = el.scrollLeft;
     const target = Math.max(
       0,
@@ -39,10 +43,11 @@ export default function WhyCarousel() {
 
   return (
     <>
-      <div className="mb-[18px] flex justify-end gap-2.5">
+      {/* Mobile-only carousel arrows */}
+      <div className="mb-3.5 flex justify-end gap-2.5 sm:hidden">
         <button
           type="button"
-          aria-label="Previous"
+          aria-label="Previous image"
           onClick={() => glide(-1)}
           className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-full border border-black/[0.16] bg-white font-open text-[22px] leading-none text-ink transition-colors hover:border-ink hover:bg-ink hover:text-yellow"
         >
@@ -50,45 +55,30 @@ export default function WhyCarousel() {
         </button>
         <button
           type="button"
-          aria-label="Next"
+          aria-label="Next image"
           onClick={() => glide(1)}
           className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-full border border-black/[0.16] bg-white font-open text-[22px] leading-none text-ink transition-colors hover:border-ink hover:bg-ink hover:text-yellow"
         >
           ›
         </button>
       </div>
+
       <div
         ref={trackRef}
-        className="no-scrollbar flex gap-[18px] overflow-x-auto px-0.5 pb-2 pt-0.5"
+        className="no-scrollbar flex gap-3.5 overflow-x-auto sm:grid sm:grid-cols-2 sm:overflow-visible md:grid-cols-3"
         style={{ scrollSnapType: "x mandatory" }}
       >
-        {WHY.map((w) => (
+        {items.map((g, i) => (
           <div
-            key={w.no}
-            className="flex w-full flex-[0_0_100%] flex-col border border-black/10 bg-white sm:w-auto sm:max-w-[340px] sm:flex-[0_0_340px]"
+            key={i}
+            className="bento-tile relative aspect-square min-h-0 w-full flex-[0_0_100%] overflow-hidden rounded-[2px] sm:w-auto sm:flex-none"
             style={{ scrollSnapAlign: "start" }}
           >
-            <div className="bento-tile relative h-[220px]">
-              <MediaSlot src={w.img} alt={w.title} sizes="340px" />
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    "linear-gradient(to top,rgba(14,15,17,0.82) 0%,rgba(14,15,17,0) 58%)",
-                }}
-              />
-              <div className="absolute bottom-4 left-[18px] right-[18px]">
-                <span className="font-open text-[12px] font-bold leading-none text-yellow">
-                  {w.no}
-                </span>
-                <h3 className="m-0 mt-1.5 font-oswald text-[19px] font-bold uppercase leading-[1.15] text-white">
-                  {w.title}
-                </h3>
-              </div>
-            </div>
-            <p className="m-0 flex-1 px-[22px] pb-6 pt-5 font-open text-[14.5px] leading-[1.6] text-[#5a5f65]">
-              {w.text}
-            </p>
+            <MediaSlot
+              src={g.img}
+              alt={g.label}
+              sizes="(max-width:640px) 100vw, (max-width:768px) 50vw, 33vw"
+            />
           </div>
         ))}
       </div>

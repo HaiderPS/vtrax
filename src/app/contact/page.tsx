@@ -34,7 +34,7 @@ export default function ContactPage() {
       <MarqueeTape />
 
       <section className="bg-white py-[clamp(56px,7vw,96px)]">
-        <div className="mx-auto grid max-w-shell grid-cols-1 items-start gap-12 px-8 lg:grid-cols-[1.25fr_1fr]">
+        <div className="mx-auto grid max-w-shell grid-cols-1 items-start gap-12 px-5 sm:px-8 lg:grid-cols-[1.25fr_1fr]">
           <ContactForm />
 
           <div>

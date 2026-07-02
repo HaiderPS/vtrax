@@ -78,7 +78,7 @@ export default function AboutPage() {
 
       {/* Mission / Approach / Promise */}
       <section className="bg-white py-[clamp(64px,8vw,110px)]">
-        <div className="mx-auto grid max-w-shell grid-cols-1 gap-[18px] px-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-shell grid-cols-1 gap-[18px] px-5 sm:px-8 md:grid-cols-2">
           <div className="relative col-span-1 overflow-hidden bg-ink p-[clamp(32px,4vw,46px)] md:col-span-2">
             <div
               className="pointer-events-none absolute inset-0"
@@ -99,7 +99,7 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="border-t-4 border-yellow bg-panel px-8 py-[38px]">
+          <div className="border-t-4 border-yellow bg-panel px-5 sm:px-8 py-[38px]">
             <h2 className="m-0 mb-3 font-oswald text-[14px] font-bold uppercase leading-none tracking-[0.14em] text-ink">
               Our Approach
             </h2>
@@ -109,7 +109,7 @@ export default function AboutPage() {
               what keep a wall standing for decades.
             </p>
           </div>
-          <div className="border-t-4 border-yellow bg-panel px-8 py-[38px]">
+          <div className="border-t-4 border-yellow bg-panel px-5 sm:px-8 py-[38px]">
             <h2 className="m-0 mb-3 font-oswald text-[14px] font-bold uppercase leading-none tracking-[0.14em] text-ink">
               Our Promise
             </h2>
@@ -130,7 +130,7 @@ export default function AboutPage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.05) 0%,rgba(255,203,5,0) 42%),radial-gradient(110% 90% at 0% 100%,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 55%),#F2F2EE",
         }}
       >
-        <div className="mx-auto grid max-w-shell grid-cols-1 items-center gap-12 px-8 md:grid-cols-2">
+        <div className="mx-auto grid max-w-shell grid-cols-1 items-center gap-12 px-5 sm:px-8 md:grid-cols-2">
           <div>
             <div className="mb-[18px]">
               <Badge tone="dark">Capability &amp; Scale</Badge>
@@ -170,7 +170,7 @@ export default function AboutPage() {
 
       {/* Plant & Machinery */}
       <section className="bg-white py-[clamp(56px,7vw,96px)]">
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[18px]">
             <Badge tone="dark">Plant &amp; Machinery</Badge>
           </div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.07) 0%,rgba(255,203,5,0) 40%),radial-gradient(100% 80% at 0% 100%,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0) 50%),#0E0F11",
         }}
       >
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[18px]">
             <Badge tone="light">HSEQ Control System</Badge>
           </div>

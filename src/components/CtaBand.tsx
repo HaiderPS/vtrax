@@ -16,7 +16,7 @@ export default function CtaBand() {
             "radial-gradient(120% 110% at 100% 0%,rgba(255,255,255,0.4) 0%,rgba(255,255,255,0) 46%),radial-gradient(90% 90% at 0% 100%,rgba(14,15,17,0.08) 0%,rgba(14,15,17,0) 50%)",
         }}
       />
-      <div className="mx-auto grid max-w-shell grid-cols-1 items-center gap-8 px-8 py-[clamp(56px,7vw,88px)] md:grid-cols-2">
+      <div className="mx-auto grid max-w-shell grid-cols-1 items-center gap-8 px-5 sm:px-8 py-[clamp(56px,7vw,88px)] md:grid-cols-2">
         <div>
           <div className="mb-4 font-open text-[12px] font-bold uppercase leading-none tracking-[0.2em] text-ink opacity-70">
             Free quote · Free site visit

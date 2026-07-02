@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import MarqueeTape from "@/components/MarqueeTape";
-import MediaSlot from "@/components/MediaSlot";
+import GalleryCarousel from "@/components/GalleryCarousel";
 import BeforeAfter from "@/components/BeforeAfter";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import GoogleReviews from "@/components/GoogleReviews";
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.07) 0%,rgba(255,203,5,0) 40%),radial-gradient(100% 80% at 0% 100%,rgba(255,255,255,0.04) 0%,rgba(255,255,255,0) 50%),#0E0F11",
         }}
       >
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[18px]">
             <Badge tone="light">Completed Projects</Badge>
           </div>
@@ -55,7 +55,7 @@ export default function ProjectsPage() {
 
       {/* Filterable project grid */}
       <section className="bg-white pb-[clamp(64px,8vw,110px)] pt-[clamp(48px,6vw,84px)]">
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <ProjectsGrid />
         </div>
       </section>
@@ -68,23 +68,14 @@ export default function ProjectsPage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.05) 0%,rgba(255,203,5,0) 42%),radial-gradient(110% 90% at 0% 100%,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 55%),#F2F2EE",
         }}
       >
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[18px]">
             <Badge tone="dark">From the Field</Badge>
           </div>
           <h2 className="m-0 mb-9 font-oswald text-[clamp(28px,4vw,46px)] font-bold uppercase leading-[1.03] text-ink">
             Our work gallery
           </h2>
-          <div className="grid grid-cols-2 gap-3.5 md:grid-cols-3">
-            {GALLERY.map((g, i) => (
-              <div
-                key={i}
-                className="bento-tile relative aspect-square min-h-0 overflow-hidden rounded-[2px]"
-              >
-                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 33vw" />
-              </div>
-            ))}
-          </div>
+          <GalleryCarousel items={GALLERY} />
         </div>
       </section>
 

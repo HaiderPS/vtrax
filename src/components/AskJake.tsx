@@ -5,7 +5,7 @@ import { CONTACT } from "@/data/site";
 export default function AskJake() {
   return (
     <section className="bg-white pb-[clamp(56px,7vw,90px)]">
-      <div className="mx-auto max-w-shell px-8">
+      <div className="mx-auto max-w-shell px-5 sm:px-8">
         <div className="relative flex flex-wrap items-center justify-between gap-6 overflow-hidden bg-ink p-[clamp(34px,4vw,48px)]">
           <div
             className="pointer-events-none absolute inset-0"

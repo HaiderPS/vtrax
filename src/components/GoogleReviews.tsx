@@ -27,7 +27,7 @@ export default function GoogleReviews() {
     <section className="border-t border-black/[0.07] bg-white py-[clamp(56px,7vw,96px)]">
       <div className="mx-auto max-w-shell-wide px-6">
         {/* Live Google reviews rendered by Trustindex */}
-        <div ref={widgetRef} />
+        <div ref={widgetRef} className="vt-reviews" />
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ export default function BeforeAfter() {
                 setJob(i);
                 setPos(50);
               }}
-              className={`cursor-pointer border px-[18px] py-[11px] font-open text-[12px] font-bold uppercase tracking-[0.08em] ${
+              className={`inline-flex min-h-[44px] cursor-pointer items-center border px-[18px] py-[11px] font-open text-[12px] font-bold uppercase tracking-[0.08em] ${
                 on
                   ? "border-ink bg-ink text-yellow"
                   : "border-black/[0.18] bg-white text-ink"

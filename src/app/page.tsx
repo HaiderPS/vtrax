@@ -5,6 +5,7 @@ import Badge from "@/components/Badge";
 import MarqueeTape from "@/components/MarqueeTape";
 import MediaSlot from "@/components/MediaSlot";
 import WhyCarousel from "@/components/WhyCarousel";
+import GalleryCarousel from "@/components/GalleryCarousel";
 import GoogleReviews from "@/components/GoogleReviews";
 import ServiceAreas from "@/components/ServiceAreas";
 import FaqAccordion from "@/components/FaqAccordion";
@@ -27,14 +28,17 @@ export default function HomePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-ink">
-        <HeroBg src={IMG.homeHero} prominent />
+        <HeroBg src={IMG.homeHero} prominent objectPosition="center 35%" />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(90deg,rgba(14,15,17,0.66) 0%,rgba(14,15,17,0.46) 45%,rgba(14,15,17,0.28) 100%)",
+              "linear-gradient(180deg,rgba(14,15,17,0) 40%,rgba(14,15,17,0.40) 100%),linear-gradient(90deg,rgba(14,15,17,0.90) 0%,rgba(14,15,17,0.68) 50%,rgba(14,15,17,0.46) 100%)",
           }}
         />
+        {/* Extra uniform darken on phones, where the headline/copy run full-width
+            over the lighter right side of the photo. */}
+        <div className="pointer-events-none absolute inset-0 bg-ink/20 sm:hidden" />
         <div
           className="pointer-events-none absolute inset-0 z-[2]"
           style={{
@@ -42,13 +46,13 @@ export default function HomePage() {
               "radial-gradient(120% 95% at 82% 0%,rgba(255,203,5,0.12) 0%,rgba(255,203,5,0) 46%),radial-gradient(90% 70% at 0% 100%,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0) 55%)",
           }}
         />
-        <div className="relative mx-auto max-w-shell px-8 pb-[88px] pt-32">
+        <div className="relative mx-auto max-w-shell px-5 sm:px-8 pb-16 pt-28 sm:pb-[88px] sm:pt-32">
           <div className="mb-[26px]">
             <Badge tone="light">
               Illawarra Retaining Wall &amp; Excavation Specialists
             </Badge>
           </div>
-          <h1 className="m-0 max-w-[15ch] font-oswald text-[clamp(42px,7vw,84px)] font-bold uppercase leading-[0.98] text-white">
+          <h1 className="m-0 max-w-[15ch] font-oswald text-[clamp(34px,7vw,84px)] font-bold uppercase leading-[1.0] text-white">
             Retaining walls <span className="text-yellow">built right.</span>
           </h1>
           <p className="mt-7 max-w-[54ch] font-open text-[clamp(17px,1.5vw,20px)] leading-[1.6] text-[#AEB4BB]">
@@ -83,7 +87,7 @@ export default function HomePage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.05) 0%,rgba(255,203,5,0) 42%),radial-gradient(110% 90% at 0% 100%,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 55%),#F2F2EE",
         }}
       >
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[42px] flex flex-wrap items-end justify-between gap-6">
             <div>
               <div className="mb-[18px]">
@@ -111,7 +115,7 @@ export default function HomePage() {
 
       {/* ===== BLOCKQUOTE ===== */}
       <section className="bg-white pb-0 pt-[clamp(48px,6vw,72px)]">
-        <div className="mx-auto flex max-w-shell flex-col items-start gap-[30px] px-8">
+        <div className="mx-auto flex max-w-shell flex-col items-start gap-[30px] px-5 sm:px-8">
           <blockquote className="m-0 max-w-[60ch] border-l-[3px] border-yellow py-1.5 pl-[26px] font-open text-[clamp(19px,2.2vw,26px)] italic leading-[1.5] text-[#3f444a]">
             &ldquo;Every retaining wall is built with proper footing preparation,
             drainage and structural integrity to ensure long-term durability.&rdquo;
@@ -127,7 +131,7 @@ export default function HomePage() {
 
       {/* ===== WHAT WE OFFER ===== */}
       <section className="bg-white py-[clamp(64px,8vw,110px)]">
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[22px]">
             <Badge tone="dark">What We Offer</Badge>
           </div>
@@ -138,7 +142,7 @@ export default function HomePage() {
             </h2>
             <Link
               href="/services"
-              className="cursor-pointer border border-black/20 bg-transparent px-[22px] py-[15px] font-open text-[13px] font-bold uppercase tracking-[0.06em] text-ink transition-colors hover:bg-ink hover:text-white"
+              className="hidden cursor-pointer items-center border border-black/20 bg-transparent px-[22px] py-[15px] font-open text-[13px] font-bold uppercase tracking-[0.06em] text-ink transition-colors hover:bg-ink hover:text-white sm:inline-flex"
             >
               All Services &rarr;
             </Link>
@@ -170,6 +174,14 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+
+          {/* Mobile-only: section-ending CTA (desktop shows it beside the heading) */}
+          <Link
+            href="/services"
+            className="mt-8 flex w-full items-center justify-center border border-black/20 bg-transparent px-[22px] py-4 font-open text-[13px] font-bold uppercase tracking-[0.06em] text-ink transition-colors hover:bg-ink hover:text-white sm:hidden"
+          >
+            All Services &rarr;
+          </Link>
         </div>
       </section>
 
@@ -183,7 +195,7 @@ export default function HomePage() {
               "linear-gradient(180deg,rgba(14,15,17,0.55) 0%,rgba(14,15,17,0.46) 100%)",
           }}
         />
-        <div className="relative mx-auto flex max-w-[920px] flex-col items-center px-8 py-[clamp(72px,9vw,120px)] text-center">
+        <div className="relative mx-auto flex max-w-[920px] flex-col items-center px-5 sm:px-8 py-[clamp(72px,9vw,120px)] text-center">
           <div className="mb-6">
             <Badge tone="light">Excavation Services</Badge>
           </div>
@@ -199,7 +211,7 @@ export default function HomePage() {
           <div className="mt-9">
             <Link
               href="/services"
-              className="btn-primary px-8 py-[19px] text-[14px]"
+              className="btn-primary px-5 sm:px-8 py-[19px] text-[14px]"
             >
               See Our Excavation Services
             </Link>
@@ -215,7 +227,7 @@ export default function HomePage() {
             "radial-gradient(120% 90% at 85% 0%,rgba(255,203,5,0.05) 0%,rgba(255,203,5,0) 42%),radial-gradient(110% 90% at 0% 100%,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 55%),#F2F2EE",
         }}
       >
-        <div className="mx-auto max-w-shell px-8">
+        <div className="mx-auto max-w-shell px-5 sm:px-8">
           <div className="mb-[22px]">
             <Badge tone="dark">Before &amp; After</Badge>
           </div>
@@ -226,7 +238,7 @@ export default function HomePage() {
             A recent VTRAX transformation, shown before and after.
           </p>
           <article className="max-w-[980px] border border-black/10 bg-white">
-            <div className="grid grid-cols-2 gap-0.5 bg-black/[0.12]">
+            <div className="grid grid-cols-1 gap-0.5 bg-black/[0.12] sm:grid-cols-2">
               <div className="relative h-[clamp(300px,40vw,500px)]">
                 <MediaSlot src={HOME_BIG_BA.before} alt={HOME_BIG_BA.beforeLabel} sizes="50vw" />
                 <span className="absolute left-3.5 top-3.5 bg-ink px-[11px] py-[7px] font-open text-[11px] font-bold uppercase leading-none tracking-[0.12em] text-white">
@@ -269,16 +281,7 @@ export default function HomePage() {
           <h2 className="m-0 mb-10 text-center font-oswald text-[clamp(30px,4.5vw,50px)] font-bold uppercase leading-[1.02] tracking-[0.005em] text-ink">
             Our <span className="text-yellow">work gallery</span>
           </h2>
-          <div className="grid grid-cols-2 gap-3.5 md:grid-cols-3">
-            {GALLERY.map((g, i) => (
-              <div
-                key={i}
-                className="bento-tile relative aspect-square min-h-0 overflow-hidden rounded-[2px]"
-              >
-                <MediaSlot src={g.img} alt={g.label} sizes="(max-width:768px) 50vw, 33vw" />
-              </div>
-            ))}
-          </div>
+          <GalleryCarousel items={GALLERY} />
         </div>
       </section>
 
@@ -295,18 +298,18 @@ export default function HomePage() {
               "linear-gradient(180deg,rgba(14,15,17,0.74) 0%,rgba(14,15,17,0.6) 100%)",
           }}
         />
-        <div className="relative mx-auto max-w-[900px] px-8 py-[clamp(72px,9vw,120px)] text-center">
+        <div className="relative mx-auto max-w-[900px] px-5 sm:px-8 py-[clamp(72px,9vw,120px)] text-center">
           <h2 className="m-0 font-oswald text-[clamp(30px,4.6vw,54px)] font-bold uppercase leading-[1.08] tracking-[0.005em] text-white">
             Want to discuss your Illawarra retaining wall project?{" "}
             <span className="text-yellow">Give us a call.</span>
           </h2>
           <div className="mt-[34px] flex flex-wrap justify-center gap-3.5">
-            <Link href="/contact" className="btn-primary px-8 py-[19px] text-[14px]">
+            <Link href="/contact" className="btn-primary px-5 sm:px-8 py-[19px] text-[14px]">
               Get a Quote
             </Link>
             <a
               href={CONTACT.phoneHref}
-              className="btn-outline-light px-8 py-[19px] text-[14px]"
+              className="btn-outline-light px-5 sm:px-8 py-[19px] text-[14px]"
             >
               Call {CONTACT.phone}
             </a>
@@ -316,7 +319,7 @@ export default function HomePage() {
 
       {/* ===== FAQ PREVIEW ===== */}
       <section className="bg-white py-[clamp(64px,8vw,110px)]">
-        <div className="mx-auto max-w-[880px] px-8">
+        <div className="mx-auto max-w-[880px] px-5 sm:px-8">
           <div className="mb-[22px] text-center">
             <Badge tone="dark">FAQs</Badge>
           </div>
