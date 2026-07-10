@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import emailjs from "@emailjs/browser";
 import { CONTACT } from "@/data/site";
 
@@ -14,6 +15,7 @@ type Status = "idle" | "sending" | "success" | "error";
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -50,8 +52,11 @@ export default function ContactForm() {
       await emailjs.sendForm(serviceId, templateId, formRef.current, {
         publicKey,
       });
-      setStatus("success");
       formRef.current.reset();
+      // Redirect to the dedicated thank-you page so the conversion is tracked
+      // on its own URL (and via the dataLayer event that page fires). Status
+      // stays "sending" until the navigation completes, keeping the form locked.
+      router.push("/thank-you");
     } catch (err) {
       setStatus("error");
       setErrorMsg(
