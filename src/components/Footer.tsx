@@ -105,11 +105,11 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-shell flex-wrap justify-between gap-x-3 gap-y-2 px-5 sm:px-8 py-5">
-          <span className="font-open text-[12.5px] leading-[1.5] text-[#6b7177]">
+          <span className="font-open text-[12.5px] leading-[1.5] text-[#797f87]">
             © {year} VTRAX Projects. ABN {CONTACT.abn} · NSW Contractor Licence{" "}
             {CONTACT.licence}. All rights reserved.
           </span>
-          <span className="font-open text-[12.5px] leading-[1.5] text-[#6b7177]">
+          <span className="font-open text-[12.5px] leading-[1.5] text-[#797f87]">
             Free quotes &amp; site visits · Public liability insured
           </span>
         </div>

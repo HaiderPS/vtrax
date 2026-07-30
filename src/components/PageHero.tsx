@@ -9,6 +9,7 @@ export function HeroBg({
   opacity,
   prominent = false,
   objectPosition,
+  priority = false,
 }: {
   src: string;
   opacity?: number;
@@ -16,6 +17,11 @@ export function HeroBg({
   /** CSS object-position for the photo, e.g. "center 30%" to reveal more
    *  of the top of the image so upper subjects aren't cropped. */
   objectPosition?: string;
+  /** Set on the hero at the top of a page so the photo is preloaded at high
+   *  priority instead of lazy-loaded — it is the largest thing above the fold,
+   *  so lazy-loading it delays Largest Contentful Paint badly. Leave false for
+   *  the mid-page separator/CTA backgrounds, which should stay lazy. */
+  priority?: boolean;
 }) {
   return (
     <div
@@ -34,6 +40,8 @@ export function HeroBg({
           alt=""
           fill
           sizes="100vw"
+          priority={priority}
+          fetchPriority={priority ? "high" : undefined}
           className="object-cover"
           style={objectPosition ? { objectPosition } : undefined}
         />
@@ -58,7 +66,7 @@ export default function PageHero({
 }) {
   return (
     <section className="relative overflow-hidden bg-ink pb-16 pt-28 sm:pb-[92px] sm:pt-32">
-      <HeroBg src={bgSrc} />
+      <HeroBg src={bgSrc} priority />
       <div
         className="pointer-events-none absolute inset-0"
         style={{

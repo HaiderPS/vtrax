@@ -28,7 +28,7 @@ export default function HomePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative overflow-hidden bg-ink">
-        <HeroBg src={IMG.homeHero} prominent objectPosition="center 35%" />
+        <HeroBg src={IMG.homeHero} prominent objectPosition="center 35%" priority />
         <div
           className="pointer-events-none absolute inset-0"
           style={{

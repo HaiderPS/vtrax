@@ -49,7 +49,7 @@ export default function ServiceAreas({
             Sydney. Based in Lake Heights, we can be on-site quickly across all
             primary service areas.
           </p>
-          <p className="m-0 max-w-[48ch] font-open text-[14.5px] italic leading-[1.6] text-[#7a7f85]">
+          <p className="m-0 max-w-[48ch] font-open text-[14.5px] italic leading-[1.6] text-[#70757b]">
             For projects outside the Illawarra, contact Jake to confirm. We are
             open to travelling for projects where it makes sense.
           </p>
