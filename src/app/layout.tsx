@@ -8,7 +8,7 @@ import MetaPixel from "@/components/MetaPixel";
 import { SEO } from "@/data/site";
 
 // Google Tag Manager container ID
-const GTM_ID = "GTM-NP7F4Z2R";
+const GTM_ID = "GTM-5GMJ2XTV";
 
 // Meta (Facebook) Pixel ID
 const META_PIXEL_ID = "27845014538448608";
